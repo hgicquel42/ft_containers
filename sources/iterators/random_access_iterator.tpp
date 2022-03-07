@@ -79,4 +79,10 @@ namespace ft
 	{
 		return (*this->pointer);
 	}
+
+	template<class T>
+	T*	random_access_iterator<T>::operator->(void) const
+	{
+		return (this->pointer);
+	}
 }

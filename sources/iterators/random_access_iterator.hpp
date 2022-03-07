@@ -27,6 +27,7 @@ namespace ft
 			bool	operator!=(const random_access_iterator& other) const;
 
 			T&	operator*(void) const;
+			T*	operator->(void) const;
 	};
 }
 
