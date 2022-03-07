@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <cstddef>
 
+#include "iterators/random_access_iterator.hpp"
+
 namespace ft
 {
 	template<class T, class A = std::allocator<T> >
@@ -20,6 +22,9 @@ namespace ft
 	
 			typedef typename A::pointer			pointer;
 			typedef typename A::const_pointer	const_pointer;
+
+			typedef random_access_iterator<T>		iterator;
+			typedef random_access_iterator<const T>	const_iterator;
 
 		private:
 			A			_alloc;
