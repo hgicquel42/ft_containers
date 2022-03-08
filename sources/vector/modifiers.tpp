@@ -15,7 +15,7 @@ namespace ft
 	template <class T, class A>
 	void	vector<T,A>::pop_back(void)
 	{
-		this->_alloc.destroy(this->_start + --this->_size);
+		this->_alloc.destroy(this->_start + this->_size-- - 1);
 	}
 
 	template <class T, class A>
