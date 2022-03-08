@@ -57,8 +57,11 @@ namespace ft
 
 			bool	empty(void) const;
 
-			iterator	begin(void);
-			iterator	end(void);
+			iterator		begin(void);
+			const_iterator	begin(void) const;
+
+			iterator		end(void);
+			const_iterator	end(void);
 	};
 }
 
