@@ -26,9 +26,11 @@ int	main(void)
 	vec.resize(50, 43);
 	print(vec);
 
-	ft::vector<int>::iterator	it;
-	for (it = vec.begin() + 25; it != vec.end(); it++)
-		std::cout << *it << "\n";
+	// ft::vector<int>::iterator	it;
+	// for (it = vec.begin() + 40; it != vec.end(); it++)
+	// 	std::cout << *it << "\n";
+
+	std::cout << vec[102] << "\n";
 
 	return (0);
 }

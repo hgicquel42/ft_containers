@@ -33,7 +33,6 @@ namespace ft
 			size_type	_size;
 
 		public:
-
 			vector(void);
 			~vector(void);
 
@@ -41,14 +40,17 @@ namespace ft
 
 			explicit vector(size_type count, const T& value = T(), const A& alloc = A());
 
-			explicit vector(size_type count);
-
 			template<class I>
-			vector(I first, I last, const A& alloc = A());
+			vector(I first, I last, const A& alloc = A()); // TODO insert()
 
-			vector(const vector& other);
+			vector(const vector& from); // TODO assign()
+
+			vector&	operator=(const vector& from); // TODO assign()
+
+			A	get_allocator(void) const;
 
 			void	reserve(size_type size);
+
 			void	resize(size_type size, T value);
 
 			size_type	size(void) const;
@@ -61,10 +63,35 @@ namespace ft
 			const_iterator	begin(void) const;
 
 			iterator		end(void);
-			const_iterator	end(void);
+			const_iterator	end(void) const;
+
+			reference		front(void);
+			const_reference	front(void) const;
+
+			reference		back(void);
+			const_reference	back(void) const;
+
+			reference		at(size_type n);
+			const_reference	at(size_type n) const;
+
+			reference		operator[](size_type n);
+			const_reference	operator[](size_type n) const;
+
+			void	push_back(const T& value);
+			void	pop_back(void);
+
+			void	clear(void);
+
+			iterator	insert(iterator position, const T& val);	
+    		void		insert(iterator position, size_type n, const T& val);
+
+			template <class I>
+    		void insert (iterator position, I first, I last);
 	};
 }
 
 #include "vector/constructors.tpp"
 #include "vector/capacity.tpp"
 #include "vector/iterators.tpp"
+#include "vector/accessors.tpp"
+#include "vector/modifiers.tpp"

@@ -5,6 +5,12 @@
 namespace ft 
 {
 	template<class T, class A>
+	A	vector<T,A>::get_allocator(void) const
+	{
+		return (this->_alloc);
+	}
+
+	template<class T, class A>
 	void	vector<T,A>::reserve(size_type capacity)
 	{
 		if (capacity <= this->_capacity)
