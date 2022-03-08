@@ -6,7 +6,7 @@ namespace ft
 {
 	template<class T>
 	random_access_iterator<T>::random_access_iterator(void):
-		pointer(NULL)
+		_pointer(NULL)
 	{}
 
 	template<class T>
@@ -15,12 +15,12 @@ namespace ft
 
 	template<class T>
 	random_access_iterator<T>::random_access_iterator(const T* pointer):
-		pointer(pointer)
+		_pointer(pointer)
 	{}
 
 	template<class T>
 	random_access_iterator<T>::random_access_iterator(const random_access_iterator& from):
-		pointer(from.pointer)
+		_pointer(from._pointer)
 	{}
 
 	template<class T>
@@ -28,14 +28,14 @@ namespace ft
 	{
 		if (this == &from)
 			return ;
-		this->pointer = from.pointer;
+		this->_pointer = from._pointer;
 		return (*this);
 	}
 
 	template<class T>
 	random_access_iterator<T>&	random_access_iterator<T>::operator++(void)
 	{
-		this->pointer++;
+		this->_pointer++;
 		return (*this);
 	}
 
@@ -43,14 +43,14 @@ namespace ft
 	random_access_iterator<T>	random_access_iterator<T>::operator++(int)
 	{
 		random_access_iterator old(*this);
-		this->pointer++;
+		this->_pointer++;
 		return (old);
 	}
 
 	template<class T>
 	random_access_iterator<T>&	random_access_iterator<T>::operator--(void)
 	{
-		this->pointer--;
+		this->_pointer--;
 		return (*this);
 	}
 
@@ -58,31 +58,37 @@ namespace ft
 	random_access_iterator<T>	random_access_iterator<T>::operator--(int)
 	{
 		random_access_iterator old(*this);
-		this->pointer--;
+		this->_pointer--;
 		return (old);
 	}
 
 	template<class T>
 	bool	random_access_iterator<T>::operator==(const random_access_iterator& other) const
 	{
-		return (this->pointer == other.pointer);
+		return (this->_pointer == other._pointer);
 	}
 
 	template<class T>
 	bool	random_access_iterator<T>::operator!=(const random_access_iterator& other) const
 	{
-		return (this->pointer != other.pointer);
+		return (this->_pointer != other._pointer);
 	}
 
 	template<class T>
 	T&	random_access_iterator<T>::operator*(void) const
 	{
-		return (*this->pointer);
+		return (*this->_pointer);
 	}
 
 	template<class T>
 	T*	random_access_iterator<T>::operator->(void) const
 	{
-		return (this->pointer);
+		return (this->_pointer);
+	}
+
+	template<class T>
+	random_access_iterator<T>	random_access_iterator<T>::operator+(ptrdiff_t n) const
+	{
+		return random_access_iterator(this->_pointer + n);
 	}
 }

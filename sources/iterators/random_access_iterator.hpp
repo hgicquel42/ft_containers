@@ -1,14 +1,22 @@
 #pragma once
 
-#include <iterator> 
+#include "iterators.hpp"
 
 namespace ft
 {
 	template<class T>
-	class random_access_iterator: public std::iterator<std::random_access_iterator_tag, T>
+	class random_access_iterator: public iterator<random_access_iterator_tag, T>
 	{
+		public:
+			typedef T	value_type;
+			typedef T*	pointer;
+			typedef T&	reference;
+
+			typedef ptrdiff_t	difference_type;
+
+			typedef random_access_iterator_tag	iterator_category;
 		private:
-			T*	pointer;
+			T*	_pointer;
 		public:
 			random_access_iterator(void);
 			~random_access_iterator(void);
@@ -28,6 +36,8 @@ namespace ft
 
 			T&	operator*(void) const;
 			T*	operator->(void) const;
+
+			random_access_iterator	operator+(difference_type n) const;
 	};
 }
 
