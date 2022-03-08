@@ -14,17 +14,21 @@ void	print(ft::vector<int>& vector)
 
 int	main(void)
 {
-	ft::vector<int> vector;
+	ft::vector<int> vec;
 
-	print(vector);
-	vector.reserve(200);
-	print(vector);
-	vector.resize(100, 41);
-	print(vector);
-	vector.resize(150, 42);
-	print(vector);
-	vector.resize(50, 43);
-	print(vector);
+	print(vec);
+	vec.reserve(200);
+	print(vec);
+	vec.resize(100, 41);
+	print(vec);
+	vec.resize(150, 42);
+	print(vec);
+	vec.resize(50, 43);
+	print(vec);
+
+	ft::vector<int>::iterator	it;
+	for (it = vec.begin() + 25; it != vec.end(); it++)
+		std::cout << *it << "\n";
 
 	return (0);
 }

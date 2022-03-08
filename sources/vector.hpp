@@ -56,8 +56,12 @@ namespace ft
 			size_type	capacity(void) const;
 
 			bool	empty(void) const;
+
+			iterator	begin(void);
+			iterator	end(void);
 	};
 }
 
 #include "vector/constructors.tpp"
 #include "vector/capacity.tpp"
+#include "vector/iterators.tpp"

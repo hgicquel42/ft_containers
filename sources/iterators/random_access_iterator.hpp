@@ -20,7 +20,7 @@ namespace ft
 		public:
 			random_access_iterator(void);
 			~random_access_iterator(void);
-			random_access_iterator(const T* pointer);
+			random_access_iterator(T* pointer);
 			random_access_iterator(const random_access_iterator& from);
 
 			random_access_iterator&	operator=(const random_access_iterator& from);
@@ -38,6 +38,9 @@ namespace ft
 			T*	operator->(void) const;
 
 			random_access_iterator	operator+(difference_type n) const;
+			random_access_iterator	operator-(difference_type n) const;
+
+			T&	operator[](difference_type n) const;
 	};
 }
 

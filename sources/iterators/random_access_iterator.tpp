@@ -14,7 +14,7 @@ namespace ft
 	{}
 
 	template<class T>
-	random_access_iterator<T>::random_access_iterator(const T* pointer):
+	random_access_iterator<T>::random_access_iterator(T* pointer):
 		_pointer(pointer)
 	{}
 
@@ -27,7 +27,7 @@ namespace ft
 	random_access_iterator<T>&	random_access_iterator<T>::operator=(const random_access_iterator& from)
 	{
 		if (this == &from)
-			return ;
+			return (*this);
 		this->_pointer = from._pointer;
 		return (*this);
 	}
@@ -90,5 +90,17 @@ namespace ft
 	random_access_iterator<T>	random_access_iterator<T>::operator+(ptrdiff_t n) const
 	{
 		return random_access_iterator(this->_pointer + n);
+	}
+
+	template<class T>
+	random_access_iterator<T>	random_access_iterator<T>::operator-(ptrdiff_t n) const
+	{
+		return random_access_iterator(this->_pointer - n);
+	}
+
+	template<class T>
+	T&	random_access_iterator<T>::operator[](ptrdiff_t n) const
+	{
+		return (*(this->_pointer + n));
 	}
 }
