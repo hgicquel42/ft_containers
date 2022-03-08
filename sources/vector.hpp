@@ -82,6 +82,9 @@ namespace ft
 
 			void	clear(void);
 
+			iterator	erase(iterator position);
+			iterator	erase(iterator first, iterator last);
+
 			iterator	insert(iterator position, const T& val);	
     		void		insert(iterator position, size_type n, const T& val);
 

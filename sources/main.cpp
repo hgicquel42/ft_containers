@@ -10,27 +10,28 @@ void	print(ft::vector<int>& vector)
 	cout << vector.size() << "\n";
 	cout << vector.capacity() << "\n";
 	cout << vector.max_size() << "\n";
+	cout << "-----------" << "\n";
 }
 
 int	main(void)
 {
-	ft::vector<int> vec;
+	ft::vector<int>				vec;
+	ft::vector<int>::iterator	it;
 
 	print(vec);
 	vec.reserve(200);
 	print(vec);
-	vec.resize(100, 41);
-	print(vec);
-	vec.resize(150, 42);
-	print(vec);
-	vec.resize(50, 43);
-	print(vec);
+	
+	for (int i = 0; i < 10; i++)
+		vec.push_back(i);
 
-	// ft::vector<int>::iterator	it;
-	// for (it = vec.begin() + 40; it != vec.end(); it++)
+	// vec.pop_back();
+
+	for (it = vec.erase(vec.begin() + 5); it != vec.end(); it++)
+		std::cout << *it << "\n";
+
+	// for (it = vec.begin(); it != vec.end(); it++)
 	// 	std::cout << *it << "\n";
-
-	std::cout << vec[102] << "\n";
 
 	return (0);
 }
