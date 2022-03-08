@@ -6,7 +6,7 @@ namespace ft
 	void	vector<T,A>::push_back(const T& value)
 	{
 		if (this->_size == this->_capacity)
-			this->reserve(this->_capacity * 2);
+			this->reserve((this->_capacity + 1) * 2);
 		this->_alloc.construct(this->_start + this->size++, value);
 	}
 
