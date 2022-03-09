@@ -38,7 +38,7 @@ namespace ft
 
 	template <class T, class A>
 	template <class I>
-	void	vector<T,A>::assign(I first, I last)
+	void	vector<T,A>::assign(I first, I last, typename ft::enable_if<!ft::is_integral<I>::value>::type*)
 	{
 		for (size_type i = 0; i < this->_size; i++)
 			this->_alloc.destroy(this->_start + i);

@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cstddef>
 
+#include "utils/utils.hpp"
 #include "iterators/random_access_iterator.hpp"
 
 namespace ft
@@ -85,7 +86,7 @@ namespace ft
 			void	assign(size_type count, const T& val);
 
 			template <class I>
-			void	assign(I first, I last);
+			void	assign(I first, I last, typename ft::enable_if<!ft::is_integral<I>::value>::type* = NULL);
 
 			iterator	erase(iterator position);
 			iterator	erase(iterator first, iterator last);

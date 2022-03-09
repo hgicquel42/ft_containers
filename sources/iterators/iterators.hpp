@@ -4,8 +4,6 @@
 
 namespace ft
 {
-	class random_access_iterator_tag { };
-
     template <class I> struct iterator_traits
     {
         typedef typename I::value_type			value_type;
@@ -23,7 +21,7 @@ namespace ft
 
 		typedef ptrdiff_t	difference_type;
 
-        typedef random_access_iterator_tag  iterator_category;
+        typedef std::random_access_iterator_tag  iterator_category;
     };
     
     template <class T> class iterator_traits<const T*>
@@ -34,7 +32,7 @@ namespace ft
 
 		typedef ptrdiff_t	difference_type;
 
-        typedef ft::random_access_iterator_tag  iterator_category;
+        typedef std::random_access_iterator_tag  iterator_category;
     };
 
 	template <class C, class T, class D = ptrdiff_t, class P = T*, class R = T&>
