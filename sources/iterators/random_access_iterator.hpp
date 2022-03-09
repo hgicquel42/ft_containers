@@ -44,6 +44,9 @@ namespace ft
 
 			T&	operator[](difference_type n) const;
 	};
+
+	template<class T>
+	random_access_iterator<T>	operator+(ptrdiff_t n, const random_access_iterator<T>& it);
 }
 
 #include "random_access_iterator.tpp"

@@ -52,6 +52,8 @@ namespace ft
 
 			vector&	operator=(const vector& from);
 
+			//  TODO
+
 			A	get_allocator(void) const;
 
 			void	reserve(size_type size);

@@ -17,8 +17,8 @@ int	main(void)
 {
 	ft::vector<int>				vec;
 	ft::vector<int>				vec2;
-	// ft::vector<int>::iterator	it;
-	ft::vector<int>::reverse_iterator	it;
+	ft::vector<int>::iterator	it;
+	// ft::vector<int>::reverse_iterator	it;
 
 	// print(vec);
 	// vec.reserve(200);
@@ -41,7 +41,7 @@ int	main(void)
 
 	std::cout << "lol\n";
 
-	for (it = vec.begin(); it != vec.end(); it++)
+	for (it = 5 + vec.begin(); it != vec.end(); it++)
 		std::cout << *it << "\n";
 
 	// for (it = vec.rbegin(); it != vec.rend(); it--)

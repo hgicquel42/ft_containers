@@ -109,4 +109,10 @@ namespace ft
 	{
 		return (*(this->_pointer + n));
 	}
+
+	template<class T>
+	random_access_iterator<T>	operator+(ptrdiff_t n, const random_access_iterator<T>& it)
+	{
+		return (it + n);
+	}
 }
