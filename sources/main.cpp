@@ -16,27 +16,27 @@ void	print(ft::vector<T>& vector)
 
 int	main(void)
 {
-	ft::vector<int>				vec;
-	ft::vector<int>				vec2;
-	ft::vector<int>::iterator	it;
+	ft::vector<std::string>				vec;
+	ft::vector<std::string>				vec2;
+	ft::vector<std::string>::iterator	it;
 	// ft::vector<int>::reverse_iterator	it;
 
 	// print(vec);
 	// vec.reserve(200);
 	// print(vec);
-	vec.reserve(10);
+	// vec.reserve(10);
 
 	for (int i = 0; i < 10; i++)
-		vec.push_back(i);
+		vec.push_back("lol");
 
 	// vec.erase(vec.begin() + 5, vec.begin() + 10);
 
-	for (int i = 0; i < 20; i++)
-		vec2.push_back((i + 1) * 20);
+	// for (int i = 0; i < 20; i++)
+	// 	vec2.push_back((i + 1) * 20);
 
-	print(vec);
-	vec.insert(vec.begin() + 5, 42);
-	print(vec);
+	// print(vec);
+	// vec.insert(vec.begin() + 5, 42);
+	// print(vec);
 
 	// vec.swap(vec2);
 
@@ -45,7 +45,7 @@ int	main(void)
 	// for (it = vec.erase(vec.begin() + 5, vec.begin() + 10); it != vec.end(); it++)
 	// 	std::cout << *it << "\n";
 
-	std::cout << "lol\n";
+	vec.insert(vec.begin() + 2, 5, "hello");
 
 	for (it = vec.begin(); it != vec.end(); it++)
 		std::cout << *it << "\n";

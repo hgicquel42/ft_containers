@@ -97,7 +97,7 @@ namespace ft
 			this->reserve((this->_capacity + 1) * 2);
 			position = this->begin() + d;
 		}
-		for (iterator it = this->end(); it != position - 1; it--)
+		for (iterator it = this->end() - 1; it != position - 1; it--)
 		{
 			this->_alloc.construct(&it[1], it[0]);
 			this->_alloc.destroy(&it[0]);
@@ -116,7 +116,7 @@ namespace ft
 			this->reserve((this->_capacity + n) * 2);
 			position = this->begin() + d;
 		}
-		for (iterator it = this->end(); it != position - 1; it--)
+		for (iterator it = this->end() - 1; it != position - 1; it--)
 		{
 			this->_alloc.construct(&it[n], it[0]);
 			this->_alloc.destroy(&it[0]);
@@ -139,7 +139,7 @@ namespace ft
 			this->reserve((this->_capacity + n) * 2);
 			position = this->begin() + d;
 		}
-		for (iterator it = this->end(); it != position - 1; it--)
+		for (iterator it = this->end() - 1; it != position - 1; it--)
 		{
 			this->_alloc.construct(&it[n], it[0]);
 			this->_alloc.destroy(&it[0]);
