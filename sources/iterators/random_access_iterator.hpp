@@ -42,6 +42,15 @@ namespace ft
 
 			difference_type	operator-(const random_access_iterator& other) const;
 
+			bool	operator>(const random_access_iterator& other) const;
+			bool	operator<(const random_access_iterator& other) const;
+
+			bool	operator>=(const random_access_iterator& other) const;
+			bool	operator<=(const random_access_iterator& other) const;
+
+			random_access_iterator&	operator+=(difference_type n);
+			random_access_iterator&	operator-=(difference_type n);
+
 			T&	operator[](difference_type n) const;
 	};
 
