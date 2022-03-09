@@ -6,6 +6,7 @@
 
 #include "utils/utils.hpp"
 #include "iterators/random_access_iterator.hpp"
+#include "iterators/reverse_iterator.hpp"
 
 namespace ft
 {
@@ -24,8 +25,11 @@ namespace ft
 			typedef typename A::pointer			pointer;
 			typedef typename A::const_pointer	const_pointer;
 
-			typedef random_access_iterator<T>		iterator;
-			typedef random_access_iterator<const T>	const_iterator;
+			typedef ft::random_access_iterator<T>		iterator;
+			typedef ft::random_access_iterator<const T>	const_iterator;
+
+			typedef ft::reverse_iterator<T>			reverse_iterator;
+			typedef ft::reverse_iterator<const T>	const_reverse_iterator;
 
 		private:
 			A			_alloc;
@@ -63,8 +67,14 @@ namespace ft
 			iterator		begin(void);
 			const_iterator	begin(void) const;
 
+			reverse_iterator		rbegin(void);
+			const_reverse_iterator	rbegin(void) const;
+
 			iterator		end(void);
 			const_iterator	end(void) const;
+
+			reverse_iterator		rend(void);
+			const_reverse_iterator	rend(void) const;
 
 			reference		front(void);
 			const_reference	front(void) const;
