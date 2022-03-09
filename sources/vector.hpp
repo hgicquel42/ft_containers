@@ -42,7 +42,7 @@ namespace ft
 			explicit vector(size_type count, const T& value = T(), const A& alloc = A());
 
 			template<class I>
-			vector(I first, I last, const A& alloc = A());
+			vector(I first, I last, const A& alloc = A(), typename ft::enable_if<!ft::is_integral<I>::value>::type* = NULL);
 
 			vector(const vector& from);
 

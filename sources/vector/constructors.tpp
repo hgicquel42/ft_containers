@@ -42,7 +42,7 @@ namespace ft
 
 	template<class T, class A>
 	template<class I>
-	vector<T,A>::vector(I first, I last, const A& alloc):
+	vector<T,A>::vector(I first, I last, const A& alloc, typename ft::enable_if<!ft::is_integral<I>::value>::type*):
 		_alloc(alloc),
 		_start(NULL),
 		_capacity(0),
