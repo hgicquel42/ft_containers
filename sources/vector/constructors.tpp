@@ -39,15 +39,14 @@ namespace ft
 			this->_alloc.construct(this->_start + i, value);
 		this->_size = count;
 	}
-	
-	// template<class T, class A>
-	// vector<T,A>::vector(const vector& from):
-	// 	_alloc(from.alloc),
-	// 	_start(NULL),
-	// 	_capacity(0),
-	// 	_size(0)
-	// {
-		
-	// }
 
+	template<class T, class A>
+	vector<T,A>::vector(const vector& from):
+		_alloc(from.alloc),
+		_start(NULL),
+		_capacity(0),
+		_size(0)
+	{
+		this->assign(from.begin(), from.end());	
+	}
 }

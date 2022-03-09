@@ -49,6 +49,7 @@ namespace ft
 			this->reserve(count);
 		for (size_type i = 0; first != last; i++, first++)
 			this->_alloc.construct(this->_start + i, *first);
+		this->_size = (size_type) count;
 	}
 
 	template <class T, class A>
