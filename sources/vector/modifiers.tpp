@@ -48,16 +48,16 @@ namespace ft
 	template <class I>
 	void	vector<T,A>::assign(I first, I last, typename ft::enable_if<!ft::is_integral<I>::value>::type*)
 	{
-		typename I::difference_type count = std::distance(first, last);
+		typename I::difference_type n = std::distance(first, last);
+		if (n < 0)
+			throw std::out_of_range("vector::assign");
 		for (size_type i = 0; i < this->_size; i++)
 			this->_alloc.destroy(this->_start + i);
-		if (count < 0)
-			throw std::out_of_range("vector::assign");
-		if ((size_type) count > this->_capacity)
-			this->reserve(count);
+		if ((size_type) n > this->_capacity)
+			this->reserve(n);
 		for (size_type i = 0; first != last; i++, first++)
 			this->_alloc.construct(this->_start + i, *first);
-		this->_size = (size_type) count;
+		this->_size = (size_type) n;
 	}
 
 	template <class T, class A>
@@ -88,10 +88,64 @@ namespace ft
 		return (first);
 	}
 
-	// template <class T, class A>
-	// typename vector<T,A>::iterator	vector<T,A>::insert(iterator position, const T& val)
-	// {
-	// 	if (this->_size == this->_capacity)
-	// 		this->reserve((this->_capacity + 1) * 2);
-	// }
+	template<class T, class A>
+	typename vector<T,A>::iterator vector<T,A>::insert(iterator position, const value_type &val)
+	{
+		if (this->_size == this->_capacity)
+		{
+			typename iterator::difference_type d = std::distance(this->begin(), position);
+			this->reserve((this->_capacity + 1) * 2);
+			position = this->begin() + d;
+		}
+		for (iterator it = this->end(); it != position - 1; it--)
+		{
+			this->_alloc.construct(&it[1], it[0]);
+			this->_alloc.destroy(&it[0]);
+		}
+		this->_alloc.construct(&position[0], val);
+		this->_size++;
+		return (position);
+	}
+
+	template<class T, class A>
+	void vector<T,A>::insert(iterator position, size_type n, const value_type &val)
+	{
+		if (this->_size + n >= this->_capacity)
+		{
+			typename iterator::difference_type d = std::distance(this->begin(), position);
+			this->reserve((this->_capacity + n) * 2);
+			position = this->begin() + d;
+		}
+		for (iterator it = this->end(); it != position - 1; it--)
+		{
+			this->_alloc.construct(&it[n], it[0]);
+			this->_alloc.destroy(&it[0]);
+		}
+		for (size_type i = 0; i < n; i++)
+			this->_alloc.construct(&position[i], val);
+		this->_size += n;
+	}
+
+	template <class T, class A>
+	template <class I>
+	void vector<T,A>::insert(iterator position, I first, I last, typename ft::enable_if<!ft::is_integral<I>::value>::type*)
+	{
+		typename iterator::difference_type n = std::distance(first, last);
+		if (n < 0)
+			throw std::out_of_range("vector::insert");
+		if (this->_size + n >= this->_capacity)
+		{
+			typename iterator::difference_type d = std::distance(this->begin(), position);
+			this->reserve((this->_capacity + n) * 2);
+			position = this->begin() + d;
+		}
+		for (iterator it = this->end(); it != position - 1; it--)
+		{
+			this->_alloc.construct(&it[n], it[0]);
+			this->_alloc.destroy(&it[0]);
+		}
+		for (size_type i = 0; first != last; i++, first++)
+			this->_alloc.construct(&position[i], *first);
+		this->_size += n;
+	}
 }

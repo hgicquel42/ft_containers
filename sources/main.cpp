@@ -4,7 +4,8 @@
 
 using namespace std;
 
-void	print(ft::vector<int>& vector)
+template <class T>
+void	print(ft::vector<T>& vector)
 {
 	cout << "-----------" << "\n";
 	cout << vector.size() << "\n";
@@ -23,14 +24,19 @@ int	main(void)
 	// print(vec);
 	// vec.reserve(200);
 	// print(vec);
-	
-	for (int i = 0; i < 20; i++)
+	vec.reserve(10);
+
+	for (int i = 0; i < 10; i++)
 		vec.push_back(i);
 
 	// vec.erase(vec.begin() + 5, vec.begin() + 10);
 
-	// for (int i = 0; i < 20; i++)
-	// 	vec2.push_back((i + 1) * 20);
+	for (int i = 0; i < 20; i++)
+		vec2.push_back((i + 1) * 20);
+
+	print(vec);
+	vec.insert(vec.begin() + 5, 42);
+	print(vec);
 
 	// vec.swap(vec2);
 
@@ -41,7 +47,7 @@ int	main(void)
 
 	std::cout << "lol\n";
 
-	for (it = 5 + vec.begin(); it != vec.end(); it++)
+	for (it = vec.begin(); it != vec.end(); it++)
 		std::cout << *it << "\n";
 
 	// for (it = vec.rbegin(); it != vec.rend(); it--)

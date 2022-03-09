@@ -109,7 +109,7 @@ namespace ft
     		void		insert(iterator position, size_type n, const T& val);
 
 			template <class I>
-    		void insert (iterator position, I first, I last);
+    		void insert (iterator position, I first, I last, typename ft::enable_if<!ft::is_integral<I>::value>::type* = NULL);
 	};
 }
 
