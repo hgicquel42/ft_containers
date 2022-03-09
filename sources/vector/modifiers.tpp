@@ -40,9 +40,9 @@ namespace ft
 	template <class I>
 	void	vector<T,A>::assign(I first, I last, typename ft::enable_if<!ft::is_integral<I>::value>::type*)
 	{
+		typename I::difference_type count = std::distance(first, last);
 		for (size_type i = 0; i < this->_size; i++)
 			this->_alloc.destroy(this->_start + i);
-		typename I::difference_type count = std::distance(first, last);
 		if (count < 0)
 			throw std::out_of_range("vector::assign");
 		if ((size_type) count > this->_capacity)
@@ -65,5 +65,18 @@ namespace ft
 		return (position);
 	}
 
-	// iterator erase (iterator first, iterator last);
+	template <class T, class A>
+	typename vector<T,A>::iterator	vector<T,A>::erase(iterator first, iterator last)
+	{
+		typename iterator::difference_type count = std::distance(first, last);
+		for (iterator it = first; it != last; it++)
+			this->_alloc.destroy(&first[0]);
+		for (size_type i = 0; last + i != this->end(); i++)
+		{
+			this->_alloc.construct(&first[i], last[i]);
+			this->_alloc.destroy(&last[i]);
+		}
+		this->_size -= count;
+		return (first);
+	}
 }
