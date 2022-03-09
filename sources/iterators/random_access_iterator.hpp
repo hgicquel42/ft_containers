@@ -5,7 +5,7 @@
 namespace ft
 {
 	template<class T>
-	class random_access_iterator: public iterator<random_access_iterator_tag, T>
+	class random_access_iterator: public iterator<std::random_access_iterator_tag, T>
 	{
 		public:
 			typedef T	value_type;
@@ -14,7 +14,7 @@ namespace ft
 
 			typedef ptrdiff_t	difference_type;
 
-			typedef random_access_iterator_tag	iterator_category;
+			typedef std::random_access_iterator_tag	iterator_category;
 		private:
 			T*	_pointer;
 		public:
@@ -39,6 +39,9 @@ namespace ft
 
 			random_access_iterator	operator+(difference_type n) const;
 			random_access_iterator	operator-(difference_type n) const;
+
+			difference_type	operator+(const random_access_iterator& other) const;
+			difference_type	operator-(const random_access_iterator& other) const;
 
 			T&	operator[](difference_type n) const;
 	};

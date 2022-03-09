@@ -27,6 +27,31 @@ namespace ft
 	}
 
 	template <class T, class A>
+	void	vector<T,A>::assign(size_type count, const T& val)
+	{
+		for (size_type i = 0; i < this->_size; i++)
+			this->_alloc.destroy(this->_start + i);
+		for (size_type i = 0; i < count; i++)
+			this->_alloc.construct(this->_start + i, val);
+		this->_size = count;
+	}
+
+	template <class T, class A>
+	template <class I>
+	void	vector<T,A>::assign(I first, I last)
+	{
+		for (size_type i = 0; i < this->_size; i++)
+			this->_alloc.destroy(this->_start + i);
+		typename I::difference_type count = std::distance(first, last);
+		if (count < 0)
+			throw std::out_of_range("vector::assign");
+		if ((size_type) count > this->_capacity)
+			this->reserve(count);
+		for (size_type i = 0; first != last; i++, first++)
+			this->_alloc.construct(this->_start + i, *first);
+	}
+
+	template <class T, class A>
 	typename vector<T,A>::iterator	vector<T,A>::erase(iterator position)
 	{
 		this->_alloc.destroy(&position[0]);

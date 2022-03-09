@@ -77,10 +77,15 @@ namespace ft
 			reference		operator[](size_type n);
 			const_reference	operator[](size_type n) const;
 
-			void	push_back(const T& value);
+			void	push_back(const T& val);
 			void	pop_back(void);
 
 			void	clear(void);
+			
+			void	assign(size_type count, const T& val);
+
+			template <class I>
+			void	assign(I first, I last);
 
 			iterator	erase(iterator position);
 			iterator	erase(iterator first, iterator last);
