@@ -40,7 +40,6 @@ namespace ft
 			random_access_iterator	operator+(difference_type n) const;
 			random_access_iterator	operator-(difference_type n) const;
 
-			difference_type	operator+(const random_access_iterator& other) const;
 			difference_type	operator-(const random_access_iterator& other) const;
 
 			T&	operator[](difference_type n) const;

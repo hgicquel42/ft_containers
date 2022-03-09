@@ -78,6 +78,8 @@ namespace ft
 			reference		operator[](size_type n);
 			const_reference	operator[](size_type n) const;
 
+			void	swap(vector& other);
+
 			void	push_back(const T& val);
 			void	pop_back(void);
 

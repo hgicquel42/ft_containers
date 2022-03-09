@@ -99,12 +99,6 @@ namespace ft
 	}
 
 	template<class T>
-	typename random_access_iterator<T>::difference_type	random_access_iterator<T>::operator+(const random_access_iterator& other) const
-	{
-		return (this->_pointer + other._pointer);
-	}
-
-	template<class T>
 	typename random_access_iterator<T>::difference_type	random_access_iterator<T>::operator-(const random_access_iterator& other) const
 	{
 		return (this->_pointer - other._pointer);

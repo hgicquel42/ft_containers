@@ -5,6 +5,14 @@
 namespace ft
 {
 	template <class T, class A>
+	void	vector<T,A>::swap(vector& other)
+	{
+		vector	tmp(*this);
+		*this = other;
+		other = tmp;
+	}
+
+	template <class T, class A>
 	void	vector<T,A>::push_back(const T& value)
 	{
 		if (this->_size == this->_capacity)
@@ -79,4 +87,11 @@ namespace ft
 		this->_size -= count;
 		return (first);
 	}
+
+	// template <class T, class A>
+	// typename vector<T,A>::iterator	vector<T,A>::insert(iterator position, const T& val)
+	// {
+	// 	if (this->_size == this->_capacity)
+	// 		this->reserve((this->_capacity + 1) * 2);
+	// }
 }
