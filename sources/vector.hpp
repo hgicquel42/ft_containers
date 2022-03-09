@@ -42,11 +42,11 @@ namespace ft
 			explicit vector(size_type count, const T& value = T(), const A& alloc = A());
 
 			template<class I>
-			vector(I first, I last, const A& alloc = A()); // TODO insert()
+			vector(I first, I last, const A& alloc = A());
 
-			vector(const vector& from); // TODO assign()
+			vector(const vector& from);
 
-			vector&	operator=(const vector& from); // TODO assign()
+			vector&	operator=(const vector& from);
 
 			A	get_allocator(void) const;
 

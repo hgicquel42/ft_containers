@@ -13,18 +13,18 @@ namespace ft
 	{}
 
 	template<class T, class A>
+	vector<T,A>::~vector(void)
+	{
+		this->_alloc.deallocate(this->_start, this->_capacity);
+	}
+
+	template<class T, class A>
 	vector<T,A>::vector(const A& alloc):
 		_alloc(alloc),
 		_start(NULL),
 		_capacity(0),
 		_size(0)
 	{}
-
-	template<class T, class A>
-	vector<T,A>::~vector(void)
-	{
-		this->_alloc.deallocate(this->_start, this->_capacity);
-	}
 
 	template<class T, class A>
 	vector<T,A>::vector(size_type count, const T& value, const A& alloc):
@@ -41,13 +41,24 @@ namespace ft
 	}
 
 	template<class T, class A>
+	template<class I>
+	vector<T,A>::vector(I first, I last, const A& alloc):
+		_alloc(alloc),
+		_start(NULL),
+		_capacity(0),
+		_size(0)
+	{
+		this->assign(first, last);
+	}
+
+	template<class T, class A>
 	vector<T,A>::vector(const vector& from):
 		_alloc(from._alloc),
 		_start(NULL),
 		_capacity(0),
 		_size(0)
 	{
-		this->assign(from.begin(), from.end());	
+		this->assign(from.begin(), from.end());
 	}
 
 	template<class T, class A>

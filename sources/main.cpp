@@ -32,8 +32,6 @@ int	main(void)
 	for (it = vec2.begin(); it != vec2.end(); it++)
 		std::cout << *it << "\n";
 
-	vec = vec2;
-
 	// vec.pop_back();
 
 	// for (it = vec.erase(vec.begin() + 5); it != vec.end(); it++)
