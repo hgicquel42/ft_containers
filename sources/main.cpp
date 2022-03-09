@@ -26,13 +26,13 @@ int	main(void)
 	// for (int i = 0; i < 10; i++)
 	// 	vec.push_back(i);
 
-	// for (int i = 0; i < 20; i++)
-	// 	vec2.push_back((i + 1) * 20);
+	for (int i = 0; i < 20; i++)
+		vec2.push_back((i + 1) * 20);
 
 	for (it = vec2.begin(); it != vec2.end(); it++)
 		std::cout << *it << "\n";
 
-	vec.assign(vec2.begin(), vec2.end());
+	vec = vec2;
 
 	// vec.pop_back();
 

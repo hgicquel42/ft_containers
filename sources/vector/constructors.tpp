@@ -42,11 +42,20 @@ namespace ft
 
 	template<class T, class A>
 	vector<T,A>::vector(const vector& from):
-		_alloc(from.alloc),
+		_alloc(from._alloc),
 		_start(NULL),
 		_capacity(0),
 		_size(0)
 	{
 		this->assign(from.begin(), from.end());	
+	}
+
+	template<class T, class A>
+	vector<T,A>& vector<T,A>::operator=(const vector& from)
+	{
+		if (this == &from)
+			return (*this);
+		this->assign(from.begin(), from.end());
+		return (*this);
 	}
 }

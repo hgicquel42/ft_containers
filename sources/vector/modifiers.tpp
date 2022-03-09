@@ -64,4 +64,6 @@ namespace ft
 		this->_size--;
 		return (position);
 	}
+
+	// iterator erase (iterator first, iterator last);
 }

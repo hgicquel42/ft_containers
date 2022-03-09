@@ -13,7 +13,7 @@ namespace ft
 	template<class T, class A>
 	random_access_iterator<const T>	vector<T,A>::begin(void) const
 	{
-		return (random_access_iterator<T>(this->_start));
+		return (random_access_iterator<const T>(this->_start));
 	}
 
 	template<class T, class A>
@@ -25,6 +25,6 @@ namespace ft
 	template<class T, class A>
 	random_access_iterator<const T>	vector<T,A>::end(void) const
 	{
-		return (random_access_iterator<T>(this->_start + this->_size));
+		return (random_access_iterator<const T>(this->_start + this->_size));
 	}
 }
