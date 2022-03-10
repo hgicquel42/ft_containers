@@ -37,6 +37,9 @@ namespace ft
 			size_type	_capacity;
 			size_type	_size;
 
+			bool	compare(const vector& other) const;
+			int		compare2(const vector& other) const;
+
 		public:
 			vector(void);
 			~vector(void);
@@ -51,8 +54,6 @@ namespace ft
 			vector(const vector& from);
 
 			vector&	operator=(const vector& from);
-
-			//  TODO
 
 			A	get_allocator(void) const;
 
@@ -110,6 +111,13 @@ namespace ft
 
 			template <class I>
     		void insert (iterator position, I first, I last, typename ft::enable_if<!ft::is_integral<I>::value>::type* = NULL);
+
+			bool	operator==(const vector& other) const;
+			bool	operator!=(const vector& other) const;
+			bool	operator<=(const vector& other) const;
+			bool	operator>=(const vector& other) const;
+			bool	operator<(const vector& other) const;
+			bool	operator>(const vector& other) const;
 	};
 }
 
@@ -118,3 +126,4 @@ namespace ft
 #include "vector/iterators.tpp"
 #include "vector/accessors.tpp"
 #include "vector/modifiers.tpp"
+#include "vector/operators.tpp"
