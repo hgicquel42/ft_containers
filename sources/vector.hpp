@@ -37,9 +37,6 @@ namespace ft
 			size_type	_capacity;
 			size_type	_size;
 
-			bool	compare(const vector& other) const;
-			int		compare2(const vector& other) const;
-
 		public:
 			vector(void);
 			~vector(void);
@@ -113,14 +110,25 @@ namespace ft
 
 			template <class I>
     		void insert (iterator position, I first, I last, typename ft::enable_if<!ft::is_integral<I>::value>::type* = NULL);
-
-			bool	operator==(const vector& other) const;
-			bool	operator!=(const vector& other) const;
-			bool	operator<=(const vector& other) const;
-			bool	operator>=(const vector& other) const;
-			bool	operator<(const vector& other) const;
-			bool	operator>(const vector& other) const;
 	};
+
+	template<class T, class A>
+	bool	operator==(const vector<T,A>& left, const vector<T,A>& right);
+
+	template<class T, class A>
+	bool	operator!=(const vector<T,A>& left, const vector<T,A>& right);
+
+	template<class T, class A>
+	bool	operator<=(const vector<T,A>& left, const vector<T,A>& right);
+
+	template<class T, class A>
+	bool	operator>=(const vector<T,A>& left, const vector<T,A>& right);
+
+	template<class T, class A>
+	bool	operator<(const vector<T,A>& left, const vector<T,A>& right);
+
+	template<class T, class A>
+	bool	operator>(const vector<T,A>& left, const vector<T,A>& right);
 }
 
 #include "vector/constructors.tpp"

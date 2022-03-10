@@ -3,64 +3,64 @@
 namespace ft
 {
 	template <class T, class A>
-	bool	vector<T,A>::compare(const vector& other) const
+	static bool	compare(const vector<T,A>& left, const vector<T,A>& right)
 	{
-		if (this->_size != other._size)
+		if (left.size() != right.size())
 			return (false);
-		const_iterator a = this->begin();
-		const_iterator b = other.begin();
-		while (a != this->end() && *a == *b)
+		typename vector<T,A>::const_iterator a = left.begin();
+		typename vector<T,A>::const_iterator b = right.begin();
+		while (a != left.end() && *a == *b)
 			a++, b++;
-		return (a == this->end());
+		return (a == left.end());
 	}
 
 	template <class T, class A>
-	int	vector<T,A>::compare2(const vector& other) const
+	static int	compare2(const vector<T,A>& left, const vector<T,A>& right)
 	{
-		if (this->_size != other._size)
-			return (this->_size - other._size);
-		const_iterator a = this->begin();
-		const_iterator b = other.begin();
-		while (a != this->end() && *a == *b)
+		if (left.size() != right.size())
+			return (left.size() - right.size());
+		typename vector<T,A>::const_iterator a = left.begin();
+		typename vector<T,A>::const_iterator b = right.begin();
+		while (a != left.end() && *a == *b)
 			a++, b++;
-		if (a == this->end())
+		if (a == left.end())
 			return (0);
 		return (*a - *b);
 	}
 
 	template <class T, class A>
-	bool	vector<T,A>::operator==(const vector& other) const
+	bool	operator==(const vector<T,A>& left, const vector<T,A>& right)
 	{
-		return (this->compare(other));
+		return (compare(left, right));
 	}
 
 	template <class T, class A>
-	bool	vector<T,A>::operator!=(const vector& other) const
+	bool	operator!=(const vector<T,A>& left, const vector<T,A>& right)
 	{
-		return (!this->compare(other));
+		return (!compare(left, right));
 	}
 
 	template <class T, class A>
-	bool	vector<T,A>::operator>=(const vector& other) const
+	bool	operator>=(const vector<T,A>& left, const vector<T,A>& right)
 	{
-		return (this->compare2(other) >= 0);
+		return (compare2(left, right) >= 0);
 	}
 
 	template <class T, class A>
-	bool	vector<T,A>::operator<=(const vector& other) const
+	bool	operator<=(const vector<T,A>& left, const vector<T,A>& right)
 	{
-		return (this->compare2(other) <= 0);
+		return (compare2(left, right) <= 0);
 	}
 
 	template <class T, class A>
-	bool	vector<T,A>::operator>(const vector& other) const
+	bool	operator>(const vector<T,A>& left, const vector<T,A>& right)
 	{
-		return (this->compare2(other) > 0);
+		return (compare2(left, right) > 0);
 	}
 
 	template <class T, class A>
-	bool	vector<T,A>::operator<(const vector& other) const
+	bool	operator<(const vector<T,A>& left, const vector<T,A>& right)
 	{
-		return (this->compare2(other) < 0);
+		return (compare2(left, right) < 0);
 	}
 }
