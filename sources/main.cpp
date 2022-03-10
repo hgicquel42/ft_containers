@@ -33,7 +33,7 @@ int	main(void)
 	// vec.erase(vec.begin() + 5, vec.begin() + 10);
 
 	for (int i = 0; i < 10; i++)
-		vec2.push_back(i);
+		vec2.push_back(i * 2);
 
 	// print(vec);
 	// vec.insert(vec.begin() + 5, 42);
@@ -48,21 +48,14 @@ int	main(void)
 
 	// vec.erase(vec.begin() + 9)
 
-	// for (it = vec.begin(); it != vec.end(); it++)
-	// 	std::cout << *it << "\n";
+	for (it = vec.begin(); it != vec.end(); it++)
+		std::cout << *it << "\n";
 
 	// for (it = vec.rbegin(); it != vec.rend(); it--)
 	// 	std::cout << *it << "\n";
 
-	// for (it = vec2.begin(); it != vec2.end(); it++)
-	// 	std::cout << *it << "\n";
-
-	std::cout << "== " << (vec == vec2) << "\n";
-	std::cout << "!= " << (vec != vec2) << "\n";
-	std::cout << "<= " << (vec <= vec2) << "\n";
-	std::cout << ">= " << (vec >= vec2) << "\n";
-	std::cout << "< " << (vec < vec2) << "\n";
-	std::cout << "> " << (vec > vec2) << "\n";
+	for (it = vec2.begin(); it != vec2.end(); it++)
+		std::cout << *it << "\n";
 
 	return (0);
 }

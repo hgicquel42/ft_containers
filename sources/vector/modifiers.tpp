@@ -1,15 +1,30 @@
 #pragma once
 
-#include <iostream>
-
 namespace ft
 {
 	template <class T, class A>
+	void	vector<T,A>::swap(vector& x, vector& y)
+	{
+		x.swap(y);
+	}
+
+	template <class T, class A>
 	void	vector<T,A>::swap(vector& other)
 	{
-		vector	tmp(*this);
-		*this = other;
-		other = tmp;
+		A	tmp_alloc = other._alloc;
+		T*	tmp_start = other._start;
+		size_type tmp_capacity = other._capacity;
+		size_type tmp_size = other._size;
+
+		other._alloc = this->_alloc;
+		other._start = this->_start;
+		other._capacity = this->_capacity;
+		other._size = this->_size;
+
+		this->_alloc = tmp_alloc;
+		this->_start = tmp_start;
+		this->_capacity = tmp_capacity;
+		this->_size = tmp_size;
 	}
 
 	template <class T, class A>

@@ -93,6 +93,8 @@ namespace ft
 
 			void	swap(vector& other);
 
+			static void	swap(vector& x, vector& y);
+
 			void	push_back(const T& val);
 			void	pop_back(void);
 
