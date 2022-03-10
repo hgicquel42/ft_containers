@@ -43,13 +43,13 @@ namespace ft
 	template <class A, class B>
  	bool operator==(const pair<A,B>& left, const pair<A,B>& right)
 	{
-		return left.first == right.first && left.second == right.second;
+		return (left.first == right.first && left.second == right.second);
 	}
 
 	template <class A, class B>
 	bool operator!=(const pair<A,B>& left, const pair<A,B>& right)
 	{
-		return left.first != right.first || left.second != right.second;
+		return (left.first != right.first || left.second != right.second);
 	}
 
 	template <class A, class B>
