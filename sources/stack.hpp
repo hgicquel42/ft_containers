@@ -13,11 +13,15 @@ namespace ft
 
 			typedef typename C::size_type	size_type;
 
-		private:
-			C	_container;
+		protected:
+			C	c;
 		
 		public:
 			explicit stack(const C& container = C());
+
+			~stack();
+
+			stack& operator=(const stack& from);
 
 			bool empty(void) const;
 

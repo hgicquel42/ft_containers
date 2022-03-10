@@ -7,36 +7,36 @@ namespace ft
 	template<class T, class C>
 	bool	operator==(const stack<T,C>& left, const stack<T,C>& right)
 	{
-		return (left._container == right._container);
+		return (left.c == right.c);
 	}
 
 	template<class T, class C>
 	bool	operator!=(const stack<T,C>& left, const stack<T,C>& right)
 	{
-		return (left._container != right._container);
+		return (left.c != right.c);
 	}
 
 	template<class T, class C>
 	bool	operator<=(const stack<T,C>& left, const stack<T,C>& right)
 	{
-		return (left._container <= right._container);
+		return (left.c <= right.c);
 	}
 
 	template<class T, class C>
 	bool	operator>=(const stack<T,C>& left, const stack<T,C>& right)
 	{
-		return (left._container >= right._container);
+		return (left.c >= right.c);
 	}
 
 	template<class T, class C>
 	bool	operator<(const stack<T,C>& left, const stack<T,C>& right)
 	{
-		return (left._container < right._container);
+		return (left.c < right.c);
 	}
 
 	template<class T, class C>
 	bool	operator>(const stack<T,C>& left, const stack<T,C>& right)
 	{
-		return (left._container > right._container);
+		return (left.c > right.c);
 	}
 }
