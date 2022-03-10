@@ -76,7 +76,7 @@ namespace ft
 	template <class T, class A>
 	typename vector<T,A>::iterator	vector<T,A>::erase(iterator first, iterator last)
 	{
-		typename iterator::difference_type count = std::distance(first, last);
+		typename iterator::difference_type n = std::distance(first, last);
 		for (iterator it = first; it != last; it++)
 			this->_alloc.destroy(&first[0]);
 		for (size_type i = 0; last + i != this->end(); i++)
@@ -84,7 +84,7 @@ namespace ft
 			this->_alloc.construct(&first[i], last[i]);
 			this->_alloc.destroy(&last[i]);
 		}
-		this->_size -= count;
+		this->_size -= n;
 		return (first);
 	}
 
