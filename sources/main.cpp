@@ -1,5 +1,6 @@
 #include "vector.hpp"
 #include "stack.hpp"
+#include "tree.hpp"
 
 #include <vector>
 #include <iostream>

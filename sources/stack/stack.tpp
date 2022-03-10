@@ -16,7 +16,7 @@ namespace ft
 	stack<T,C>&	stack<T,C>::operator=(const stack& from)
 	{
 		if (this == &from)
-			return ;
+			return (*this);
 		this->c = from.c;
 		return (*this);
 	}

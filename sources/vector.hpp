@@ -39,7 +39,8 @@ namespace ft
 
 		public:
 			vector(void);
-			~vector(void);
+			
+			virtual ~vector(void);
 
 			explicit vector(const A& alloc);
 

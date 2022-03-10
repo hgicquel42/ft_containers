@@ -19,7 +19,7 @@ namespace ft
 		public:
 			explicit stack(const C& container = C());
 
-			~stack();
+			virtual ~stack();
 
 			stack& operator=(const stack& from);
 
