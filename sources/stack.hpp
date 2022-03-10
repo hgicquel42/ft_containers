@@ -4,7 +4,7 @@
 
 namespace ft
 {
-	template <class T, class C = vector<T>>
+	template <class T, class C = vector<T> >
 	class stack
 	{
 		public:
