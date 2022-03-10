@@ -19,17 +19,36 @@ namespace ft
 		public:
 			explicit stack(const C& container = C());
 
-			bool empty() const;
+			bool empty(void) const;
 
-			size_type size() const;
+			size_type size(void) const;
 
-			T&			top();
-			const T&	top() const;
+			T&			top(void);
+			const T&	top(void) const;
 
 			void push (const T& val);
 
 			void pop();
+
+			template<class T2, class C2>
+			friend bool	operator==(const stack<T2,C2>& left, const stack<T2,C2>& right);
+
+			template<class T2, class C2>
+			friend bool	operator!=(const stack<T2,C2>& left, const stack<T2,C2>& right);
+
+			template<class T2, class C2>
+			friend bool	operator<=(const stack<T2,C2>& left, const stack<T2,C2>& right);
+
+			template<class T2, class C2>
+			friend bool	operator>=(const stack<T2,C2>& left, const stack<T2,C2>& right);
+
+			template<class T2, class C2>
+			friend bool	operator<(const stack<T2,C2>& left, const stack<T2,C2>& right);
+
+			template<class T2, class C2>
+			friend bool	operator>(const stack<T2,C2>& left, const stack<T2,C2>& right);
 	};
 }
 
 #include "stack/stack.tpp"
+#include "stack/operators.tpp"
