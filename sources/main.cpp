@@ -49,10 +49,10 @@ int	main(void)
 	// root->right->right->right = new node(root->right->right, 0, "abbb");
 
 	node::print(root);
-	node::rrotate(root);
-	node::print(root);
-	node::lrotate(root);
-	node::print(root);
+	// node::rrotate(root);
+	// node::print(root);
+	// node::lrotate(root);
+	// node::print(root);
 
 
 	// ft::vector<int>				vec;
