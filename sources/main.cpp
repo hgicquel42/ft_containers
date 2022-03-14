@@ -38,6 +38,15 @@ int	main(void)
 	node::erase(root, 5);
 	node::print(root);
 
+	node::erase(root, -10);
+	node::erase(root, 20);
+	node::erase(root, 15);
+	node::erase(root, -5);
+	node::print(root);
+
+	node::erase(root);
+	node::print(root);
+
 	// root->left = new node(root, 0, "aa");
 	// root->left->left = new node(root->left, 0, "aaa");
 	// root->left->left->left = new node(root->left->left, 0, "aaaa");

@@ -260,12 +260,14 @@ namespace ft
 		bool color = slot->color;
 
 		if (slot->right) {
+			node* next = slot->right;
 			delete slot;
-			slot = slot->right;
+			slot = next;
 			slot->parent = parent;
 		} else if (slot->left) {
+			node* next = slot->left;
 			delete slot;
-			slot = slot->left;
+			slot = next;
 			slot->parent = parent;
 		} else {
 			delete slot;
