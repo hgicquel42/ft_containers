@@ -48,6 +48,8 @@ namespace ft
 			static void		insert(node*& root, const K& key, const V& value);
 
 			static void		insertf(node* slot);
+
+			// TODO delete https://www.happycoders.eu/algorithms/red-black-tree-java
 	};
 }
 
