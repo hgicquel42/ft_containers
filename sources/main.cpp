@@ -24,10 +24,10 @@ int	main(void)
 	node*	root;
 	
 	root = new node(42, "the root");
-	root->insert(new node(43, "lol", NRED));
-	root->insert(new node(46, "hello"));
-	root->insert(new node(47, "world", NRED));
-	root->insert(new node(1, "lol"));
+	root->insert(43, "lol");
+	root->insert(46, "hello");
+	root->insert(47, "world");
+	root->insert(1, "lol");
 	// root->left = new node(43, "lol", NRED);
 	// root->right = new node(41, "lol");
 	// root->left->left = new node(36, "hello", NRED);

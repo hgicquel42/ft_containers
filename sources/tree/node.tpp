@@ -112,24 +112,22 @@ namespace ft
 	}
 
 	template <class K, class V>
-	static void	_insert(node<K,V>*& root, ft::node<K,V>*const leaf)
+	static void	_insert2(node<K,V>*& root, const K& key, const V& value)
 	{
-		if (!leaf)
-			return ;
 		if (!root)
-			root = leaf;
-		else if (leaf->key < root->key)
-			_insert(root->left, leaf);
-		else if (leaf->key > root->key)
-			_insert(root->right, leaf);
+			root = new node<K,V>(key, value, NRED);
+		else if (key < root->key)
+			_insert2(root->left, key, value);
+		else if (key > root->key)
+			_insert2(root->right, key, value);
 	}
 
 	template <class K, class V>
-	void	node<K,V>::insert(node*const leaf)
+	void	node<K,V>::insert(const K& key, const V& value)
 	{
-		if (leaf->key < this->key)
-			_insert(this->left, leaf);
-		else if (leaf->key > this->key)
-			_insert(this->right, leaf);
+		if (key < this->key)
+			_insert2(this->left, key, value);
+		else if (key > this->key)
+			_insert2(this->right, key, value);
 	}
 }

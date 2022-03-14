@@ -34,7 +34,7 @@ namespace ft
 	
 			node*	search(const K& key) const;
 
-			void	insert(node*const leaf);
+			void	insert(const K& key, const V& value);
 	};
 }
 
