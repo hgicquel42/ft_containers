@@ -99,6 +99,13 @@ namespace ft
 			return (search(root->left, key));
 	}
 
+	/**
+	 * @brief Left rotate
+	 * 
+	 * @tparam K 
+	 * @tparam V 
+	 * @param root 
+	 */
 	template <class K, class V>
 	void	node<K,V>::lrotate(node*& root)
 	{
@@ -114,6 +121,13 @@ namespace ft
 		root = x;
 	}
 
+	/**
+	 * @brief Right rotate
+	 * 
+	 * @tparam K 
+	 * @tparam V 
+	 * @param root 
+	 */
 	template <class K, class V>
 	void	node<K,V>::rrotate(node*& root)
 	{
@@ -129,6 +143,15 @@ namespace ft
 		root = x;
 	}
 
+	/**
+	 * @brief Find an empty slot to insert
+	 * 
+	 * @tparam K 
+	 * @tparam V 
+	 * @param root 
+	 * @param key 
+	 * @return node<K,V>*& The empty slot = NULL
+	 */
 	template <class K, class V>
 	node<K,V>*&	node<K,V>::spot(node*& root, const K& key)
 	{
@@ -146,6 +169,6 @@ namespace ft
 		node*& slot = spot(root, key);
 
 		slot = new node<K,V>(key, value, NRED);
-		
+
 	}
 }
