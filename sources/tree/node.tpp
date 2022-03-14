@@ -110,6 +110,7 @@ namespace ft
 			cout << RED;
 		cout << "[" << root->key << "]" << RESET;
 		cout << " = " << root->value;
+		// Uncomment to show parent address and current address
 		// cout << " (" << root->parent << " -> " << root << ")";
 		cout << "\n";
 
@@ -129,10 +130,11 @@ namespace ft
 			return (NULL);
 		if (key == root->key)
 			return (root);
-		else if (key > root->key)
+		if (key > root->key)
 			return (search(root->right, key));
-		else
+		if (key < root->key)
 			return (search(root->left, key));
+		return (NULL);
 	}
 
 	template <class K, class V>
@@ -167,6 +169,16 @@ namespace ft
 		root = x;
 	}
 
+	/**
+	 * @brief Find a spot for that key and save its parent
+	 * 
+	 * @tparam K 
+	 * @tparam V 
+	 * @param parent 
+	 * @param root 
+	 * @param key 
+	 * @return node<K,V>*& 
+	 */
 	template <class K, class V>
 	node<K,V>*&	node<K,V>::spot(node*& parent, node*& root, const K& key)
 	{
@@ -182,6 +194,15 @@ namespace ft
 		return (root);
 	}
 
+	/**
+	 * @brief Insert by key-value
+	 * 
+	 * @tparam K 
+	 * @tparam V 
+	 * @param root 
+	 * @param key 
+	 * @param value 
+	 */
 	template <class K, class V>
 	void	node<K,V>::insert(node*& root, const K& key, const V& value)
 	{
@@ -197,6 +218,13 @@ namespace ft
 		slot->value = value;
 	}
 
+	/**
+	 * @brief Fix after insert (recursive)
+	 * 
+	 * @tparam K 
+	 * @tparam V 
+	 * @param slot 
+	 */
 	template <class K, class V>
 	void	node<K,V>::insertf(node* slot)
 	{
@@ -244,6 +272,13 @@ namespace ft
 		}
 	}
 
+	/**
+	 * @brief Erase by slot
+	 * 
+	 * @tparam K 
+	 * @tparam V 
+	 * @param slot 
+	 */
 	template <class K, class V>
 	void	node<K,V>::erase(node*& slot)
 	{
@@ -277,6 +312,14 @@ namespace ft
 		erasef(parent, slot, color);
 	}
 
+	/**
+	 * @brief Erase by key
+	 * 
+	 * @tparam K 
+	 * @tparam V 
+	 * @param root 
+	 * @param key 
+	 */
 	template <class K, class V>
 	void	node<K,V>::erase(node*& root, const K& key)
 	{
@@ -288,10 +331,19 @@ namespace ft
 		erase(slot);
 	}
 
+	/**
+	 * @brief Fix after erase (recursive)
+	 * 
+	 * @tparam K 
+	 * @tparam V 
+	 * @param parent 
+	 * @param slot 
+	 * @param color 
+	 */
 	template <class K, class V>
 	void	node<K,V>::erasef(node* parent, node* slot, bool color)
 	{
-		if (parent && slot && color) return ;
+		(void) (parent && slot && color);
 		// TODO https://www.happycoders.eu/algorithms/red-black-tree-java/
 	}
 }

@@ -49,11 +49,13 @@ namespace ft
 
 			static void		insert(node*& root, const K& key, const V& value);
 
-			static void		insertf(node* slot);
-
 			static void		erase(node*& root, const K& key);
 
 			static void		erase(node*& slot);
+
+		private:
+		
+			static void		insertf(node* slot);
 
 			static void		erasef(node* parent, node* slot, bool color);
 	};
