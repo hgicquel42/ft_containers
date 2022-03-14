@@ -1,7 +1,11 @@
 #pragma once
 
-#define BLACK false
-#define RED true
+#include <string>
+
+#define NBLACK false
+#define NRED true
+
+using namespace std;
 
 namespace ft
 {
@@ -22,8 +26,14 @@ namespace ft
 
 			node&	operator=(const node& from);
 
-			node(const K& key, const V& value, node* left = NULL, node* right = NULL, bool color = BLACK);
+			node(const K& key, const V& value, bool color = NBLACK);
+
+			void	recolor(void);
+
+			void	print(void) const;
 	
-			node*	search(const K& key);
+			node*	search(const K& key) const;
 	};
 }
+
+#include "tree/node.tpp"

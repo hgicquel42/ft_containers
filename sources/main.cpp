@@ -1,6 +1,6 @@
 #include "vector.hpp"
 #include "stack.hpp"
-#include "tree.hpp"
+#include "node.hpp"
 
 #include <vector>
 #include <iostream>
@@ -17,11 +17,25 @@ void	print(ft::vector<T>& vector)
 	cout << "-----------" << "\n";
 }
 
+typedef ft::node<int,string>	node;
+
 int	main(void)
 {
-	ft::vector<int>				vec;
-	ft::vector<int>				vec2;
-	ft::vector<int>::iterator	it;
+	node*	root;
+	
+	root = new node(42, "the root");
+	root->left = new node(43, "lol", NRED);
+	root->right = new node(41, "lol");
+	root->left->left = new node(36, "hello", NRED);
+	root->left->right = new node(421, "world");
+	root->right->right = new node(1, "it");
+	root->right->right->right = new node(123, "works");
+
+	root->print();
+
+	// ft::vector<int>				vec;
+	// ft::vector<int>				vec2;
+	// ft::vector<int>::iterator	it;
 	// ft::vector<int>::reverse_iterator	it;
 
 	// print(vec);
@@ -29,18 +43,18 @@ int	main(void)
 	// print(vec);
 	// vec.reserve(10);
 
-	for (int i = 0; i < 10; i++)
-		vec.push_back(i);
-	vec.push_back(43);
-	vec.push_back(50);
+	// for (int i = 0; i < 10; i++)
+	// 	vec.push_back(i);
+	// vec.push_back(43);
+	// vec.push_back(50);
 
 	// vec.push_back(42);
 	// vec.erase(vec.begin());
 
-	for (int i = 0; i < 10; i++)
-		vec2.push_back(i);
-	vec2.push_back(43);
-	vec2.push_back(50);
+	// for (int i = 0; i < 10; i++)
+	// 	vec2.push_back(i);
+	// vec2.push_back(43);
+	// vec2.push_back(50);
 
 	// print(vec);
 	// vec.insert(vec.begin() + 5, 42);
@@ -64,12 +78,12 @@ int	main(void)
 	// for (it = vec2.begin(); it != vec2.end(); it++)
 	// 	std::cout << *it << "\n";
 
-	std::cout << "== " << (vec == vec2) << "\n";
-	std::cout << "!= " << (vec != vec2) << "\n";
-	std::cout << "<= " << (vec <= vec2) << "\n";
-	std::cout << ">= " << (vec >= vec2) << "\n";
-	std::cout << "< " << (vec < vec2) << "\n";
-	std::cout << "> " << (vec > vec2) << "\n";
+	// std::cout << "== " << (vec == vec2) << "\n";
+	// std::cout << "!= " << (vec != vec2) << "\n";
+	// std::cout << "<= " << (vec <= vec2) << "\n";
+	// std::cout << ">= " << (vec >= vec2) << "\n";
+	// std::cout << "< " << (vec < vec2) << "\n";
+	// std::cout << "> " << (vec > vec2) << "\n";
 
 	// ft::stack<int>	stack(vec);
 	// ft::stack<int>	stack2(vec2);
