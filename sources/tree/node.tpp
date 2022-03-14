@@ -64,6 +64,26 @@ namespace ft
 	}
 
 	template <class K, class V>
+	node<K,V>*	node<K,V>::sibling(void)
+	{
+		if (!this->parent)
+			return (NULL);
+		if (this == this->parent->left)
+			return (this->parent->right);
+		if (this == this->parent->right)
+			return (this->parent->left);
+		return (NULL);
+	}
+
+	template <class K, class V>
+	node<K,V>*	node<K,V>::uncle(void)
+	{
+		if (!this->parent)
+			return (NULL);
+		return (this->parent->sibling());
+	}
+
+	template <class K, class V>
 	void	node<K,V>::print(const node* root, const string& prefix, int position)
 	{
 		if (!root)
@@ -101,13 +121,6 @@ namespace ft
 			return (search(root->left, key));
 	}
 
-	/**
-	 * @brief Left rotate
-	 * 
-	 * @tparam K 
-	 * @tparam V 
-	 * @param root 
-	 */
 	template <class K, class V>
 	void	node<K,V>::lrotate(node*& root)
 	{
@@ -124,13 +137,6 @@ namespace ft
 		root = x;
 	}
 
-	/**
-	 * @brief Right rotate
-	 * 
-	 * @tparam K 
-	 * @tparam V 
-	 * @param root 
-	 */
 	template <class K, class V>
 	void	node<K,V>::rrotate(node*& root)
 	{
@@ -155,8 +161,9 @@ namespace ft
 		parent = root;
 		if (key < root->key)
 			return (spot(parent, root->left, key));
-		else
+		if (key > root->key)
 			return (spot(parent, root->right, key));
+		return (root);
 	}
 
 	template <class K, class V>
@@ -165,6 +172,58 @@ namespace ft
 		node* parent = NULL;
 		node*& slot = spot(parent, root, key);
 
-		slot = new node<K,V>(parent, key, value, NRED);
+		if (!slot) {
+			slot = new node<K,V>(parent, key, value, NRED);
+			node::insertf(slot);
+		}
+
+		slot->value = value;
+	}
+
+	template <class K, class V>
+	void	node<K,V>::insertf(node* slot)
+	{
+		node* parent = slot->parent;
+
+		if (!parent) {
+			slot->color = NBLACK;
+			return ;
+		}
+
+		if (parent->color == NBLACK) {
+			return ;
+		}
+
+		node* uncle = slot->uncle();
+
+		if (uncle && uncle->color == NRED) {
+			parent->color = NBLACK;
+			uncle->color = NBLACK;
+			parent->parent->color = NRED;
+			insertf(parent->parent);
+			return ;
+		}
+
+		if (parent == parent->parent->left) {
+			if (slot == parent->right) {
+				lrotate(parent);
+				parent = slot;
+			}
+
+			rrotate(parent->parent);
+			parent->color = NBLACK;
+			parent->parent->color = NRED;
+		}
+
+		if (parent == parent->parent->right) {
+			if (slot == parent->left) {
+				rrotate(parent);
+				parent = slot;
+			}
+
+			lrotate(parent->parent);
+			parent->color = NBLACK;
+			parent->parent->color = NRED;
+		}
 	}
 }

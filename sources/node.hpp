@@ -31,11 +31,9 @@ namespace ft
 
 			void	recolor(void);
 
-			void	print(void) const;
-	
-			node*	search(const K& key) const;
+			node*	sibling(void);
 
-			void	insert(const K& key, const V& value);
+			node*	uncle(void);
 
 			static node*	search(const node* root, const K& key);
 
@@ -48,6 +46,8 @@ namespace ft
 			static node*&	spot(node*& parent, node*& root, const K& key);
 
 			static void		insert(node*& root, const K& key, const V& value);
+
+			static void		insertf(node* slot);
 	};
 }
 
