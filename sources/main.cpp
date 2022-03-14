@@ -30,6 +30,7 @@ int	main(void)
 	node::insert(root, 5, "lol");
 	node::insert(root, 15, "lol");
 	node::insert(root, -5, "lol");
+	node::insert(root, -10, "haha");
 
 	// root->left = new node(root, 0, "aa");
 	// root->left->left = new node(root->left, 0, "aaa");
