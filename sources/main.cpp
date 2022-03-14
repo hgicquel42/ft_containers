@@ -23,14 +23,20 @@ int	main(void)
 {
 	node*	root;
 	
-	root = new node(NULL, 0, "a");
-	node::insert(root, 10, "aa");
-	node::insert(root, -10, "ab");
-	node::insert(root, 20, "lol");
-	node::insert(root, 5, "lol");
-	node::insert(root, 15, "lol");
-	node::insert(root, -5, "lol");
-	node::insert(root, -10, "haha");
+	root = new node(NULL, 0, "root");
+	node::insert(root, 10, "10");
+	node::insert(root, -10, "-10");
+	node::insert(root, 20, "20");
+	node::insert(root, 5, "5");
+	node::insert(root, 15, "15");
+	node::insert(root, -5, "-5");
+	node::insert(root, -10, "still -10");
+
+	node::print(root);
+	node::erase(root, 10);
+	node::print(root);
+	node::erase(root, 5);
+	node::print(root);
 
 	// root->left = new node(root, 0, "aa");
 	// root->left->left = new node(root->left, 0, "aaa");
@@ -48,7 +54,6 @@ int	main(void)
 	// root->right->right->left = new node(root->right->right, 0, "abba");
 	// root->right->right->right = new node(root->right->right, 0, "abbb");
 
-	node::print(root);
 	// node::rrotate(root);
 	// node::print(root);
 	// node::lrotate(root);

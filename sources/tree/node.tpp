@@ -84,16 +84,28 @@ namespace ft
 	}
 
 	template <class K, class V>
+	node<K,V>*&	node<K,V>::minimum(node*& root)
+	{
+		if (!root->left)
+			return (root);
+		return (minimum(root->left));
+	}
+
+	template <class K, class V>
 	void	node<K,V>::print(const node* root, const string& prefix, int position)
 	{
-		if (!root)
-			return ;
 		cout << prefix;
 
 		if (position == -1)
 			cout << "|---";
 		else if (position == 1)
 			cout << "└---";
+
+		if (!root) {
+			cout << "null\n";
+			return ;
+		}
+
 		if (root->color == NRED)
 			cout << RED;
 		cout << "[" << root->key << "]" << RESET;
@@ -161,6 +173,8 @@ namespace ft
 		if (!root)
 			return (root);
 		parent = root;
+		if (key == root->key)
+			return (root);
 		if (key < root->key)
 			return (spot(parent, root->left, key));
 		if (key > root->key)
@@ -172,6 +186,7 @@ namespace ft
 	void	node<K,V>::insert(node*& root, const K& key, const V& value)
 	{
 		node* parent = NULL;
+
 		node*& slot = spot(parent, root, key);
 
 		if (!slot) {
@@ -227,5 +242,54 @@ namespace ft
 			parent->color = NBLACK;
 			parent->parent->color = NRED;
 		}
+	}
+
+	template <class K, class V>
+	void	node<K,V>::erase(node*& slot)
+	{
+		node* parent = slot->parent;
+
+		if (slot->left && slot->right) {
+			node*& min = minimum(slot);
+			slot->key = min->key;
+			slot->value = min->value;
+			erase(min);
+			return ;
+		}
+
+		bool color = slot->color;
+
+		if (slot->right) {
+			delete slot;
+			slot = slot->right;
+			slot->parent = parent;
+		} else if (slot->left) {
+			delete slot;
+			slot = slot->left;
+			slot->parent = parent;
+		} else {
+			delete slot;
+			slot = NULL;
+		}
+
+		erasef(parent, slot, color);
+	}
+
+	template <class K, class V>
+	void	node<K,V>::erase(node*& root, const K& key)
+	{
+		node* parent = NULL;
+
+		node*& slot = spot(parent, root, key);
+		if (!slot)
+			return ;
+		erase(slot);
+	}
+
+	template <class K, class V>
+	void	node<K,V>::erasef(node* parent, node* slot, bool color)
+	{
+		if (parent && slot && color) return ;
+		// TODO https://www.happycoders.eu/algorithms/red-black-tree-java/
 	}
 }

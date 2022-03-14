@@ -35,6 +35,8 @@ namespace ft
 
 			node*	uncle(void);
 
+			static node*&	minimum(node*& root);
+
 			static node*	search(const node* root, const K& key);
 
 			static void		print(const node* root, const string& prefix = "", int position = 0);
@@ -49,7 +51,11 @@ namespace ft
 
 			static void		insertf(node* slot);
 
-			// TODO delete https://www.happycoders.eu/algorithms/red-black-tree-java
+			static void		erase(node*& root, const K& key);
+
+			static void		erase(node*& slot);
+
+			static void		erasef(node* parent, node* slot, bool color);
 	};
 }
 
