@@ -23,23 +23,30 @@ int	main(void)
 {
 	node*	root;
 	
-	root = new node(42, "the root");
-	node::insert(root, 43, "lol");
-	node::insert(root, 46, "hello");
-	node::insert(root, 47, "world");
-	node::insert(root, 1, "lol");
-	// root->left = new node(43, "lol", NRED);
-	// root->right = new node(41, "lol");
-	// root->left->left = new node(36, "hello", NRED);
-	// root->left->right = new node(421, "world");
-	// root->right->right = new node(1, "it");
-	// root->right->right->right = new node(123, "works");
+	root = new node(NULL, 0, "a");
+
+	// root->left = new node(root, 0, "aa");
+	// root->left->left = new node(root->left, 0, "aaa");
+	// root->left->left->left = new node(root->left->left, 0, "aaaa");
+	// root->left->left->right = new node(root->left->left, 0, "aaab");
+	// root->left->right = new node(root->left, 0, "aab");
+	// root->left->right->left = new node(root->left->right, 0, "aaba");
+	// root->left->right->right = new node(root->left->right, 0, "aabb");
+
+	// root->right = new node(root, 0, "ab", NRED);
+	// root->right->left = new node(root->right, 0, "aba");
+	// root->right->left->left = new node(root->right->left, 0, "abaa");
+	// root->right->left->right = new node(root->right->left, 0, "abab");
+	// root->right->right = new node(root->right, 0, "abb");
+	// root->right->right->left = new node(root->right->right, 0, "abba");
+	// root->right->right->right = new node(root->right->right, 0, "abbb");
 
 	node::print(root);
-	node::rrotate(root);
+	node::rrotate(root->right);
 	node::print(root);
-	node::lrotate(root);
+	node::lrotate(root->right);
 	node::print(root);
+
 
 	// ft::vector<int>				vec;
 	// ft::vector<int>				vec2;

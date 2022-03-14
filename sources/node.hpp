@@ -27,7 +27,7 @@ namespace ft
 
 			node&	operator=(const node& from);
 
-			node(const K& key, const V& value, bool color = NBLACK);
+			node(node* parent, const K& key, const V& value, bool color = NBLACK);
 
 			void	recolor(void);
 
@@ -45,9 +45,7 @@ namespace ft
 
 			static void		rrotate(node*& root);
 
-			static node*&	spot(node*& root, const K& key);
-
-			static void		insert2(node*& root, const K& key, const V& value);
+			static node*&	spot(node*& parent, node*& root, const K& key);
 
 			static void		insert(node*& root, const K& key, const V& value);
 	};

@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "node.hpp"
+#include "pair.hpp"
 
 #include "utils/colors.hpp"
 
@@ -47,9 +48,10 @@ namespace ft
 	}
 
 	template <class K, class V>
-	node<K,V>::node(const K& key, const V& value, bool color):
+	node<K,V>::node(node* parent, const K& key, const V& value, bool color):
 		key(key),
 		value(value),
+		parent(parent),
 		left(NULL),
 		right(NULL),
 		color(color)
@@ -74,7 +76,7 @@ namespace ft
 			cout << "└---";
 		if (root->color == NRED)
 			cout << RED;
-		cout << root->key << ": " << root->value;
+		cout << root->key << ": " << root->value << " " << root->parent << " " << root;
 		cout << RESET << "\n";
 
 		string nprefix = prefix;
@@ -114,6 +116,7 @@ namespace ft
 		node* x = root->right;
 		node* y = x->left;
 		x->left = root;
+		x->parent = root->parent;
 		root->right = y;
 		root->parent = x;
 		if (y)
@@ -136,6 +139,7 @@ namespace ft
 		node* x = root->left;
 		node* y = x->right;
 		x->right = root;
+		x->parent = root->parent;
 		root->left = y;
 		root->parent = x;
 		if (y)
@@ -143,32 +147,24 @@ namespace ft
 		root = x;
 	}
 
-	/**
-	 * @brief Find an empty slot to insert
-	 * 
-	 * @tparam K 
-	 * @tparam V 
-	 * @param root 
-	 * @param key 
-	 * @return node<K,V>*& The empty slot = NULL
-	 */
 	template <class K, class V>
-	node<K,V>*&	node<K,V>::spot(node*& root, const K& key)
+	node<K,V>*&	node<K,V>::spot(node*& parent, node*& root, const K& key)
 	{
 		if (!root)
 			return (root);
+		parent = root;
 		if (key < root->key)
-			return (spot(root->left, key));
+			return (spot(parent, root->left, key));
 		else
-			return (spot(root->right, key));
+			return (spot(parent, root->right, key));
 	}
 
 	template <class K, class V>
 	void	node<K,V>::insert(node*& root, const K& key, const V& value)
 	{
-		node*& slot = spot(root, key);
+		node* parent = NULL;
+		node*& slot = spot(parent, root, key);
 
-		slot = new node<K,V>(key, value, NRED);
-
+		slot = new node<K,V>(parent, key, value, NRED);
 	}
 }
