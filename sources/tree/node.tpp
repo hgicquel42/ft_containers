@@ -345,5 +345,6 @@ namespace ft
 	{
 		(void) (parent && slot && color);
 		// TODO https://www.happycoders.eu/algorithms/red-black-tree-java/
+		// https://github.com/SvenWoltmann/binary-tree/blob/main/src/main/java/eu/happycoders/binarytree/RedBlackTree.java#L252
 	}
 }
