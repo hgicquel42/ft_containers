@@ -24,12 +24,16 @@ int	main(void)
 	node*	root;
 	
 	root = new node(42, "the root");
-	root->left = new node(43, "lol", NRED);
-	root->right = new node(41, "lol");
-	root->left->left = new node(36, "hello", NRED);
-	root->left->right = new node(421, "world");
-	root->right->right = new node(1, "it");
-	root->right->right->right = new node(123, "works");
+	root->insert(new node(43, "lol", NRED));
+	root->insert(new node(46, "hello"));
+	root->insert(new node(47, "world", NRED));
+	root->insert(new node(1, "lol"));
+	// root->left = new node(43, "lol", NRED);
+	// root->right = new node(41, "lol");
+	// root->left->left = new node(36, "hello", NRED);
+	// root->left->right = new node(421, "world");
+	// root->right->right = new node(1, "it");
+	// root->right->right->right = new node(123, "works");
 
 	root->print();
 

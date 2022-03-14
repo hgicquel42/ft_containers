@@ -33,6 +33,8 @@ namespace ft
 			void	print(void) const;
 	
 			node*	search(const K& key) const;
+
+			void	insert(node*const leaf);
 	};
 }
 

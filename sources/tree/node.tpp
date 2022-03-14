@@ -53,30 +53,30 @@ namespace ft
 	{}
 
 	template <class K, class V>
-	static void	_print(const node<K,V>* node, const string& prefix, int position)
+	static void	_print(const node<K,V>* root, const string& prefix, int position)
 	{
-		if (!node)
+		if (!root)
 			return ;
 		cout << prefix;
 
 		if (position == -1)
 			cout << "|---";
-		if (position == 1)
+		else if (position == 1)
 			cout << "└---";
-		if (node->color == NRED)
+		if (root->color == NRED)
 			cout << RED;
-		cout << node->key;
+		cout << root->key;
 		cout << ": ";
-		cout << node->value;
+		cout << root->value;
 		cout << RESET << "\n";
 
 		string nprefix;
 		if (position == -1)
 			nprefix = prefix + "│   ";
-		if (position == 1)
+		else if (position == 1)
 			nprefix = prefix + "    ";
-		_print(node->left, nprefix, -1);
-		_print(node->right, nprefix, 1);
+		_print(root->left, nprefix, -1);
+		_print(root->right, nprefix, 1);
 	}
 
 	template <class K, class V>
@@ -92,16 +92,16 @@ namespace ft
 	}
 
 	template <class K, class V>
-	static node<K,V>*	_search(const node<K,V>* node, const K& key)
+	static node<K,V>*	_search(const node<K,V>* root, const K& key)
 	{
-		if (!node)
+		if (!root)
 			return (NULL);
-		if (key == node->key)
-			return (node);
-		if (key > node->key)
-			return (search(node->right, key));
-		if (key < node->key)
-			return (search(node->left, key));
+		if (key == root->key)
+			return (root);
+		else if (key > root->key)
+			return (search(root->right, key));
+		else if (key < root->key)
+			return (search(root->left, key));
 		return (NULL);
 	}
 
@@ -112,6 +112,24 @@ namespace ft
 	}
 
 	template <class K, class V>
-	static void	_insert(const node<K,V>*)
-	{}
+	static void	_insert(node<K,V>*& root, ft::node<K,V>*const leaf)
+	{
+		if (!leaf)
+			return ;
+		if (!root)
+			root = leaf;
+		else if (leaf->key < root->key)
+			_insert(root->left, leaf);
+		else if (leaf->key > root->key)
+			_insert(root->right, leaf);
+	}
+
+	template <class K, class V>
+	void	node<K,V>::insert(node*const leaf)
+	{
+		if (leaf->key < this->key)
+			_insert(this->left, leaf);
+		else if (leaf->key > this->key)
+			_insert(this->right, leaf);
+	}
 }
