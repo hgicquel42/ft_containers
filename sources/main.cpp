@@ -24,10 +24,10 @@ int	main(void)
 	node*	root;
 	
 	root = new node(42, "the root");
-	root->insert(43, "lol");
-	root->insert(46, "hello");
-	root->insert(47, "world");
-	root->insert(1, "lol");
+	node::insert(root, 43, "lol");
+	node::insert(root, 46, "hello");
+	node::insert(root, 47, "world");
+	node::insert(root, 1, "lol");
 	// root->left = new node(43, "lol", NRED);
 	// root->right = new node(41, "lol");
 	// root->left->left = new node(36, "hello", NRED);
@@ -35,7 +35,11 @@ int	main(void)
 	// root->right->right = new node(1, "it");
 	// root->right->right->right = new node(123, "works");
 
-	root->print();
+	node::print(root);
+	node::rrotate(root);
+	node::print(root);
+	node::lrotate(root);
+	node::print(root);
 
 	// ft::vector<int>				vec;
 	// ft::vector<int>				vec2;
