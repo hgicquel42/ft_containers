@@ -96,9 +96,10 @@ namespace ft
 			cout << "└---";
 		if (root->color == NRED)
 			cout << RED;
-		cout << "[" << root->key << "]";
-		cout << " = " << root->value << RESET << " ";
-		cout << "(" << root->parent << " -> " << root << ")\n";
+		cout << "[" << root->key << "]" << RESET;
+		cout << " = " << root->value;
+		// cout << " (" << root->parent << " -> " << root << ")";
+		cout << "\n";
 
 		string nprefix = prefix;
 		if (position == -1)
