@@ -57,6 +57,8 @@ namespace ft
 
 			static void		erase(node** slot);
 
+			static node**	random(node** root);
+
 		private:
 		
 			static void		insertf(node** slot);

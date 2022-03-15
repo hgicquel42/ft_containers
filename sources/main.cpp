@@ -17,38 +17,75 @@ void	print(ft::vector<T>& vector)
 	cout << "-----------" << "\n";
 }
 
-typedef ft::node<int,string>	node;
+typedef ft::node<int,int>	node;
+
+int	random(int min, int max)
+{
+	return (rand() % (max - min + 1) + min);
+}
 
 int	main(void)
 {
-	node*	root;
+	node*	root = NULL;
+
+	srand(time(NULL));
 	
-	root = new node(NULL, 0, "root");
-	node::insert(&root, 10, "10");
-	node::insert(&root, -10, "-10");
-	node::insert(&root, 20, "20");
-	node::insert(&root, 5, "5");
-	node::insert(&root, 15, "15");
-	node::insert(&root, -5, "-5");
-	node::insert(&root, -10, "still -10");
+	// root = new node(NULL, 0, "root");
+	// node::print(root);
+	// node::insert(&root, 10, "10");
+	// node::print(root);
+	// node::insert(&root, -10, "-10");
+	// node::print(root);
+	// node::insert(&root, 20, "20");
+	// node::print(root);
+	// node::insert(&root, 5, "5");
+	// node::print(root);
+	// node::insert(&root, 15, "15");
+	// node::print(root);
+	// node::insert(&root, -5, "-5");
+	// node::print(root);
+	// node::insert(&root, -10, "still -10");
 
-	node::print(root);
-	node::erase(&root, 10);
-	node::print(root);
-	node::erase(&root, 5);
-	node::print(root);
+	// node::print(root);
 
-	node::erase(&root, -10);
-	node::print(root);
-	node::erase(&root, 20);
-	node::print(root);
-	node::erase(&root, 15);
-	node::print(root);
-	node::erase(&root, -5);
-	node::print(root);
+	// cout << "--- erasing ---\n";
 
-	node::erase(&root);
-	node::print(root);
+	// node::print(root);
+	// node::erase(&root, 10);
+	// node::print(root);
+	// node::erase(&root, 5);
+	// node::print(root);
+
+	// node::erase(&root, -10);
+	// node::print(root);
+	// node::erase(&root, 20);
+	// node::print(root);
+	// node::erase(&root, 15);
+	// node::print(root);
+	// node::erase(&root, -5);
+	// node::print(root);
+
+	// node::erase(&root);
+	// node::print(root);
+
+	// node::insert(&root, 12, "lol");
+	// node::print(root);
+
+	for (int i = 0; i < 10; i++) {
+		node::insert(&root, random(-200, 200), i);
+		node::print(root);
+	}
+
+	// node::lrotate(&root);
+	// node::print(root);
+	// node::rrotate(&root);
+	// node::print(root);
+
+	while (root) {
+		node::erase(node::random(&root));
+		node::print(root);
+	}
+		
 
 	// root->left = new node(root, 0, "aa");
 	// root->left->left = new node(root->left, 0, "aaa");

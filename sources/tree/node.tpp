@@ -145,54 +145,12 @@ namespace ft
 		if (key == *root->key)
 			return (root);
 		if (key > *root->key)
-			return (search(*root->right, key));
+			return (search(&(*root)->right, key));
 		if (key < *root->key)
-			return (search(*root->left, key));
+			return (search(&(*root)->left, key));
 		return (root);
 	}
 
-	template <class K, class V>
-	void	node<K,V>::lrotate(node** root)
-	{
-		if (!root || !*root || !(*root)->right)
-			return ;
-		node* x = (*root)->right;
-		node* y = x->left;
-		x->left = *root;
-		x->parent = (*root)->parent;
-		(*root)->right = y;
-		(*root)->parent = x;
-		if (y)
-			y->parent = *root;
-		*root = x;
-	}
-
-	template <class K, class V>
-	void	node<K,V>::rrotate(node** root)
-	{
-		if (!root || !*root || !(*root)->left)
-			return ;
-		node* x = (*root)->left;
-		node* y = x->right;
-		x->right = *root;
-		x->parent = (*root)->parent;
-		(*root)->left = y;
-		(*root)->parent = x;
-		if (y)
-			y->parent = *root;
-		*root = x;
-	}
-
-	/**
-	 * @brief Find a spot for that key and save its parent
-	 * 
-	 * @tparam K 
-	 * @tparam V 
-	 * @param parent 
-	 * @param root 
-	 * @param key 
-	 * @return node<K,V>*& 
-	 */
 	template <class K, class V>
 	node<K,V>**	node<K,V>::spot(node** parent, node** root, const K& key)
 	{
@@ -208,6 +166,47 @@ namespace ft
 		if (key > (*root)->key)
 			return (spot(parent, &(*root)->right, key));
 		return (root);
+	}
+
+	template <class K, class V>
+	node<K,V>**	node<K,V>::random(node** root)
+	{
+		if (!root)
+			return (NULL);
+		if (!*root)
+			return (root);
+		int r = (rand() % 3) - 1;
+		if (r == -1)
+			return (random(&(*root)->left));
+		if (r == 1)
+			return (random(&(*root)->right));
+		return (root);
+	}
+
+	template <class K, class V>
+	void	node<K,V>::lrotate(node** slot)
+	{
+		if (!slot || !*slot || !(*slot)->right)
+			return ;
+		node* x = *slot;
+		node* y = x->right;
+		if (y->left)
+			y->left->parent = x;
+		*slot = y;
+		x->parent = y;
+	}
+
+	template <class K, class V>
+	void	node<K,V>::rrotate(node** slot)
+	{
+		if (!slot || !*slot || !(*slot)->left)
+			return ;
+		node* x = *slot;
+		node* y = x->left;
+		if (y->right)
+			y->right->parent = x;
+		*slot = y;
+		x->parent = y;
 	}
 
 	/**
@@ -258,37 +257,62 @@ namespace ft
 			return ;
 		}
 
-		node** uncle = (*slot)->uncle();
+		node** gparent = &(*parent)->parent;
+
+		if (!*gparent) {
+			(*parent)->color = NBLACK;
+			return ;
+		}
+
+		node** uncle = (*parent)->uncle();
 
 		if (uncle && *uncle && (*uncle)->color == NRED) {
 			(*parent)->color = NBLACK;
 			(*uncle)->color = NBLACK;
-			(*parent)->parent->color = NRED;
-			insertf(&(*parent)->parent);
+			(*gparent)->color = NRED;
+			insertf(gparent);
 			return ;
 		}
 
-		if ((*parent)->parent && *parent == (*parent)->parent->left) {
+		if (*parent == (*gparent)->left) {
 			if (*slot == (*parent)->right) {
 				lrotate(parent);
 				parent = slot;
 			}
-
-			rrotate(&(*parent)->parent);
+			rrotate(gparent);
 			(*parent)->color = NBLACK;
-			(*parent)->parent->color = NRED;
+			(*gparent)->color = NRED;
+			return ;
 		}
 
-		if ((*parent)->parent && *parent == (*parent)->parent->right) {
+		if (*parent == (*gparent)->right) {
 			if (*slot == (*parent)->left) {
 				rrotate(parent);
 				parent = slot;
 			}
 
-			lrotate(&(*parent)->parent);
+			lrotate(gparent);
 			(*parent)->color = NBLACK;
-			(*parent)->parent->color = NRED;
+			(*gparent)->color = NRED;
+			return ;
 		}
+	}
+
+	/**
+	 * @brief Erase by key
+	 * 
+	 * @tparam K 
+	 * @tparam V 
+	 * @param root 
+	 * @param key 
+	 */
+	template <class K, class V>
+	void	node<K,V>::erase(node** root, const K& key)
+	{
+		node* parent = NULL;
+
+		node** slot = spot(&parent, root, key);
+		if (slot && *slot) erase(slot);
 	}
 
 	/**
@@ -334,24 +358,7 @@ namespace ft
 			return ;
 		if (color == NRED)
 			return ;
-		erasef(slot);
-	}
-
-	/**
-	 * @brief Erase by key
-	 * 
-	 * @tparam K 
-	 * @tparam V 
-	 * @param root 
-	 * @param key 
-	 */
-	template <class K, class V>
-	void	node<K,V>::erase(node** root, const K& key)
-	{
-		node* parent = NULL;
-
-		node** slot = spot(&parent, root, key);
-		if (slot && *slot) erase(slot);
+		// erasef(slot);
 	}
 
 	/**
@@ -417,11 +424,10 @@ namespace ft
 		(*sibling)->color = (*parent)->color;
 		(*parent)->color = NBLACK;
 		if (*slot == (*parent)->left) {
-			
-			// (*sibling)->right->color = NBLACK;
+			(*sibling)->right->color = NBLACK;
 			lrotate(parent);
 		} else {
-			// (*sibling)->left->color = NBLACK;
+			(*sibling)->left->color = NBLACK;
 			rrotate(parent);
 		}
 	}
