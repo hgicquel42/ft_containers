@@ -24,27 +24,30 @@ int	main(void)
 	node*	root;
 	
 	root = new node(NULL, 0, "root");
-	node::insert(root, 10, "10");
-	node::insert(root, -10, "-10");
-	node::insert(root, 20, "20");
-	node::insert(root, 5, "5");
-	node::insert(root, 15, "15");
-	node::insert(root, -5, "-5");
-	node::insert(root, -10, "still -10");
+	node::insert(&root, 10, "10");
+	node::insert(&root, -10, "-10");
+	node::insert(&root, 20, "20");
+	node::insert(&root, 5, "5");
+	node::insert(&root, 15, "15");
+	node::insert(&root, -5, "-5");
+	node::insert(&root, -10, "still -10");
 
 	node::print(root);
-	node::erase(root, 10);
+	node::erase(&root, 10);
 	node::print(root);
-	node::erase(root, 5);
-	node::print(root);
-
-	node::erase(root, -10);
-	node::erase(root, 20);
-	node::erase(root, 15);
-	node::erase(root, -5);
+	node::erase(&root, 5);
 	node::print(root);
 
-	node::erase(root);
+	node::erase(&root, -10);
+	node::print(root);
+	node::erase(&root, 20);
+	node::print(root);
+	node::erase(&root, 15);
+	node::print(root);
+	node::erase(&root, -5);
+	node::print(root);
+
+	node::erase(&root);
 	node::print(root);
 
 	// root->left = new node(root, 0, "aa");

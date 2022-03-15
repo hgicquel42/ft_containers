@@ -64,19 +64,19 @@ namespace ft
 	}
 
 	template <class K, class V>
-	node<K,V>*	node<K,V>::sibling(void)
+	node<K,V>**	node<K,V>::sibling(void)
 	{
 		if (!this->parent)
 			return (NULL);
 		if (this == this->parent->left)
-			return (this->parent->right);
+			return (&this->parent->right);
 		if (this == this->parent->right)
-			return (this->parent->left);
+			return (&this->parent->left);
 		return (NULL);
 	}
 
 	template <class K, class V>
-	node<K,V>*	node<K,V>::uncle(void)
+	node<K,V>**	node<K,V>::uncle(void)
 	{
 		if (!this->parent)
 			return (NULL);
@@ -84,11 +84,23 @@ namespace ft
 	}
 
 	template <class K, class V>
-	node<K,V>*&	node<K,V>::minimum(node*& root)
+	bool	node<K,V>::isblack(node* slot)
 	{
-		if (!root->left)
+		return (slot && slot->color == NBLACK);
+	}
+
+	template <class K, class V>
+	bool	node<K,V>::isred(node* slot)
+	{
+		return (slot && slot->color == NRED);
+	}
+
+	template <class K, class V>
+	node<K,V>**	node<K,V>::minimum(node** root)
+	{
+		if (!(*root)->left)
 			return (root);
-		return (minimum(root->left));
+		return (minimum(&(*root)->left));
 	}
 
 	template <class K, class V>
@@ -124,49 +136,51 @@ namespace ft
 	}
 
 	template <class K, class V>
-	node<K,V>*	node<K,V>::search(const node* root, const K& key)
+	node<K,V>**	node<K,V>::search(const node** root, const K& key)
 	{
 		if (!root)
 			return (NULL);
-		if (key == root->key)
+		if (!*root)
 			return (root);
-		if (key > root->key)
-			return (search(root->right, key));
-		if (key < root->key)
-			return (search(root->left, key));
-		return (NULL);
+		if (key == *root->key)
+			return (root);
+		if (key > *root->key)
+			return (search(*root->right, key));
+		if (key < *root->key)
+			return (search(*root->left, key));
+		return (root);
 	}
 
 	template <class K, class V>
-	void	node<K,V>::lrotate(node*& root)
+	void	node<K,V>::lrotate(node** root)
 	{
-		if (!root || !root->right)
+		if (!root || !*root || !(*root)->right)
 			return ;
-		node* x = root->right;
+		node* x = (*root)->right;
 		node* y = x->left;
-		x->left = root;
-		x->parent = root->parent;
-		root->right = y;
-		root->parent = x;
+		x->left = *root;
+		x->parent = (*root)->parent;
+		(*root)->right = y;
+		(*root)->parent = x;
 		if (y)
-			y->parent = root;
-		root = x;
+			y->parent = *root;
+		*root = x;
 	}
 
 	template <class K, class V>
-	void	node<K,V>::rrotate(node*& root)
+	void	node<K,V>::rrotate(node** root)
 	{
-		if (!root || !root->left)
+		if (!root || !*root || !(*root)->left)
 			return ;
-		node* x = root->left;
+		node* x = (*root)->left;
 		node* y = x->right;
-		x->right = root;
-		x->parent = root->parent;
-		root->left = y;
-		root->parent = x;
+		x->right = *root;
+		x->parent = (*root)->parent;
+		(*root)->left = y;
+		(*root)->parent = x;
 		if (y)
-			y->parent = root;
-		root = x;
+			y->parent = *root;
+		*root = x;
 	}
 
 	/**
@@ -180,17 +194,19 @@ namespace ft
 	 * @return node<K,V>*& 
 	 */
 	template <class K, class V>
-	node<K,V>*&	node<K,V>::spot(node*& parent, node*& root, const K& key)
+	node<K,V>**	node<K,V>::spot(node** parent, node** root, const K& key)
 	{
 		if (!root)
+			return (NULL);
+		if (!*root)
 			return (root);
-		parent = root;
-		if (key == root->key)
+		*parent = *root;
+		if (key == (*root)->key)
 			return (root);
-		if (key < root->key)
-			return (spot(parent, root->left, key));
-		if (key > root->key)
-			return (spot(parent, root->right, key));
+		if (key < (*root)->key)
+			return (spot(parent, &(*root)->left, key));
+		if (key > (*root)->key)
+			return (spot(parent, &(*root)->right, key));
 		return (root);
 	}
 
@@ -204,18 +220,19 @@ namespace ft
 	 * @param value 
 	 */
 	template <class K, class V>
-	void	node<K,V>::insert(node*& root, const K& key, const V& value)
+	void	node<K,V>::insert(node** root, const K& key, const V& value)
 	{
 		node* parent = NULL;
 
-		node*& slot = spot(parent, root, key);
+		node** slot = spot(&parent, root, key);
+		if (!slot) return ;
 
-		if (!slot) {
-			slot = new node<K,V>(parent, key, value, NRED);
+		if (!*slot) {
+			*slot = new node<K,V>(parent, key, value, NRED);
 			node::insertf(slot);
 		}
 
-		slot->value = value;
+		(*slot)->value = value;
 	}
 
 	/**
@@ -226,49 +243,51 @@ namespace ft
 	 * @param slot 
 	 */
 	template <class K, class V>
-	void	node<K,V>::insertf(node* slot)
+	void	node<K,V>::insertf(node** slot)
 	{
-		node* parent = slot->parent;
+		if (!slot || !*slot) return ;
 
-		if (!parent) {
-			slot->color = NBLACK;
+		node** parent = &(*slot)->parent;
+
+		if (!*parent) {
+			(*slot)->color = NBLACK;
 			return ;
 		}
 
-		if (parent->color == NBLACK) {
+		if ((*parent)->color == NBLACK) {
 			return ;
 		}
 
-		node* uncle = slot->uncle();
+		node** uncle = (*slot)->uncle();
 
-		if (uncle && uncle->color == NRED) {
-			parent->color = NBLACK;
-			uncle->color = NBLACK;
-			parent->parent->color = NRED;
-			insertf(parent->parent);
+		if (uncle && *uncle && (*uncle)->color == NRED) {
+			(*parent)->color = NBLACK;
+			(*uncle)->color = NBLACK;
+			(*parent)->parent->color = NRED;
+			insertf(&(*parent)->parent);
 			return ;
 		}
 
-		if (parent == parent->parent->left) {
-			if (slot == parent->right) {
+		if ((*parent)->parent && *parent == (*parent)->parent->left) {
+			if (*slot == (*parent)->right) {
 				lrotate(parent);
 				parent = slot;
 			}
 
-			rrotate(parent->parent);
-			parent->color = NBLACK;
-			parent->parent->color = NRED;
+			rrotate(&(*parent)->parent);
+			(*parent)->color = NBLACK;
+			(*parent)->parent->color = NRED;
 		}
 
-		if (parent == parent->parent->right) {
-			if (slot == parent->left) {
+		if ((*parent)->parent && *parent == (*parent)->parent->right) {
+			if (*slot == (*parent)->left) {
 				rrotate(parent);
 				parent = slot;
 			}
 
-			lrotate(parent->parent);
-			parent->color = NBLACK;
-			parent->parent->color = NRED;
+			lrotate(&(*parent)->parent);
+			(*parent)->color = NBLACK;
+			(*parent)->parent->color = NRED;
 		}
 	}
 
@@ -280,36 +299,42 @@ namespace ft
 	 * @param slot 
 	 */
 	template <class K, class V>
-	void	node<K,V>::erase(node*& slot)
+	void	node<K,V>::erase(node** slot)
 	{
-		node* parent = slot->parent;
+		if (!slot || !*slot) return ;
 
-		if (slot->left && slot->right) {
-			node*& min = minimum(slot);
-			slot->key = min->key;
-			slot->value = min->value;
+		if ((*slot)->left && (*slot)->right) {
+			node** min = minimum(slot);
+			(*slot)->key = (*min)->key;
+			(*slot)->value = (*min)->value;
 			erase(min);
 			return ;
 		}
 
-		bool color = slot->color;
+		bool color = (*slot)->color;
 
-		if (slot->right) {
-			node* next = slot->right;
-			delete slot;
-			slot = next;
-			slot->parent = parent;
-		} else if (slot->left) {
-			node* next = slot->left;
-			delete slot;
-			slot = next;
-			slot->parent = parent;
+		if ((*slot)->right) {
+			node* next = (*slot)->right;
+			node* tparent = (*slot)->parent;
+			delete *slot;
+			*slot = next;
+			(*slot)->parent = tparent;
+		} else if ((*slot)->left) {
+			node* next = (*slot)->left;
+			node* tparent = (*slot)->parent;
+			delete *slot;
+			*slot = next;
+			(*slot)->parent = tparent;
 		} else {
-			delete slot;
-			slot = NULL;
+			delete *slot;
+			*slot = NULL;
 		}
 
-		erasef(parent, slot, color);
+		if (!*slot)
+			return ;
+		if (color == NRED)
+			return ;
+		erasef(slot);
 	}
 
 	/**
@@ -321,14 +346,12 @@ namespace ft
 	 * @param key 
 	 */
 	template <class K, class V>
-	void	node<K,V>::erase(node*& root, const K& key)
+	void	node<K,V>::erase(node** root, const K& key)
 	{
 		node* parent = NULL;
 
-		node*& slot = spot(parent, root, key);
-		if (!slot)
-			return ;
-		erase(slot);
+		node** slot = spot(&parent, root, key);
+		if (slot && *slot) erase(slot);
 	}
 
 	/**
@@ -341,10 +364,65 @@ namespace ft
 	 * @param color 
 	 */
 	template <class K, class V>
-	void	node<K,V>::erasef(node* parent, node* slot, bool color)
+	void	node<K,V>::erasef(node** slot)
 	{
-		(void) (parent && slot && color);
-		// TODO https://www.happycoders.eu/algorithms/red-black-tree-java/
-		// https://github.com/SvenWoltmann/binary-tree/blob/main/src/main/java/eu/happycoders/binarytree/RedBlackTree.java#L252
+		if (!slot || !*slot) return ;
+
+		node** parent = &(*slot)->parent;
+
+		if (!*parent) {
+			(*slot)->color = NBLACK;
+			return ;
+		}
+
+		node** sibling = (*slot)->sibling();
+		if (!sibling || !*sibling) return ;
+
+		if ((*sibling)->color == NRED) {
+			(*sibling)->color = NBLACK;
+			(*parent)->color = NRED;
+			
+			if (*slot == (*parent)->left)
+				lrotate(parent);
+			else if (*slot == (*parent)->right)
+				rrotate(parent);
+			sibling = (*slot)->sibling();
+		}
+
+		if (isblack((*sibling)->left) && isblack((*sibling)->right))
+		{
+			(*sibling)->color = NRED;
+
+			if ((*parent)->color == NRED)
+				(*parent)->color = NBLACK;
+			else
+				erasef(parent);
+			return ;
+		}
+
+		if (*slot == (*parent)->left && isblack((*sibling)->right)) {
+			(*sibling)->left->color = NBLACK;
+			(*sibling)->color = NRED;
+			rrotate(sibling);
+			sibling = &(*parent)->right;
+		}
+
+		if (*slot == (*parent)->right && isblack((*sibling)->left)) {
+			(*sibling)->right->color = NBLACK;
+			(*sibling)->color = NRED;
+			lrotate(sibling);
+			sibling = &(*parent)->left;
+		}
+
+		(*sibling)->color = (*parent)->color;
+		(*parent)->color = NBLACK;
+		if (*slot == (*parent)->left) {
+			
+			// (*sibling)->right->color = NBLACK;
+			lrotate(parent);
+		} else {
+			// (*sibling)->left->color = NBLACK;
+			rrotate(parent);
+		}
 	}
 }
