@@ -252,57 +252,75 @@ namespace ft
 	{
 		if (!slot || !*slot) return ;
 
-		node** parent = &(*slot)->parent;
+		node** parent = NULL;
+		node** gparent = NULL;
+	
+		while (true
+		&& ((*slot)->parent)
+		&& ((*slot)->parent->parent)
+		&& ((*slot)->color == NRED)
+		&& ((*slot)->parent->color == NRED))
+		{
+			parent = &(*slot)->parent;
+			gparent = &(*parent)->parent;
+	
+			if (*parent == (*gparent)->left)
+			{
+				node** uncle = &(*gparent)->right;
 
-		if (!*parent) {
-			(*slot)->color = NBLACK;
-			return ;
+				if (*uncle && (*uncle)->color == NRED)
+				{
+					(*gparent)->color = RED;
+					(*parent)->color = BLACK;
+					(*uncle)->color = BLACK;
+					slot = gparent;
+				}
+	
+				else
+				{
+					if (*slot == (*parent)->right)
+					{
+						lrotate(parent);
+						slot = parent;
+						parent = &(*slot)->parent;
+					}
+	
+					rrotate(gparent);
+					bool temp = (*parent)->color;
+					(*parent)->color = (*gparent)->color;
+					(*gparent)->color = temp;
+					slot = parent;
+				}
+			}
+
+			else
+			{
+				node** uncle = &(*gparent)->left;
+	
+				if (*uncle && (*uncle)->color == NRED)
+				{
+					(*gparent)->color = RED;
+					(*parent)->color = BLACK;
+					(*uncle)->color = BLACK;
+					slot = gparent;
+				}
+				else
+				{
+					if (*uncle == (*uncle)->left)
+					{
+						rrotate(parent);
+						slot = parent;
+						parent = &(*slot)->parent;
+					}
+	
+					lrotate(gparent);
+					bool temp = (*parent)->color;
+					(*parent)->color = (*gparent)->color;
+					(*gparent)->color = temp;
+					slot = parent;
+				}
+			}
 		}
-
-		if ((*parent)->color == NBLACK) {
-			return ;
-		}
-
-		node** gparent = &(*parent)->parent;
-
-		if (!*gparent) {
-			(*parent)->color = NBLACK;
-			return ;
-		}
-
-		// node** uncle = (*parent)->uncle();
-
-		// if (uncle && *uncle && (*uncle)->color == NRED) {
-		// 	(*parent)->color = NBLACK;
-		// 	(*gparent)->color = NRED;
-		// 	(*uncle)->color = NBLACK;
-		// 	insertf(gparent);
-		// 	return ;
-		// }
-
-		// if (*parent == (*gparent)->left) {
-		// 	if (*slot == (*parent)->right) {
-		// 		lrotate(parent);
-		// 		parent = slot;
-		// 	}
-
-		// 	rrotate(gparent);
-		// 	(*parent)->color = NBLACK;
-		// 	(*gparent)->color = NRED;
-		// 	return ;
-		// }
-
-		// if (*parent == (*gparent)->right) {
-		// 	if (*slot == (*parent)->left) {
-		// 		rrotate(parent);
-		// 		parent = slot;
-		// 	}
-
-		// 	lrotate(gparent);
-		// 	(*parent)->color = NBLACK;
-		// 	(*gparent)->color = NRED;
-		// 	return ;
-		// }
 	}
 
 	/**
