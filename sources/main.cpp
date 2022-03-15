@@ -73,13 +73,13 @@ int	main(void)
 
 	for (int i = 0; i < 100; i++) {
 		node::insert(&root, random(-200, 200), i);
-		node::print(root);
+		// node::print(root);
 	}
 
 	// node::lrotate(&root);
 	// node::print(root);
 	// node::rrotate(&root);
-	// node::print(root);
+	node::print(root);
 
 	while (root) {
 		node::erase(node::random(&root));
