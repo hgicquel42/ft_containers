@@ -188,11 +188,14 @@ namespace ft
 	{
 		if (!slot || !*slot || !(*slot)->right)
 			return ;
+		cout << "left rotate\n";
 		node* x = *slot;
 		node* y = x->right;
 		if (y->left)
 			y->left->parent = x;
+		y->parent = x->parent;
 		*slot = y;
+		y->left = x;
 		x->parent = y;
 	}
 
@@ -201,11 +204,14 @@ namespace ft
 	{
 		if (!slot || !*slot || !(*slot)->left)
 			return ;
+		cout << "right rotate\n";
 		node* x = *slot;
 		node* y = x->left;
 		if (y->right)
 			y->right->parent = x;
+		y->parent = x->parent;
 		*slot = y;
+		y->right = x;
 		x->parent = y;
 	}
 
@@ -228,7 +234,7 @@ namespace ft
 
 		if (!*slot) {
 			*slot = new node<K,V>(parent, key, value, NRED);
-			node::insertf(slot);
+			// node::insertf(slot);
 		}
 
 		(*slot)->value = value;
@@ -270,16 +276,19 @@ namespace ft
 			(*parent)->color = NBLACK;
 			(*uncle)->color = NBLACK;
 			(*gparent)->color = NRED;
-			insertf(gparent);
+			// insertf(gparent);
 			return ;
 		}
 
 		if (*parent == (*gparent)->left) {
 			if (*slot == (*parent)->right) {
 				lrotate(parent);
+				cout << "lol1\n";
 				parent = slot;
 			}
+
 			rrotate(gparent);
+			cout << "lol2\n";
 			(*parent)->color = NBLACK;
 			(*gparent)->color = NRED;
 			return ;
@@ -288,10 +297,12 @@ namespace ft
 		if (*parent == (*gparent)->right) {
 			if (*slot == (*parent)->left) {
 				rrotate(parent);
+				cout << "lol3\n";
 				parent = slot;
 			}
 
 			lrotate(gparent);
+			cout << "lol4\n";
 			(*parent)->color = NBLACK;
 			(*gparent)->color = NRED;
 			return ;
@@ -328,7 +339,7 @@ namespace ft
 		if (!slot || !*slot) return ;
 
 		if ((*slot)->left && (*slot)->right) {
-			node** min = minimum(slot);
+			node** min = minimum(&(*slot)->right);
 			(*slot)->key = (*min)->key;
 			(*slot)->value = (*min)->value;
 			erase(min);
@@ -339,16 +350,18 @@ namespace ft
 
 		if ((*slot)->right) {
 			node* next = (*slot)->right;
-			node* tparent = (*slot)->parent;
+			next->parent = (*slot)->parent;
+			if (next->parent)
+				cout << next->parent->color <<  "\n";
 			delete *slot;
 			*slot = next;
-			(*slot)->parent = tparent;
 		} else if ((*slot)->left) {
 			node* next = (*slot)->left;
-			node* tparent = (*slot)->parent;
+			next->parent = (*slot)->parent;
+			if (next->parent)
+				cout << next->parent->color <<  "\n";
 			delete *slot;
 			*slot = next;
-			(*slot)->parent = tparent;
 		} else {
 			delete *slot;
 			*slot = NULL;
@@ -358,7 +371,7 @@ namespace ft
 			return ;
 		if (color == NRED)
 			return ;
-		// erasef(slot);
+		erasef(slot);
 	}
 
 	/**
