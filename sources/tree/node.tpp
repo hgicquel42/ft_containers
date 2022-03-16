@@ -250,8 +250,6 @@ namespace ft
 		node** slot = spot(&parent, root, key);
 		if (!slot) return ;
 
-		cout << "insert\n";
-
 		if (!*slot) {
 			*slot = new node<K,V>(parent, key, value, NRED);
 			insertf(root, slot);
@@ -412,6 +410,7 @@ namespace ft
 		}
 
 		node* sibling = *node::sibling(current);
+		if (!sibling) return ;
 
 		if (sibling->color == NRED) {
 			sibling->color = NBLACK;
@@ -422,6 +421,7 @@ namespace ft
 			else if (current == parent->right)
 				rrotate(node::slot(root, parent));
 			sibling = *node::sibling(current);
+			if (!sibling) return ;
 		}
 
 		if (isblack(sibling->left) && isblack(sibling->right))
@@ -436,27 +436,31 @@ namespace ft
 		}
 
 		if (current == parent->left && isblack(sibling->right)) {
+			if (!sibling->left) return ;
 			sibling->left->color = NBLACK;
 			sibling->color = NRED;
 			rrotate(node::slot(root, sibling));
 			sibling = parent->right;
+			if (!sibling) return ;
 		}
 
 		if (current == parent->right && isblack(sibling->left)) {
+			if (!sibling->right) return ;
 			sibling->right->color = NBLACK;
 			sibling->color = NRED;
 			lrotate(node::slot(root, sibling));
 			sibling = parent->left;
+			if (!sibling) return ;
 		}
 
 		sibling->color = parent->color;
 		parent->color = NBLACK;
 		if (current == parent->left) {
-			if (sibling)
+			if (sibling->right)
 				sibling->right->color = NBLACK;
 			lrotate(node::slot(root, parent));
 		} else {
-			if (sibling)
+			if (sibling->left)
 				sibling->left->color = NBLACK;
 			rrotate(node::slot(root, parent));
 		}
