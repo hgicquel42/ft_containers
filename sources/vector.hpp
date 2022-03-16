@@ -5,8 +5,9 @@
 #include <cstddef>
 
 #include "utils/types.hpp"
-#include "iterators/random_access_iterator.hpp"
-#include "iterators/reverse_iterator.hpp"
+
+#include "vector/iterators/random_access_iterator.hpp"
+#include "vector/iterators/reverse_iterator.hpp"
 
 namespace ft
 {

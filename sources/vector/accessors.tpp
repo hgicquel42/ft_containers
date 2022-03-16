@@ -1,7 +1,8 @@
 #pragma once
 
-#include "vector.hpp"
 #include <stdexcept>
+
+#include "vector.hpp"
 
 namespace ft
 {
