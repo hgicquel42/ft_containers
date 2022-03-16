@@ -184,10 +184,12 @@ namespace ft
 	}
 
 	template <class K, class V>
-	void	node<K,V>::lrotate(node** slot)
+	node<K,V>**	node<K,V>::lrotate(node** slot)
 	{
-		if (!slot || !*slot || !(*slot)->right)
-			return ;
+		if (!slot)
+			return (NULL);
+		if (!*slot || !(*slot)->right)
+			return (slot);
 		cout << "left rotate\n";
 		node* x = *slot;
 		node* y = x->right;
@@ -197,13 +199,16 @@ namespace ft
 		*slot = y;
 		y->left = x;
 		x->parent = y;
+		return (&(y->left));
 	}
 
 	template <class K, class V>
-	void	node<K,V>::rrotate(node** slot)
+	node<K,V>**	node<K,V>::rrotate(node** slot)
 	{
-		if (!slot || !*slot || !(*slot)->left)
-			return ;
+		if (!slot)
+			return (NULL);
+		if (!*slot || !(*slot)->left)
+			return (slot);
 		cout << "right rotate\n";
 		node* x = *slot;
 		node* y = x->left;
@@ -213,6 +218,7 @@ namespace ft
 		*slot = y;
 		y->right = x;
 		x->parent = y;
+		return (&(y->right));
 	}
 
 	/**
@@ -280,12 +286,12 @@ namespace ft
 				{
 					if (*slot == (*parent)->right)
 					{
-						lrotate(parent);
+						parent = lrotate(parent);
 						slot = parent;
 						parent = &(*slot)->parent;
 					}
 	
-					rrotate(gparent);
+					gparent = rrotate(gparent);
 					bool temp = (*parent)->color;
 					(*parent)->color = (*gparent)->color;
 					(*gparent)->color = temp;
@@ -306,14 +312,14 @@ namespace ft
 				}
 				else
 				{
-					if (*uncle == (*uncle)->left)
+					if (*slot == (*parent)->left)
 					{
-						rrotate(parent);
+						parent = rrotate(parent);
 						slot = parent;
 						parent = &(*slot)->parent;
 					}
 	
-					lrotate(gparent);
+					gparent = lrotate(gparent);
 					bool temp = (*parent)->color;
 					(*parent)->color = (*gparent)->color;
 					(*gparent)->color = temp;
@@ -321,6 +327,9 @@ namespace ft
 				}
 			}
 		}
+
+		if (!(*slot)->parent)
+			(*slot)->color = NBLACK;
 	}
 
 	/**
@@ -381,7 +390,7 @@ namespace ft
 			return ;
 		if (color == NRED)
 			return ;
-		erasef(slot);
+		// erasef(slot);
 	}
 
 	/**

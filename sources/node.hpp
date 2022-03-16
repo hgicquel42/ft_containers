@@ -45,9 +45,9 @@ namespace ft
 
 			static void		print(const node* root, const string& prefix = "", int position = 0);
 
-			static void		lrotate(node** root);
+			static node**	lrotate(node** root);
 
-			static void		rrotate(node** root);
+			static node**	rrotate(node** root);
 
 			static node**	spot(node** parent, node** root, const K& key);
 
