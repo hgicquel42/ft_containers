@@ -31,23 +31,25 @@ namespace ft
 
 			void	recolor(void);
 
-			node**	sibling(void);
+			static node**	sibling(node* current);
 
-			node**	uncle(void);
+			static node**	uncle(node* current);
+
+			static node**	slot(node** root, node* current);
 
 			static bool		isblack(node* slot);
 
 			static bool		isred(node* slot);
 
-			static node**	minimum(node** root);
+			static node**	minimum(node** slot);
 
-			static node**	search(const node** root, const K& key);
+			static node**	search(node** root, const K& key);
 
 			static void		print(const node* root, const string& prefix = "", int position = 0);
 
-			static node**	lrotate(node** root);
+			static void		lrotate(node** slot);
 
-			static node**	rrotate(node** root);
+			static void		rrotate(node** slot);
 
 			static node**	spot(node** parent, node** root, const K& key);
 
@@ -55,15 +57,15 @@ namespace ft
 
 			static void		erase(node** root, const K& key);
 
-			static void		erase(node** slot);
+			static void		erase(node** root, node** slot);
 
 			static node**	random(node** root);
 
 		private:
 		
-			static void		insertf(node** slot);
+			static void		insertf(node** root, node** slot);
 
-			static void		erasef(node** slot);
+			static void		erasef(node** root, node** slot);
 	};
 }
 

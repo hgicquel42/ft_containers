@@ -64,23 +64,23 @@ namespace ft
 	}
 
 	template <class K, class V>
-	node<K,V>**	node<K,V>::sibling(void)
+	node<K,V>**	node<K,V>::sibling(node* current)
 	{
-		if (!this->parent)
+		if (!current->parent)
 			return (NULL);
-		if (this == this->parent->left)
-			return (&this->parent->right);
-		if (this == this->parent->right)
-			return (&this->parent->left);
+		if (current == current->parent->left)
+			return (&(current->parent->right));
+		if (current == current->parent->right)
+			return (&(current->parent->left));
 		return (NULL);
 	}
 
 	template <class K, class V>
-	node<K,V>**	node<K,V>::uncle(void)
+	node<K,V>**	node<K,V>::uncle(node* current)
 	{
-		if (!this->parent)
+		if (!current->parent)
 			return (NULL);
-		return (this->parent->sibling());
+		return (node::sibling(current->parent));
 	}
 
 	template <class K, class V>
@@ -96,11 +96,11 @@ namespace ft
 	}
 
 	template <class K, class V>
-	node<K,V>**	node<K,V>::minimum(node** root)
+	node<K,V>**	node<K,V>::minimum(node** slot)
 	{
-		if (!(*root)->left)
-			return (root);
-		return (minimum(&(*root)->left));
+		if (!(*slot)->left)
+			return (slot);
+		return (minimum(&(*slot)->left));
 	}
 
 	template <class K, class V>
@@ -136,7 +136,19 @@ namespace ft
 	}
 
 	template <class K, class V>
-	node<K,V>**	node<K,V>::search(const node** root, const K& key)
+	node<K,V>**	node<K,V>::slot(node** root, node* current)
+	{
+		if (!current->parent)
+			return (root);
+		if (current == current->parent->left)
+			return (&(current->parent->left));
+		if (current == current->parent->right)
+			return (&(current->parent->right));
+		return (NULL);
+	}
+
+	template <class K, class V>
+	node<K,V>**	node<K,V>::search(node** root, const K& key)
 	{
 		if (!root)
 			return (NULL);
@@ -184,41 +196,41 @@ namespace ft
 	}
 
 	template <class K, class V>
-	node<K,V>**	node<K,V>::lrotate(node** slot)
+	void	node<K,V>::lrotate(node** slot)
 	{
-		if (!slot)
-			return (NULL);
-		if (!*slot || !(*slot)->right)
-			return (slot);
-		cout << "left rotate\n";
-		node* x = *slot;
-		node* y = x->right;
-		if (y->left)
-			y->left->parent = x;
-		y->parent = x->parent;
-		*slot = y;
-		y->left = x;
-		x->parent = y;
-		return (&(y->left));
+		node* current = *slot;
+		node* parent = current->parent;
+		node* right = current->right;
+
+		current->right = right->left;
+		if (right->left)
+			right->left->parent = current;
+
+		right->left = current;
+		current->parent = right;
+
+		*slot = right;
+
+		right->parent = parent;
 	}
 
 	template <class K, class V>
-	node<K,V>**	node<K,V>::rrotate(node** slot)
+	void	node<K,V>::rrotate(node** slot)
 	{
-		if (!slot)
-			return (NULL);
-		if (!*slot || !(*slot)->left)
-			return (slot);
-		cout << "right rotate\n";
-		node* x = *slot;
-		node* y = x->left;
-		if (y->right)
-			y->right->parent = x;
-		y->parent = x->parent;
-		*slot = y;
-		y->right = x;
-		x->parent = y;
-		return (&(y->right));
+		node* current = *slot;
+		node* parent = current->parent;
+		node* left = current->left;
+
+		current->left = left->right;
+		if (left->right)
+			left->right->parent = current;
+
+		left->right = current;
+		current->parent = left;
+
+		*slot = left;
+
+		left->parent = parent;
 	}
 
 	/**
@@ -238,9 +250,12 @@ namespace ft
 		node** slot = spot(&parent, root, key);
 		if (!slot) return ;
 
+		cout << "insert\n";
+
 		if (!*slot) {
 			*slot = new node<K,V>(parent, key, value, NRED);
-			insertf(slot);
+			insertf(root, slot);
+			return ;
 		}
 
 		(*slot)->value = value;
@@ -254,82 +269,61 @@ namespace ft
 	 * @param slot 
 	 */
 	template <class K, class V>
-	void	node<K,V>::insertf(node** slot)
+	void	node<K,V>::insertf(node** root, node** slot)
 	{
 		if (!slot || !*slot) return ;
 
-		node** parent = NULL;
-		node** gparent = NULL;
-	
-		while (true
-		&& ((*slot)->parent)
-		&& ((*slot)->parent->parent)
-		&& ((*slot)->color == NRED)
-		&& ((*slot)->parent->color == NRED))
-		{
-			parent = &(*slot)->parent;
-			gparent = &(*parent)->parent;
-	
-			if (*parent == (*gparent)->left)
-			{
-				node** uncle = &(*gparent)->right;
+		node* current = *slot;
+		node* parent = current->parent;
 
-				if (*uncle && (*uncle)->color == NRED)
-				{
-					(*gparent)->color = RED;
-					(*parent)->color = BLACK;
-					(*uncle)->color = BLACK;
-					slot = gparent;
-				}
-	
-				else
-				{
-					if (*slot == (*parent)->right)
-					{
-						parent = lrotate(parent);
-						slot = parent;
-						parent = &(*slot)->parent;
-					}
-	
-					gparent = rrotate(gparent);
-					bool temp = (*parent)->color;
-					(*parent)->color = (*gparent)->color;
-					(*gparent)->color = temp;
-					slot = parent;
-				}
-			}
-
-			else
-			{
-				node** uncle = &(*gparent)->left;
-	
-				if (*uncle && (*uncle)->color == NRED)
-				{
-					(*gparent)->color = RED;
-					(*parent)->color = BLACK;
-					(*uncle)->color = BLACK;
-					slot = gparent;
-				}
-				else
-				{
-					if (*slot == (*parent)->left)
-					{
-						parent = rrotate(parent);
-						slot = parent;
-						parent = &(*slot)->parent;
-					}
-	
-					gparent = lrotate(gparent);
-					bool temp = (*parent)->color;
-					(*parent)->color = (*gparent)->color;
-					(*gparent)->color = temp;
-					slot = parent;
-				}
-			}
+		if (!parent) {
+			current->color = NBLACK;
+			return ;
 		}
 
-		if (!(*slot)->parent)
-			(*slot)->color = NBLACK;
+		if (parent->color == NBLACK) {
+			return ;
+		}
+
+		node* gparent = parent->parent;
+
+		if (!gparent) {
+			parent->color = NBLACK;
+			return ;
+		}
+
+		node* uncle = *node::uncle(current);
+
+		if (uncle && uncle->color == NRED) {
+			parent->color = NBLACK;
+			gparent->color = NRED;
+			uncle->color = NBLACK;
+			insertf(root, node::slot(root, gparent));
+			return ;
+		}
+
+		else if (parent == gparent->left) {
+			if (current == parent->right) {
+				lrotate(node::slot(root, parent));
+				parent = current;
+			}
+			rrotate(node::slot(root, gparent));
+			parent->color = NBLACK;
+			gparent->color = NRED;
+			return ;
+		}
+
+		else {
+			if (current == parent->left) {
+				rrotate(node::slot(root, parent));
+				parent = current;
+			}
+
+			lrotate(node::slot(root, gparent));
+			parent->color = NBLACK;
+			gparent->color = NRED;
+			return ;
+		}
 	}
 
 	/**
@@ -357,32 +351,34 @@ namespace ft
 	 * @param slot 
 	 */
 	template <class K, class V>
-	void	node<K,V>::erase(node** slot)
+	void	node<K,V>::erase(node** root, node** slot)
 	{
 		if (!slot || !*slot) return ;
 
-		if ((*slot)->left && (*slot)->right) {
-			node** min = minimum(&(*slot)->right);
-			(*slot)->key = (*min)->key;
-			(*slot)->value = (*min)->value;
-			erase(min);
+		node* current = *slot;
+
+		if (current->left && current->right) {
+			node** min = minimum(&current->right);
+			current->key = (*min)->key;
+			current->value = (*min)->value;
+			erase(root, min);
 			return ;
 		}
 
-		bool color = (*slot)->color;
+		bool color = current->color;
 
-		if ((*slot)->right) {
-			node* next = (*slot)->right;
-			next->parent = (*slot)->parent;
-			delete *slot;
+		if (current->right) {
+			node* next = current->right;
+			next->parent = current->parent;
+			delete current;
 			*slot = next;
-		} else if ((*slot)->left) {
-			node* next = (*slot)->left;
-			next->parent = (*slot)->parent;
-			delete *slot;
+		} else if (current->left) {
+			node* next = current->left;
+			next->parent = current->parent;
+			delete current;
 			*slot = next;
 		} else {
-			delete *slot;
+			delete current;
 			*slot = NULL;
 		}
 
@@ -390,7 +386,7 @@ namespace ft
 			return ;
 		if (color == NRED)
 			return ;
-		// erasef(slot);
+		// erasef(root, slot);
 	}
 
 	/**
@@ -403,64 +399,64 @@ namespace ft
 	 * @param color 
 	 */
 	template <class K, class V>
-	void	node<K,V>::erasef(node** slot)
+	void	node<K,V>::erasef(node** root, node** slot)
 	{
 		if (!slot || !*slot) return ;
 
-		node** parent = &(*slot)->parent;
+		node* current = *slot;
+		node* parent = current->parent;
 
-		if (!*parent) {
-			(*slot)->color = NBLACK;
+		if (!parent) {
+			current->color = NBLACK;
 			return ;
 		}
 
-		node** sibling = (*slot)->sibling();
-		if (!sibling || !*sibling) return ;
+		node* sibling = *node::sibling(current);
 
-		if ((*sibling)->color == NRED) {
-			(*sibling)->color = NBLACK;
-			(*parent)->color = NRED;
+		if (sibling->color == NRED) {
+			sibling->color = NBLACK;
+			parent->color = NRED;
 			
-			if (*slot == (*parent)->left)
-				lrotate(parent);
-			else if (*slot == (*parent)->right)
-				rrotate(parent);
-			sibling = (*slot)->sibling();
+			if (current == parent->left)
+				lrotate(node::slot(root, parent));
+			else if (current == parent->right)
+				rrotate(node::slot(root, parent));
+			sibling = *node::sibling(current);
 		}
 
-		if (isblack((*sibling)->left) && isblack((*sibling)->right))
+		if (isblack(sibling->left) && isblack(sibling->right))
 		{
-			(*sibling)->color = NRED;
+			sibling->color = NRED;
 
-			if ((*parent)->color == NRED)
-				(*parent)->color = NBLACK;
+			if (parent->color == NRED)
+				parent->color = NBLACK;
 			else
-				erasef(parent);
+				erasef(root, node::slot(root, parent));
 			return ;
 		}
 
-		if (*slot == (*parent)->left && isblack((*sibling)->right)) {
-			(*sibling)->left->color = NBLACK;
-			(*sibling)->color = NRED;
-			rrotate(sibling);
-			sibling = &(*parent)->right;
+		if (current == parent->left && isblack(sibling->right)) {
+			sibling->left->color = NBLACK;
+			sibling->color = NRED;
+			rrotate(node::slot(root, sibling));
+			sibling = parent->right;
 		}
 
-		if (*slot == (*parent)->right && isblack((*sibling)->left)) {
-			(*sibling)->right->color = NBLACK;
-			(*sibling)->color = NRED;
-			lrotate(sibling);
-			sibling = &(*parent)->left;
+		if (current == parent->right && isblack(sibling->left)) {
+			sibling->right->color = NBLACK;
+			sibling->color = NRED;
+			lrotate(node::slot(root, sibling));
+			sibling = parent->left;
 		}
 
-		(*sibling)->color = (*parent)->color;
-		(*parent)->color = NBLACK;
-		if (*slot == (*parent)->left) {
-			(*sibling)->right->color = NBLACK;
-			lrotate(parent);
+		sibling->color = parent->color;
+		parent->color = NBLACK;
+		if (current == parent->left) {
+			sibling->right->color = NBLACK;
+			lrotate(node::slot(root, parent));
 		} else {
-			(*sibling)->left->color = NBLACK;
-			rrotate(parent);
+			sibling->left->color = NBLACK;
+			rrotate(node::slot(root, parent));
 		}
 	}
 }

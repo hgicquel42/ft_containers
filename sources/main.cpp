@@ -82,7 +82,7 @@ int	main(void)
 	node::print(root);
 
 	while (root) {
-		node::erase(node::random(&root));
+		node::erase(&root, node::random(&root));
 		// node::print(root);
 	}
 		
