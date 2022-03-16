@@ -386,7 +386,7 @@ namespace ft
 			return ;
 		if (color == NRED)
 			return ;
-		// erasef(root, slot);
+		erasef(root, slot);
 	}
 
 	/**
@@ -452,10 +452,12 @@ namespace ft
 		sibling->color = parent->color;
 		parent->color = NBLACK;
 		if (current == parent->left) {
-			sibling->right->color = NBLACK;
+			if (sibling)
+				sibling->right->color = NBLACK;
 			lrotate(node::slot(root, parent));
 		} else {
-			sibling->left->color = NBLACK;
+			if (sibling)
+				sibling->left->color = NBLACK;
 			rrotate(node::slot(root, parent));
 		}
 	}
