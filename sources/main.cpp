@@ -71,21 +71,21 @@ int	main(void)
 	// node::insert(&root, 12, "lol");
 	// node::print(root);
 
-	for (int i = 0; i < 10000000; i++) {
+	for (int i = 0; i < 100 * 1000 * 1000; i++) {
 		node::insert(&root, random(-200, 200), i);
 		// node::print(root);
 	}
 
 	// node::print(root);
 
-	for (int i = 0; i < 5000000; i++) {
+	for (int i = 0; i < 50 * 1000 * 1000; i++) {
 		node::erase(&root, node::random(&root));
 		// node::print(root);
 	}
 
 	// node::print(root);
 
-	for (int i = 0; i < 5000000; i++) {
+	for (int i = 0; i < 50 * 1000 * 1000; i++) {
 		node::insert(&root, random(-200, 200), i);
 		// node::print(root);
 	}

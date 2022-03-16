@@ -69,4 +69,9 @@ namespace ft
 	};
 }
 
-#include "tree/node.tpp"
+#include "node/node.tpp"
+#include "node/print.tpp"
+#include "node/peers.tpp"
+#include "node/rotate.tpp"
+#include "node/insert.tpp"
+#include "node/erase.tpp"

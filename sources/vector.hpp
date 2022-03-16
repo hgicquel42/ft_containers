@@ -132,7 +132,7 @@ namespace ft
 	bool	operator>(const vector<T,A>& left, const vector<T,A>& right);
 }
 
-#include "vector/constructors.tpp"
+#include "vector/vector.tpp"
 #include "vector/capacity.tpp"
 #include "vector/iterators.tpp"
 #include "vector/accessors.tpp"
