@@ -2,6 +2,8 @@
 
 #include "node.hpp"
 
+#include <cstdlib>
+
 namespace ft
 {
 	template <class K, class V>
@@ -45,19 +47,17 @@ namespace ft
 	}
 
 	template <class K, class V>
-	node<K,V>**	node<K,V>::search(node** root, const K& key)
+	node<K,V>*	node<K,V>::search(node* root, const K& key)
 	{
 		if (!root)
 			return (NULL);
-		if (!*root)
+		if (key == root->key)
 			return (root);
-		if (key == *root->key)
-			return (root);
-		if (key > *root->key)
-			return (search(&(*root)->right, key));
-		if (key < *root->key)
-			return (search(&(*root)->left, key));
-		return (root);
+		if (key > root->key)
+			return (search(root->right, key));
+		if (key < root->key)
+			return (search(root->left, key));
+		return (NULL);
 	}
 
 	template <class K, class V>
@@ -74,7 +74,7 @@ namespace ft
 			return (spot(parent, &(*root)->left, key));
 		if (key > (*root)->key)
 			return (spot(parent, &(*root)->right, key));
-		return (root);
+		return (NULL);
 	}
 
 	template <class K, class V>

@@ -19,15 +19,11 @@ namespace ft
 		node* parent = NULL;
 
 		node** slot = spot(&parent, root, key);
-		if (!slot) return ;
+		if (!slot || *slot) return ;
 
-		if (!*slot) {
-			*slot = new node<K,V>(parent, key, value, NRED);
-			insertf(root, slot);
-			return ;
-		}
-
-		(*slot)->value = value;
+		*slot = new node<K,V>(parent, key, value, NRED);
+		insertf(root, slot);
+		return ;
 	}
 
 	/**

@@ -43,7 +43,7 @@ namespace ft
 
 			static node**	minimum(node** slot);
 
-			static node**	search(node** root, const K& key);
+			static node*	search(node* root, const K& key);
 
 			static void		print(const node* root, const string& prefix = "", int position = 0);
 

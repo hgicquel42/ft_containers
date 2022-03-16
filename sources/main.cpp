@@ -1,8 +1,8 @@
 #include "vector.hpp"
 #include "stack.hpp"
 #include "node.hpp"
+#include "map.hpp"
 
-#include <vector>
 #include <iostream>
 
 using namespace std;
@@ -26,7 +26,11 @@ int	random(int min, int max)
 
 int	main(void)
 {
-	node*	root = NULL;
+	ft::map<int,int>	map;
+
+	
+
+	// node*	root = NULL;
 
 	srand(time(NULL));
 	
@@ -71,36 +75,36 @@ int	main(void)
 	// node::insert(&root, 12, "lol");
 	// node::print(root);
 
-	for (int i = 0; i < 100 * 1000 * 1000; i++) {
-		node::insert(&root, random(-200, 200), i);
-		// node::print(root);
-	}
+	// for (int i = 0; i < 100 * 1000 * 1000; i++) {
+	// 	node::insert(&root, random(-200, 200), i);
+	// 	// node::print(root);
+	// }
 
-	// node::print(root);
+	// // node::print(root);
 
-	for (int i = 0; i < 50 * 1000 * 1000; i++) {
-		node::erase(&root, node::random(&root));
-		// node::print(root);
-	}
+	// for (int i = 0; i < 50 * 1000 * 1000; i++) {
+	// 	node::erase(&root, node::random(&root));
+	// 	// node::print(root);
+	// }
 
-	// node::print(root);
+	// // node::print(root);
 
-	for (int i = 0; i < 50 * 1000 * 1000; i++) {
-		node::insert(&root, random(-200, 200), i);
-		// node::print(root);
-	}
+	// for (int i = 0; i < 50 * 1000 * 1000; i++) {
+	// 	node::insert(&root, random(-200, 200), i);
+	// 	// node::print(root);
+	// }
 
 	// node::lrotate(&root);
 	// node::print(root);
 	// node::rrotate(&root);
 	// node::print(root);
 
-	while (root) {
-		node::erase(&root, node::random(&root));
-		// node::print(root);
-	}
+	// while (root) {
+	// 	node::erase(&root, node::random(&root));
+	// 	// node::print(root);
+	// }
 		
-	node::print(root);
+	// node::print(root);
 
 	// root->left = new node(root, 0, "aa");
 	// root->left->left = new node(root->left, 0, "aaa");
