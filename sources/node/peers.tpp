@@ -35,6 +35,34 @@ namespace ft
 	}
 
 	template <class K, class V>
+	node<K,V>**	node<K,V>::maximum(node** slot)
+	{
+		if (!(*slot)->right)
+			return (slot);
+		return (maximum(&(*slot)->right));
+	}
+
+	template <class K, class V>
+	node<K,V>**	node<K,V>::next(node** slot)
+	{
+		if ((*slot)->right)
+			return (&(*slot)->right);
+		if ((*slot)->parent)
+			return (next((*slot)->parent));
+		return (NULL);
+	}
+
+	template <class K, class V>
+	node<K,V>**	node<K,V>::previous(node** slot)
+	{
+		if ((*slot)->left)
+			return (&(*slot)->left);
+		if ((*slot)->parent)
+			return (next((*slot)->parent));
+		return (NULL);
+	}
+
+	template <class K, class V>
 	node<K,V>**	node<K,V>::slot(node** root, node* current)
 	{
 		if (!current->parent)

@@ -14,16 +14,16 @@ namespace ft
 	 * @param value 
 	 */
 	template <class K, class V>
-	void	node<K,V>::insert(node** root, const K& key, const V& value)
+	node<K,V>**	node<K,V>::insert(node** root, const K& key, const V& value)
 	{
 		node* parent = NULL;
 
 		node** slot = spot(&parent, root, key);
-		if (!slot || *slot) return ;
+		if (!slot || *slot) return (slot);
 
 		*slot = new node<K,V>(parent, key, value, NRED);
 		insertf(root, slot);
-		return ;
+		return (slot);
 	}
 
 	/**

@@ -43,6 +43,12 @@ namespace ft
 
 			static node**	minimum(node** slot);
 
+			static node**	maximum(node** slot);
+
+			static node**	next(node** slot);
+
+			static node**	previous(node** slot);
+
 			static node*	search(node* root, const K& key);
 
 			static void		print(const node* root, const string& prefix = "", int position = 0);
@@ -53,9 +59,9 @@ namespace ft
 
 			static node**	spot(node** parent, node** root, const K& key);
 
-			static void		insert(node** root, const K& key, const V& value);
+			static node**	insert(node** root, const K& key, const V& value);
 
-			static void		erase(node** root, const K& key);
+			static bool		erase(node** root, const K& key);
 
 			static void		erase(node** root, node** slot);
 

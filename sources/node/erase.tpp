@@ -13,12 +13,15 @@ namespace ft
 	 * @param key 
 	 */
 	template <class K, class V>
-	void	node<K,V>::erase(node** root, const K& key)
+	bool	node<K,V>::erase(node** root, const K& key)
 	{
 		node* parent = NULL;
 
 		node** slot = spot(&parent, root, key);
-		if (slot && *slot) erase(slot);
+		if (!slot || !*slot) return (false);
+		
+		erase(slot);
+		return (true);
 	}
 
 	/**

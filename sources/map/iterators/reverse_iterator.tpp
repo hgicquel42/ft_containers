@@ -39,10 +39,7 @@ namespace ft
 	template<class K, class V, class C>
 	map_reverse_iterator<K,V,C>&	map_reverse_iterator<K,V,C>::operator++(void)
 	{
-		node<K,V>**  tmp = _slot;
-
-		
-
+		this->_slot = node<K,V>::previous(this->_slot);
 		return (*this);
 	}
 
@@ -57,9 +54,7 @@ namespace ft
 	template<class K, class V, class C>
 	map_reverse_iterator<K,V,C>&	map_reverse_iterator<K,V,C>::operator--(void)
 	{
-		node<K,V>** tmp = _slot;
-
-
+		this->_slot = node<K,V>::next(this->_slot);
 		return (*this);
 	}
 
