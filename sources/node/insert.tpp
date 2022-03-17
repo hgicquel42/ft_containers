@@ -20,8 +20,8 @@ namespace ft
 		node* parent = NULL;
 
 		node** slot = spot(&parent, root, key);
-		if (!slot) return (make_pair(NULL, false));
-		if (*slot) return (make_pair(slot, false));
+		if (!slot) return (make_pair<node**, bool>(NULL, false));
+		if (*slot) return (make_pair<node**, bool>(slot, false));
 
 		*slot = new node<K,V>(parent, key, value, NRED);
 		insertf(root, slot);

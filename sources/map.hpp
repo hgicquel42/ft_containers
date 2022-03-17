@@ -87,6 +87,10 @@ namespace ft
 
 			V&	at(const K& key);
 
+			const V& at(const K& key) const;
+
+			V&	operator[](const K& key);
+
 			void clear(void);
 
 			bool empty(void) const;

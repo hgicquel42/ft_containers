@@ -29,8 +29,8 @@ namespace ft
 	template <class K, class V, class C, class A>
 	map<K,V,C,A>::map(const map& from):
 		_root(from._root),
-		_comp(from.comp),
-		_alloc(from.alloc),
+		_comp(from._comp),
+		_alloc(from._alloc),
 		_size(0)
 	{}
 

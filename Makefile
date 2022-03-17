@@ -1,7 +1,7 @@
 NAME = containers
 
 FILES = \
-	main.cpp \
+	smain.cpp \
 
 INPUT = ${addprefix sources/, ${FILES}}
 

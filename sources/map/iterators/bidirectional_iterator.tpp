@@ -85,13 +85,13 @@ namespace ft
 	template<class K, class V, class C>
 	pair<K,V>	map_bidirectional_iterator<K,V,C>::operator*(void) const
 	{
-		return (ft::make_pair((*this->_slot)->key, (*this->_slot)->value));
+		return (ft::make_pair<K,V>((*this->_slot)->key, (*this->_slot)->value));
 	}
 
 	template<class K, class V, class C>
 	pair<K,V>	map_bidirectional_iterator<K,V,C>::operator->(void) const
 	{
-		return (ft::make_pair((*this->_slot)->key, (*this->_slot)->value));
+		return (ft::make_pair<K,V>((*this->_slot)->key, (*this->_slot)->value));
 	}
 
 	template<class K, class V, class C>

@@ -19,7 +19,7 @@ namespace ft
 			node<K,V>::insert(&this->_root, kv.first, kv.second);
 		if (result.second)
 			_size++;
-        return (ft::make_pair(iterator(result.first), result.second));
+        return (ft::make_pair<iterator, bool>(iterator(result.first), result.second));
     }
 
 	template <class K, class V, class C, class A>
