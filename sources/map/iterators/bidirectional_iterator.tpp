@@ -5,29 +5,29 @@
 namespace ft
 {
 	template<class K, class V, class C>
-	bidirectional_iterator<K,V,C>::bidirectional_iterator(const C& comp):
+	map_bidirectional_iterator<K,V,C>::map_bidirectional_iterator(const C& comp):
 		_slot(NULL),
         _comp(comp)
 	{}
 
 	template<class K, class V, class C>
-	bidirectional_iterator<K,V,C>::~bidirectional_iterator(void)
+	map_bidirectional_iterator<K,V,C>::~map_bidirectional_iterator(void)
 	{}
 
 	template<class K, class V, class C>
-	bidirectional_iterator<K,V,C>::bidirectional_iterator(node<K,V>** slot, const C& comp):
+	map_bidirectional_iterator<K,V,C>::map_bidirectional_iterator(node<K,V>** slot, const C& comp):
 		_slot(slot),
         _comp(comp)
 	{}
 
 	template<class K, class V, class C>
-	bidirectional_iterator<K,V,C>::bidirectional_iterator(const bidirectional_iterator& from):
+	map_bidirectional_iterator<K,V,C>::map_bidirectional_iterator(const map_bidirectional_iterator& from):
         _slot(from._slot),
         _comp(from._comp)
     {}
 
 	template<class K, class V, class C>
-	bidirectional_iterator<K,V,C>&	bidirectional_iterator<K,V,C>::operator=(const bidirectional_iterator& from)
+	map_bidirectional_iterator<K,V,C>&	map_bidirectional_iterator<K,V,C>::operator=(const map_bidirectional_iterator& from)
 	{
 		if (this == &from)
 			return (*this);
@@ -37,7 +37,7 @@ namespace ft
 	}
 
 	template<class K, class V, class C>
-	bidirectional_iterator<K,V,C>&	bidirectional_iterator<K,V,C>::operator++(void)
+	map_bidirectional_iterator<K,V,C>&	map_bidirectional_iterator<K,V,C>::operator++(void)
 	{
 		node<K,V>**  tmp = _slot;
 		// TODO
@@ -45,15 +45,15 @@ namespace ft
 	}
 
 	template<class K, class V, class C>
-	bidirectional_iterator<K,V,C>	bidirectional_iterator<K,V,C>::operator++(int)
+	map_bidirectional_iterator<K,V,C>	map_bidirectional_iterator<K,V,C>::operator++(int)
 	{
-		bidirectional_iterator old(*this);
+		map_bidirectional_iterator old(*this);
 		operator++();
 		return (old);
 	}
 
 	template<class K, class V, class C>
-	bidirectional_iterator<K,V,C>&	bidirectional_iterator<K,V,C>::operator--(void)
+	map_bidirectional_iterator<K,V,C>&	map_bidirectional_iterator<K,V,C>::operator--(void)
 	{
 		node<K,V>** tmp = _slot;
 		// TODO
@@ -61,15 +61,15 @@ namespace ft
 	}
 
 	template<class K, class V, class C>
-	bidirectional_iterator<K,V,C>	bidirectional_iterator<K,V,C>::operator--(int)
+	map_bidirectional_iterator<K,V,C>	map_bidirectional_iterator<K,V,C>::operator--(int)
 	{
-		bidirectional_iterator old(*this);
+		map_bidirectional_iterator old(*this);
 		operator--();
 		return (old);
 	}
 
 	template<class K, class V, class C>
-	bool	bidirectional_iterator<K,V,C>::operator==(const bidirectional_iterator& other) const
+	bool	map_bidirectional_iterator<K,V,C>::operator==(const map_bidirectional_iterator& other) const
 	{
 		if ((*this->_slot)->key != (*other._slot)->key)
 			return (false);
@@ -79,19 +79,19 @@ namespace ft
 	}
 
 	template<class K, class V, class C>
-	bool	bidirectional_iterator<K,V,C>::operator!=(const bidirectional_iterator& other) const
+	bool	map_bidirectional_iterator<K,V,C>::operator!=(const map_bidirectional_iterator& other) const
 	{
 		return (!(this == other));
 	}
 
 	template<class K, class V, class C>
-	pair<K,V>	bidirectional_iterator<K,V,C>::operator*(void) const
+	pair<K,V>	map_bidirectional_iterator<K,V,C>::operator*(void) const
 	{
 		return (ft::make_pair((*this->_slot)->key, (*this->_slot)->value));
 	}
 
 	template<class K, class V, class C>
-	pair<K,V>	bidirectional_iterator<K,V,C>::operator->(void) const
+	pair<K,V>	map_bidirectional_iterator<K,V,C>::operator->(void) const
 	{
 		return (ft::make_pair((*this->_slot)->key, (*this->_slot)->value));
 	}

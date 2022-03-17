@@ -5,26 +5,26 @@
 namespace ft
 {
 	template<class T>
-	random_access_iterator<T>::random_access_iterator(void):
+	vector_random_access_iterator<T>::vector_random_access_iterator(void):
 		_pointer(NULL)
 	{}
 
 	template<class T>
-	random_access_iterator<T>::~random_access_iterator(void)
+	vector_random_access_iterator<T>::~vector_random_access_iterator(void)
 	{}
 
 	template<class T>
-	random_access_iterator<T>::random_access_iterator(T* pointer):
+	vector_random_access_iterator<T>::vector_random_access_iterator(T* pointer):
 		_pointer(pointer)
 	{}
 
 	template<class T>
-	random_access_iterator<T>::random_access_iterator(const random_access_iterator& from):
+	vector_random_access_iterator<T>::vector_random_access_iterator(const vector_random_access_iterator& from):
 		_pointer(from._pointer)
 	{}
 
 	template<class T>
-	random_access_iterator<T>&	random_access_iterator<T>::operator=(const random_access_iterator& from)
+	vector_random_access_iterator<T>&	vector_random_access_iterator<T>::operator=(const vector_random_access_iterator& from)
 	{
 		if (this == &from)
 			return (*this);
@@ -33,123 +33,123 @@ namespace ft
 	}
 
 	template<class T>
-	random_access_iterator<T>&	random_access_iterator<T>::operator++(void)
+	vector_random_access_iterator<T>&	vector_random_access_iterator<T>::operator++(void)
 	{
 		this->_pointer++;
 		return (*this);
 	}
 
 	template<class T>
-	random_access_iterator<T>	random_access_iterator<T>::operator++(int)
+	vector_random_access_iterator<T>	vector_random_access_iterator<T>::operator++(int)
 	{
-		random_access_iterator old(*this);
+		vector_random_access_iterator old(*this);
 		this->_pointer++;
 		return (old);
 	}
 
 	template<class T>
-	random_access_iterator<T>&	random_access_iterator<T>::operator--(void)
+	vector_random_access_iterator<T>&	vector_random_access_iterator<T>::operator--(void)
 	{
 		this->_pointer--;
 		return (*this);
 	}
 
 	template<class T>
-	random_access_iterator<T>	random_access_iterator<T>::operator--(int)
+	vector_random_access_iterator<T>	vector_random_access_iterator<T>::operator--(int)
 	{
-		random_access_iterator old(*this);
+		vector_random_access_iterator old(*this);
 		this->_pointer--;
 		return (old);
 	}
 
 	template<class T>
-	bool	random_access_iterator<T>::operator==(const random_access_iterator& other) const
+	bool	vector_random_access_iterator<T>::operator==(const vector_random_access_iterator& other) const
 	{
 		return (this->_pointer == other._pointer);
 	}
 
 	template<class T>
-	bool	random_access_iterator<T>::operator!=(const random_access_iterator& other) const
+	bool	vector_random_access_iterator<T>::operator!=(const vector_random_access_iterator& other) const
 	{
 		return (this->_pointer != other._pointer);
 	}
 
 	template<class T>
-	T&	random_access_iterator<T>::operator*(void) const
+	T&	vector_random_access_iterator<T>::operator*(void) const
 	{
 		return (*this->_pointer);
 	}
 
 	template<class T>
-	T*	random_access_iterator<T>::operator->(void) const
+	T*	vector_random_access_iterator<T>::operator->(void) const
 	{
 		return (this->_pointer);
 	}
 
 	template<class T>
-	random_access_iterator<T>	random_access_iterator<T>::operator+(ptrdiff_t n) const
+	vector_random_access_iterator<T>	vector_random_access_iterator<T>::operator+(ptrdiff_t n) const
 	{
-		return random_access_iterator(this->_pointer + n);
+		return vector_random_access_iterator(this->_pointer + n);
 	}
 
 	template<class T>
-	random_access_iterator<T>	random_access_iterator<T>::operator-(ptrdiff_t n) const
+	vector_random_access_iterator<T>	vector_random_access_iterator<T>::operator-(ptrdiff_t n) const
 	{
-		return random_access_iterator(this->_pointer - n);
+		return vector_random_access_iterator(this->_pointer - n);
 	}
 
 	template<class T>
-	typename random_access_iterator<T>::difference_type	random_access_iterator<T>::operator-(const random_access_iterator& other) const
+	typename vector_random_access_iterator<T>::difference_type	vector_random_access_iterator<T>::operator-(const vector_random_access_iterator& other) const
 	{
 		return (this->_pointer - other._pointer);
 	}
 
 	template<class T>
-	bool	random_access_iterator<T>::operator<(const random_access_iterator& other) const
+	bool	vector_random_access_iterator<T>::operator<(const vector_random_access_iterator& other) const
 	{
 		return (this->_pointer < other._pointer);
 	}
 
 	template<class T>
-	bool	random_access_iterator<T>::operator>(const random_access_iterator& other) const
+	bool	vector_random_access_iterator<T>::operator>(const vector_random_access_iterator& other) const
 	{
 		return (this->_pointer > other._pointer);
 	}
 	
 	template<class T>
-	bool	random_access_iterator<T>::operator<=(const random_access_iterator& other) const
+	bool	vector_random_access_iterator<T>::operator<=(const vector_random_access_iterator& other) const
 	{
 		return (this->_pointer <= other._pointer);
 	}
 
 	template<class T>
-	bool	random_access_iterator<T>::operator>=(const random_access_iterator& other) const
+	bool	vector_random_access_iterator<T>::operator>=(const vector_random_access_iterator& other) const
 	{
 		return (this->_pointer >= other._pointer);
 	}
 
 	template<class T>
-	random_access_iterator<T>&	random_access_iterator<T>::operator+=(difference_type n)
+	vector_random_access_iterator<T>&	vector_random_access_iterator<T>::operator+=(difference_type n)
 	{
 		this->_pointer += n;
 		return (*this);
 	}
 
 	template<class T>
-	random_access_iterator<T>&	random_access_iterator<T>::operator-=(difference_type n)
+	vector_random_access_iterator<T>&	vector_random_access_iterator<T>::operator-=(difference_type n)
 	{
 		this->_pointer -= n;
 		return (*this);
 	}
 
 	template<class T>
-	T&	random_access_iterator<T>::operator[](ptrdiff_t n) const
+	T&	vector_random_access_iterator<T>::operator[](ptrdiff_t n) const
 	{
 		return (*(this->_pointer + n));
 	}
 
 	template<class T>
-	random_access_iterator<T>	operator+(ptrdiff_t n, const random_access_iterator<T>& it)
+	vector_random_access_iterator<T>	operator+(ptrdiff_t n, const vector_random_access_iterator<T>& it)
 	{
 		return (it + n);
 	}

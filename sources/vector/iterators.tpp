@@ -5,50 +5,50 @@
 namespace ft 
 {
 	template<class T, class A>
-	random_access_iterator<T>	vector<T,A>::begin(void)
+	vector_random_access_iterator<T>	vector<T,A>::begin(void)
 	{
-		return (random_access_iterator<T>(this->_start));
+		return (vector_random_access_iterator<T>(this->_start));
 	}
 
 	template<class T, class A>
-	random_access_iterator<const T>	vector<T,A>::begin(void) const
+	vector_random_access_iterator<const T>	vector<T,A>::begin(void) const
 	{
-		return (random_access_iterator<const T>(this->_start));
+		return (vector_random_access_iterator<const T>(this->_start));
 	}
 
 	template<class T, class A>
-	random_access_iterator<T>	vector<T,A>::end(void)
+	vector_random_access_iterator<T>	vector<T,A>::end(void)
 	{
-		return (random_access_iterator<T>(this->_start + this->_size));
+		return (vector_random_access_iterator<T>(this->_start + this->_size));
 	}
 
 	template<class T, class A>
-	random_access_iterator<const T>	vector<T,A>::end(void) const
+	vector_random_access_iterator<const T>	vector<T,A>::end(void) const
 	{
-		return (random_access_iterator<const T>(this->_start + this->_size));
+		return (vector_random_access_iterator<const T>(this->_start + this->_size));
 	}
 
 	template<class T, class A>
-	reverse_iterator<T>	vector<T,A>::rbegin(void)
+	vector_reverse_iterator<T>	vector<T,A>::rbegin(void)
 	{
-		return (ft::reverse_iterator<T>(this->_start));
+		return (ft::vector_reverse_iterator<T>(this->_start));
 	}
 
 	template<class T, class A>
-	reverse_iterator<const T>	vector<T,A>::rbegin(void) const
+	vector_reverse_iterator<const T>	vector<T,A>::rbegin(void) const
 	{
-		return (ft::reverse_iterator<const T>(this->_start));
+		return (ft::vector_reverse_iterator<const T>(this->_start));
 	}
 
 	template<class T, class A>
-	reverse_iterator<T>	vector<T,A>::rend(void)
+	vector_reverse_iterator<T>	vector<T,A>::rend(void)
 	{
-		return (ft::reverse_iterator<T>(this->_start + this->_size));
+		return (ft::vector_reverse_iterator<T>(this->_start + this->_size));
 	}
 
 	template<class T, class A>
-	reverse_iterator<const T>	vector<T,A>::rend(void) const
+	vector_reverse_iterator<const T>	vector<T,A>::rend(void) const
 	{
-		return (ft::reverse_iterator<const T>(this->_start + this->_size));
+		return (ft::vector_reverse_iterator<const T>(this->_start + this->_size));
 	}
 }

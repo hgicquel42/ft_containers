@@ -3,6 +3,9 @@
 #include "pair.hpp"
 #include "node.hpp"
 
+#include "map/iterators/bidirectional_iterator.hpp"
+#include "map/iterators/reverse_iterator.hpp"
+
 namespace ft
 {
 	template <class K, class V, class C = std::less<K>, class A = std::allocator<pair<const K, V> > >
@@ -23,6 +26,12 @@ namespace ft
 
             typedef typename A::pointer			pointer;
 			typedef typename A::const_pointer	const_pointer;
+
+			typedef ft::map_bidirectional_iterator<K,V,C>						iterator;
+			typedef ft::map_bidirectional_iterator<const K, const V, const C>	const_iterator;
+
+			typedef ft::map_reverse_iterator<K,V,C>						reverse_iterator;
+			typedef ft::map_reverse_iterator<const K, const V, const C>	const_reverse_iterator;
 		
 		private:
 			node<K,V>*	_root;

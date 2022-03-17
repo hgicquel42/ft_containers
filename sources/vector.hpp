@@ -26,11 +26,11 @@ namespace ft
 			typedef typename A::pointer			pointer;
 			typedef typename A::const_pointer	const_pointer;
 
-			typedef ft::random_access_iterator<T>		iterator;
-			typedef ft::random_access_iterator<const T>	const_iterator;
+			typedef ft::vector_random_access_iterator<T>		iterator;
+			typedef ft::vector_random_access_iterator<const T>	const_iterator;
 
-			typedef ft::reverse_iterator<T>			reverse_iterator;
-			typedef ft::reverse_iterator<const T>	const_reverse_iterator;
+			typedef ft::vector_reverse_iterator<T>			reverse_iterator;
+			typedef ft::vector_reverse_iterator<const T>	const_reverse_iterator;
 
 		private:
 			A			_alloc;

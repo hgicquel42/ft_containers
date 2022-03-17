@@ -1,11 +1,13 @@
 #pragma once
 
 #include "utils/iterators.hpp"
+
 #include "node.hpp"
+#include "pair.hpp"
 
 namespace ft
 {
-	template<class K, class V, class C = std::less<K> >
+	template <class K, class V, class C = std::less<K> >
 	class map_reverse_iterator: public iterator<std::bidirectional_iterator_tag, V>
 	{
 		public:
@@ -17,12 +19,13 @@ namespace ft
 
 			typedef std::bidirectional_iterator_tag	iterator_category;
 		private:
-			node<K,V>** _node;
+			node<K,V>** _slot;
             C           _comp;
 		public:
 			map_reverse_iterator(const C& comp = C());
 			~map_reverse_iterator(void);
-			map_reverse_iterator(node<K,V>** node_p, const C& comp = C());
+
+			map_reverse_iterator(node<K,V>** slot, const C& comp = C());
 			map_reverse_iterator(const map_reverse_iterator& from);
 
 			map_reverse_iterator&	operator=(const map_reverse_iterator& from);
@@ -41,5 +44,4 @@ namespace ft
 	};
 }
 
-#include "map_reverse_iterator.tpp"
-#include "pair.hpp"
+#include "reverse_iterator.tpp"
