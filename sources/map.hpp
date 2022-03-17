@@ -54,7 +54,7 @@ namespace ft
 				public:
                     bool operator() (const value_type& x, const value_type& y) const
                     {
-                        return comp(x.first, y.first);
+                        return (comp(x.first, y.first));
                     }
             };
 
@@ -92,6 +92,18 @@ namespace ft
 			size_type max_size(void) const;
 
 			size_type count(const K& key) const;
+
+			iterator		begin(void);
+			const_iterator	begin(void) const;
+
+			iterator		end(void);
+			const_iterator	end(void) const;
+
+            reverse_iterator		rbegin(void);
+			const_reverse_iterator	rbegin(void) const;
+
+            reverse_iterator		rend(void);
+			const_reverse_iterator	rend(void) const;
 	};
 }
 
@@ -99,3 +111,4 @@ namespace ft
 #include "map/capacity.tpp"
 #include "map/modifiers.tpp"
 #include "map/lookup.tpp"
+#include "map/iterators.tpp"
