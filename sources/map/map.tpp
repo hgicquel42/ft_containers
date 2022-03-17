@@ -28,18 +28,21 @@ namespace ft
 
 	template <class K, class V, class C, class A>
 	map<K,V,C,A>::map(const map& from):
-		_root(from._root),
+		_root(NULL),
 		_comp(from._comp),
 		_alloc(from._alloc),
 		_size(0)
-	{}
+	{
+		this->insert(from.begin(), from.end());
+	}
 
 	template <class K, class V, class C, class A>
 	map<K,V,C,A>&	map<K,V,C,A>::operator=(const map& from)
 	{
 		if (this == &from)
 			return (*this);
-		this->_root = from._root;
+		this->clear();
+		this->insert(from.begin(), from.end());
 		this->_comp = from._comp;
 		this->_alloc = from._alloc;
 		this-_size = from._size;

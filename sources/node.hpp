@@ -47,6 +47,10 @@ namespace ft
 
 			static node**	maximum(node** slot);
 
+			static node**	const_minimum(node*const* slot);
+
+			static node**	const_maximum(node*const* slot);
+
 			static node**	next(node** slot);
 
 			static node**	previous(node** slot);

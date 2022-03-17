@@ -28,10 +28,10 @@ namespace ft
 			typedef typename A::const_pointer	const_pointer;
 
 			typedef ft::map_bidirectional_iterator<K,V,C>						iterator;
-			typedef ft::map_bidirectional_iterator<const K, const V, const C>	const_iterator;
+			typedef ft::map_bidirectional_iterator<K, V, C>	const_iterator;
 
 			typedef ft::map_reverse_iterator<K,V,C>						reverse_iterator;
-			typedef ft::map_reverse_iterator<const K, const V, const C>	const_reverse_iterator;
+			typedef ft::map_reverse_iterator<K, V, C>	const_reverse_iterator;
 		
 			class value_compare
             {

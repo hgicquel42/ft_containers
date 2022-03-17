@@ -43,6 +43,22 @@ namespace ft
 	}
 
 	template <class K, class V>
+	node<K,V>*const*	node<K,V>::const_minimum(node*const* slot)
+	{
+		if (!(*slot)->left)
+			return (slot);
+		return (minimum(&(*slot)->left));
+	}
+
+	template <class K, class V>
+	node<K,V>**	node<K,V>::const_maximum(node*const* slot)
+	{
+		if (!(*slot)->right)
+			return (slot);
+		return (maximum(&(*slot)->right));
+	}
+
+	template <class K, class V>
 	node<K,V>**	node<K,V>::next(node** slot)
 	{
 		if (!slot)

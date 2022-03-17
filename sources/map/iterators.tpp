@@ -13,19 +13,19 @@ namespace ft
     template < class K, class V, class C, class A >
     typename map<K,V,C,A>::const_iterator   map<K,V,C,A>::begin(void) const
     {
-        return (iterator(this->_root->minimum(&this->_root)));
+        return (const_iterator(this->_root->const_minimum(&this->_root)));
     }
 
     template < class K, class V, class C, class A >
     typename map<K,V,C,A>::reverse_iterator   map<K,V,C,A>::rbegin(void)
     {
-        return(reverse_iterator(this->_root->minimum(&this->_root)));
+        return (reverse_iterator(this->_root->minimum(&this->_root)));
     }
 
     template < class K, class V, class C, class A >
     typename map<K,V,C,A>::const_reverse_iterator  map<K,V,C,A>::rbegin(void) const
     {
-        return(reverse_iterator(this->_root->minimum(&this->_root)));
+        return (const_reverse_iterator(this->_root->const_minimum(&this->_root)));
     }
 
     template < class K, class V, class C, class A >
@@ -37,9 +37,8 @@ namespace ft
     template < class K, class V, class C, class A >
     typename map<K,V,C,A>::const_iterator   map<K,V,C,A>::end(void) const
     {
-        return (iterator(this->_root->maximum(&this->_root)));
+        return (const_iterator(this->_root->const_maximum(&this->_root)));
     }
-
 
     template < class K, class V, class C, class A >
     typename map<K,V,C,A>::reverse_iterator   map<K,V,C,A>::rend(void)
@@ -50,6 +49,6 @@ namespace ft
     template < class K, class V, class C, class A >
     typename map<K,V,C,A>::const_reverse_iterator  map<K,V,C,A>::rend(void) const
     {
-        return(reverse_iterator(this->_root->minimum(&this->_root)));
+        return(const_reverse_iterator(this->_root->const_minimum(&this->_root)));
     }
 }

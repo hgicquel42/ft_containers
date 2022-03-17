@@ -69,17 +69,13 @@ namespace ft
 	template<class K, class V, class C>
 	bool	map_bidirectional_iterator<K,V,C>::operator==(const map_bidirectional_iterator& other) const
 	{
-		if ((*this->_slot)->key != (*other._slot)->key)
-			return (false);
-		if ((*this->_slot)->value != (*other._slot)->value)
-			return (false);
-		return (true);
+		return (this->_slot == other._slot);
 	}
 
 	template<class K, class V, class C>
 	bool	map_bidirectional_iterator<K,V,C>::operator!=(const map_bidirectional_iterator& other) const
 	{
-		return (!(this == other));
+		return (!(*this == other));
 	}
 
 	template<class K, class V, class C>
