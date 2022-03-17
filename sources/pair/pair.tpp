@@ -35,7 +35,7 @@ namespace ft
 	}
 
 	template <class A, class B>
-	pair<A,B>&	make_pair(A a, B b)
+	pair<A,B>	make_pair(A a, B b)
 	{
 		return (pair<A,B>(a, b));
 	}

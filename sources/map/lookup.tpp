@@ -9,7 +9,7 @@ namespace ft
 	template <class K, class V, class C, class A>
 	V&	map<K,V,C,A>::at(const K& key)
 	{
-		node<K,V> match = node<K,V>::search(this->_root, key);
+		node<K,V>* match = node<K,V>::search(this->_root, key);
 		if (!match)
 			throw std::out_of_range("map::at");
 		return (match->value);

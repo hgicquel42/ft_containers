@@ -2,6 +2,7 @@
 #include "stack.hpp"
 #include "node.hpp"
 #include "map.hpp"
+#include "pair.hpp"
 
 #include <iostream>
 
@@ -26,9 +27,9 @@ int	random(int min, int max)
 
 int	main(void)
 {
-	ft::map<int,int>	map;
+	ft::pair<int, string> p = ft::make_pair<int,string>(42, "lol");
 
-	
+	ft::map<int,int>	map;
 
 	// node*	root = NULL;
 

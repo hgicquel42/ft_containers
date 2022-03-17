@@ -20,7 +20,7 @@ namespace ft
 
 			pair(const pair& from);
 
-			pair (const A& a, const B& b);
+			pair(const A& a, const B& b);
 
 			pair& operator=(const pair& from);
 	};
