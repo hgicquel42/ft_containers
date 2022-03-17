@@ -45,21 +45,37 @@ namespace ft
 	template <class K, class V>
 	node<K,V>**	node<K,V>::next(node** slot)
 	{
+		if (!slot)
+			return (NULL);
+		if (!*slot)
+			return (slot);
 		if ((*slot)->right)
-			return (&(*slot)->right);
-		if ((*slot)->parent)
-			return (next((*slot)->parent));
-		return (slot);
+			return (minimum(&(*slot)->right));
+		node** parent = &(*slot)->parent;
+		while (*parent && *slot == (*parent)->right)
+		{
+			slot = parent;
+			parent = &(*slot)->parent;
+		}
+		return (parent);
 	}
 
 	template <class K, class V>
 	node<K,V>**	node<K,V>::previous(node** slot)
 	{
+		if (!slot)
+			return (NULL);
+		if (!*slot)
+			return (slot);
 		if ((*slot)->left)
-			return (&(*slot)->left);
-		if ((*slot)->parent)
-			return (next((*slot)->parent));
-		return (slot);
+			return (maximum(&(*slot)->left));
+		node** parent = &(*slot)->parent;
+		while (*parent && *slot == (*parent)->left)
+		{
+			slot = parent;
+			parent = &(*slot)->parent;
+		}
+		return (parent);
 	}
 
 	template <class K, class V>

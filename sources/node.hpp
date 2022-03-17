@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include "pair.hpp"
+
 #define NBLACK false
 #define NRED true
 
@@ -59,7 +61,7 @@ namespace ft
 
 			static node**	spot(node** parent, node** root, const K& key);
 
-			static node**	insert(node** root, const K& key, const V& value);
+			static pair<node**, bool>	insert(node** root, const K& key, const V& value);
 
 			static bool		erase(node** root, const K& key);
 

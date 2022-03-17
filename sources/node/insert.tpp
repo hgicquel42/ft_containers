@@ -1,6 +1,7 @@
 #pragma once
 
 #include "node.hpp"
+#include "pair.hpp"
 
 namespace ft
 {
@@ -14,16 +15,17 @@ namespace ft
 	 * @param value 
 	 */
 	template <class K, class V>
-	node<K,V>**	node<K,V>::insert(node** root, const K& key, const V& value)
+	pair<node<K,V>**, bool>	node<K,V>::insert(node** root, const K& key, const V& value)
 	{
 		node* parent = NULL;
 
 		node** slot = spot(&parent, root, key);
-		if (!slot || *slot) return (slot);
+		if (!slot) return (make_pair(NULL, false));
+		if (*slot) return (make_pair(slot, false));
 
 		*slot = new node<K,V>(parent, key, value, NRED);
 		insertf(root, slot);
-		return (slot);
+		return (make_pair<node**, bool>(slot, true));
 	}
 
 	/**
