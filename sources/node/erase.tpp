@@ -32,9 +32,9 @@ namespace ft
 	 * @param slot 
 	 */
 	template <class K, class V>
-	void	node<K,V>::erase(node** root, node** slot)
+	bool	node<K,V>::erase(node** root, node** slot)
 	{
-		if (!slot || !*slot) return ;
+		if (!slot || !*slot) return (false);
 
 		node* current = *slot;
 
@@ -42,8 +42,7 @@ namespace ft
 			node** min = minimum(&current->right);
 			current->key = (*min)->key;
 			current->value = (*min)->value;
-			erase(root, min);
-			return ;
+			return (erase(root, min));
 		}
 
 		bool color = current->color;
@@ -64,10 +63,11 @@ namespace ft
 		}
 
 		if (!*slot)
-			return ;
+			return (true);
 		if (color == NRED)
-			return ;
+			return (true);
 		erasef(root, slot);
+		return (true);
 	}
 
 	/**

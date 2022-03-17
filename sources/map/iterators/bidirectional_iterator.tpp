@@ -93,4 +93,10 @@ namespace ft
 	{
 		return (ft::make_pair((*this->_slot)->key, (*this->_slot)->value));
 	}
+
+	template<class K, class V, class C>
+	node<K,V>**	map_bidirectional_iterator<K,V,C>::slot(void) const
+	{
+		return (this->_slot);
+	}
 }

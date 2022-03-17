@@ -75,6 +75,8 @@ namespace ft
 			map&	operator=(const map& from);
 
 			void	swap(map& other);
+			
+			static void	swap(map& x, map& y);
 
 			template <class I>
 			map(I first, I last, const C& comp = C(), const A& alloc = A());
@@ -107,12 +109,18 @@ namespace ft
             reverse_iterator		rend(void);
 			const_reverse_iterator	rend(void) const;
 
-			pair<iterator, bool>	insert(const value_type& value);
+			pair<iterator, bool>	insert(const pair<K,V>& kv);
 			
-			iterator	insert(iterator hint, const value_type& value);
+			iterator	insert(iterator hint, const pair<K,V>& kv);
 
 			template <class I>
 			void insert(I first, I last);
+
+			void erase(iterator pos);
+
+			size_type	erase(const K& key);
+
+			void erase(iterator first, iterator last);
 
 			iterator	lower_bound(const K& key);
 			iterator	upper_bound(const K& key);

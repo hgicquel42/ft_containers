@@ -43,6 +43,8 @@ namespace ft
 
 			pair<K,V>   operator*(void) const;
 			pair<K,V>   operator->(void) const;
+
+			node<K,V>**	slot(void) const;
 	};
 }
 

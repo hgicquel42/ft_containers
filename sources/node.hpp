@@ -65,7 +65,7 @@ namespace ft
 
 			static bool		erase(node** root, const K& key);
 
-			static void		erase(node** root, node** slot);
+			static bool		erase(node** root, node** slot);
 
 			static node**	random(node** root);
 
