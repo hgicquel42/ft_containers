@@ -49,7 +49,7 @@ namespace ft
 			return (&(*slot)->right);
 		if ((*slot)->parent)
 			return (next((*slot)->parent));
-		return (NULL);
+		return (slot);
 	}
 
 	template <class K, class V>
@@ -59,7 +59,7 @@ namespace ft
 			return (&(*slot)->left);
 		if ((*slot)->parent)
 			return (next((*slot)->parent));
-		return (NULL);
+		return (slot);
 	}
 
 	template <class K, class V>
