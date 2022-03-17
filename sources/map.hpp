@@ -33,6 +33,31 @@ namespace ft
 			typedef ft::map_reverse_iterator<K,V,C>						reverse_iterator;
 			typedef ft::map_reverse_iterator<const K, const V, const C>	const_reverse_iterator;
 		
+			class value_compare
+            {
+                friend class map;
+
+				public:
+                    typedef bool result_type;
+
+                    typedef value_type first_argument_type;
+
+                    typedef value_type second_argument_type;
+
+                protected:
+                    C comp;
+                    
+					value_compare(C c):
+						comp(c)
+					{}
+
+				public:
+                    bool operator() (const value_type& x, const value_type& y) const
+                    {
+                        return comp(x.first, y.first);
+                    }
+            };
+
 		private:
 			node<K,V>*	_root;
 			C			_comp;
