@@ -53,7 +53,7 @@ namespace ft
 
 			static node*	next(node* current);
 
-			static node*	previous(node* current);
+			static node*	previous(node*const* root, node* current);
 
 			static node*	search(node* root, const K& key);
 

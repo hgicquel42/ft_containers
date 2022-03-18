@@ -89,21 +89,25 @@ int main(int argc, char** argv) {
 	// 	//NORMAL ! :P
 	// }
 	
-	for (int i = 0; i < 1024; ++i)
+	for (int i = 0; i < 100; ++i)
 	{
-		map_int.insert(ft::make_pair(rand(), rand()));
+		map_int.insert(ft::make_pair(i, rand()));
 	}
 
-	int sum = 0;
-	for (int i = 0; i < 10000; i++)
-	{
-		int access = rand();
-		sum += map_int[access];
-	}
-	std::cout << "should be constant with the same seed: " << sum << std::endl;
+	map_int.print();
+
+	// int sum = 0;
+	// for (int i = 0; i < 100; i++)
+	// {
+	// 	int access = rand() % 100;
+	// 	sum += map_int[access];
+	// }
+	// std::cout << "should be constant with the same seed: " << sum << std::endl;
 
 	{
 		ft::map<int, int> copy = map_int;
+
+		copy.print();
 	}
 	// MutantStack<char> iterable_stack;
 	// for (char letter = 'a'; letter <= 'z'; letter++)

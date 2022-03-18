@@ -17,11 +17,10 @@ namespace ft
     {
         pair<node<K,V>*, bool> result =
 			node<K,V>::insert(&this->_root, kv.first, kv.second);
-		if (!result.first)
-			return (ft::make_pair<iterator, bool>(iterator(NULL), false));
+		iterator it = iterator(&this->_root, result.first);
 		if (result.second)
 			_size++;
-        return (ft::make_pair<iterator, bool>(iterator(result.first), result.second));
+        return (ft::make_pair<iterator, bool>(it, result.second));
     }
 
 	template <class K, class V, class C, class A>

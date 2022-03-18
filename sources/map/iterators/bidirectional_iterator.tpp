@@ -6,6 +6,7 @@ namespace ft
 {
 	template<class K, class V, class C>
 	map_bidirectional_iterator<K,V,C>::map_bidirectional_iterator(const C& comp):
+		_root(NULL),
 		_node(NULL),
         _comp(comp)
 	{}
@@ -15,13 +16,15 @@ namespace ft
 	{}
 
 	template<class K, class V, class C>
-	map_bidirectional_iterator<K,V,C>::map_bidirectional_iterator(ft::node<K,V>* current, const C& comp):
+	map_bidirectional_iterator<K,V,C>::map_bidirectional_iterator(node<K,V>*const* root, node<K,V>* current, const C& comp):
+		_root(root),
 		_node(current),
         _comp(comp)
 	{}
 
 	template<class K, class V, class C>
 	map_bidirectional_iterator<K,V,C>::map_bidirectional_iterator(const map_bidirectional_iterator& from):
+		_root(from._root),
         _node(from._node),
         _comp(from._comp)
     {}
@@ -31,6 +34,7 @@ namespace ft
 	{
 		if (this == &from)
 			return (*this);
+		this->_root = from._root;
 		this->_node = from._node;
 		this->_comp = from._comp;
 		return (*this);
@@ -54,7 +58,7 @@ namespace ft
 	template<class K, class V, class C>
 	map_bidirectional_iterator<K,V,C>&	map_bidirectional_iterator<K,V,C>::operator--(void)
 	{
-		this->_node = node<K,V>::previous(this->_node);
+		this->_node = node<K,V>::previous(this->_root, this->_node);
 		return (*this);
 	}
 

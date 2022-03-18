@@ -27,11 +27,11 @@ namespace ft
             typedef typename A::pointer			pointer;
 			typedef typename A::const_pointer	const_pointer;
 
-			typedef ft::map_bidirectional_iterator<K,V,C>						iterator;
-			typedef ft::map_bidirectional_iterator<K, V, C>	const_iterator;
+			typedef ft::map_bidirectional_iterator<K,V,C>	iterator;
+			typedef ft::map_bidirectional_iterator<K,V,C>	const_iterator;
 
-			typedef ft::map_reverse_iterator<K,V,C>						reverse_iterator;
-			typedef ft::map_reverse_iterator<K, V, C>	const_reverse_iterator;
+			typedef ft::map_reverse_iterator<K,V,C>	reverse_iterator;
+			typedef ft::map_reverse_iterator<K,V,C>	const_reverse_iterator;
 		
 			class value_compare
             {
@@ -131,6 +131,9 @@ namespace ft
 
 			const_iterator	lower_bound(const K& key) const;
 			const_iterator	upper_bound(const K& key) const;
+
+			// TODO remove
+			void	print(void) const;
 	};
 }
 

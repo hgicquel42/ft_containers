@@ -75,10 +75,10 @@ namespace ft
 	}
 	
 	template <class K, class V>
-	node<K,V>*	node<K,V>::previous(node* current)
+	node<K,V>*	node<K,V>::previous(node*const* root, node* current)
 	{
 		if (!current)
-			return (NULL);
+			return (maximum2(*root));
 		if (current->left)
 			return (maximum2(current->left));
 		node* parent = current->parent;
