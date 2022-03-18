@@ -47,13 +47,13 @@ namespace ft
 
 			static node**	maximum(node** slot);
 
-			static node**	const_minimum(node*const* slot);
+			static node*	minimum2(node* current);
 
-			static node**	const_maximum(node*const* slot);
+			static node*	maximum2(node* current);
 
-			static node**	next(node** slot);
+			static node*	next(node* current);
 
-			static node**	previous(node** slot);
+			static node*	previous(node* current);
 
 			static node*	search(node* root, const K& key);
 

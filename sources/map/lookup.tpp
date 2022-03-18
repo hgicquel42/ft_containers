@@ -28,7 +28,7 @@ namespace ft
 	V&	map<K,V,C,A>::operator[](const K& key)
 	{
 		iterator it = this->insert(make_pair(key, V())).first;
-		return ((*it.slot())->value);
+		return (it.current()->value);
 	}
 
 	template <class K, class V, class C, class A>

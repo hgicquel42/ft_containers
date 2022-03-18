@@ -19,13 +19,13 @@ namespace ft
 
 			typedef std::bidirectional_iterator_tag	iterator_category;
 		private:
-			node<K,V>** _slot;
+			node<K,V>* _node;
             C           _comp;
 		public:
 			map_reverse_iterator(const C& comp = C());
 			~map_reverse_iterator(void);
 
-			map_reverse_iterator(node<K,V>** slot, const C& comp = C());
+			map_reverse_iterator(node<K,V>* current, const C& comp = C());
 			map_reverse_iterator(const map_reverse_iterator& from);
 
 			map_reverse_iterator&	operator=(const map_reverse_iterator& from);
@@ -42,7 +42,7 @@ namespace ft
 			pair<K,V>	operator*(void) const;
 			pair<K,V>	operator->(void) const;
 
-			node<K,V>**	slot(void) const;
+			node<K,V>*	current(void) const;
 	};
 }
 

@@ -94,13 +94,13 @@ int main(int argc, char** argv) {
 		map_int.insert(ft::make_pair(rand(), rand()));
 	}
 
-	// int sum = 0;
-	// for (int i = 0; i < 10000; i++)
-	// {
-	// 	int access = rand();
-	// 	sum += map_int[access];
-	// }
-	// std::cout << "should be constant with the same seed: " << sum << std::endl;
+	int sum = 0;
+	for (int i = 0; i < 10000; i++)
+	{
+		int access = rand();
+		sum += map_int[access];
+	}
+	std::cout << "should be constant with the same seed: " << sum << std::endl;
 
 	{
 		ft::map<int, int> copy = map_int;

@@ -6,7 +6,7 @@ namespace ft
 {
 	template<class K, class V, class C>
 	map_reverse_iterator<K,V,C>::map_reverse_iterator(const C& comp):
-		_slot(),
+		_node(NULL),
         _comp(comp)
 	{}
 
@@ -15,14 +15,14 @@ namespace ft
 	{}
 
 	template<class K, class V, class C>
-	map_reverse_iterator<K,V,C>::map_reverse_iterator(node<K,V>** slot, const C& comp):
-		_slot(slot),
+	map_reverse_iterator<K,V,C>::map_reverse_iterator(node<K,V>* current, const C& comp):
+		_node(current),
         _comp(comp)
 	{}
 
 	template<class K, class V, class C>
 	map_reverse_iterator<K,V,C>::map_reverse_iterator(const map_reverse_iterator& from):
-		_slot(from._slot),
+		_node(from._node),
         _comp(from._comp)
 	{}
 
@@ -31,7 +31,7 @@ namespace ft
 	{
 		if (this == &from)
 			return (*this);
-		this->_slot = from._slot;
+		this->_node = from._node;
 		this->_comp = from._comp;
 		return (*this);
 	}
@@ -39,7 +39,7 @@ namespace ft
 	template<class K, class V, class C>
 	map_reverse_iterator<K,V,C>&	map_reverse_iterator<K,V,C>::operator++(void)
 	{
-		this->_slot = node<K,V>::previous(this->_slot);
+		this->_node = node<K,V>::previous(this->_node);
 		return (*this);
 	}
 
@@ -54,7 +54,7 @@ namespace ft
 	template<class K, class V, class C>
 	map_reverse_iterator<K,V,C>&	map_reverse_iterator<K,V,C>::operator--(void)
 	{
-		this->_slot = node<K,V>::next(this->_slot);
+		this->_node = node<K,V>::next(this->_node);
 		return (*this);
 	}
 
@@ -69,30 +69,30 @@ namespace ft
 	template<class K, class V, class C>
 	bool	map_reverse_iterator<K,V,C>::operator==(const map_reverse_iterator& other) const
 	{
-		return ((*this->_slot)->key == (*other._slot)->key && (*this->_slot)->value == (*other._slot)->value);
+		return (this->_node == other._node);
 	}
 
 	template<class K, class V, class C>
 	bool	map_reverse_iterator<K,V,C>::operator!=(const map_reverse_iterator& other) const
 	{
-		return (!(this == other));
+		return (this->_node != other._node);
 	}
 
 	template<class K, class V, class C>
 	pair<K,V>	map_reverse_iterator<K,V,C>::operator*(void) const
 	{
-		return (ft::make_pair((*this->_slot)->key, (*this->_slot)->value));
+		return (ft::make_pair(this->_node->key, this->_node->value));
 	}
 
 	template<class K, class V, class C>
 	pair<K,V>	map_reverse_iterator<K,V,C>::operator->(void) const
 	{
-		return (ft::make_pair((*this->_slot)->key, (*this->_slot)->value));
+		return (ft::make_pair(this->_node->key, this->_node->value));
 	}
 
 	template<class K, class V, class C>
-	node<K,V>**	map_reverse_iterator<K,V,C>::slot(void) const
+	node<K,V>*	map_reverse_iterator<K,V,C>::current(void) const
 	{
-		return (this->_slot);
+		return (this->_node);
 	}
 }

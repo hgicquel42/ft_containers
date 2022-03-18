@@ -13,7 +13,7 @@ namespace ft
     template < class K, class V, class C, class A >
     typename map<K,V,C,A>::const_iterator   map<K,V,C,A>::begin(void) const
     {
-        return (const_iterator(this->_root->const_minimum(&this->_root)));
+        return (const_iterator(this->_root->minimum2(this->_root)));
     }
 
     template < class K, class V, class C, class A >
@@ -37,7 +37,7 @@ namespace ft
     template < class K, class V, class C, class A >
     typename map<K,V,C,A>::const_iterator   map<K,V,C,A>::end(void) const
     {
-        return (const_iterator(this->_root->const_maximum(&this->_root)));
+        return (const_iterator(this->_root->maximum2(this->_root)));
     }
 
     template < class K, class V, class C, class A >

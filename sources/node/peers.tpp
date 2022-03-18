@@ -43,53 +43,49 @@ namespace ft
 	}
 
 	template <class K, class V>
-	node<K,V>*const*	node<K,V>::const_minimum(node*const* slot)
+	node<K,V>*	node<K,V>::minimum2(node* current)
 	{
-		if (!(*slot)->left)
-			return (slot);
-		return (minimum(&(*slot)->left));
+		if (!current->left)
+			return (current);
+		return (minimum2(current->left));
 	}
 
 	template <class K, class V>
-	node<K,V>**	node<K,V>::const_maximum(node*const* slot)
+	node<K,V>*	node<K,V>::maximum2(node* current)
 	{
-		if (!(*slot)->right)
-			return (slot);
-		return (maximum(&(*slot)->right));
+		if (!current->right)
+			return (current);
+		return (maximum2(current->right));
 	}
 
 	template <class K, class V>
-	node<K,V>**	node<K,V>::next(node** slot)
+	node<K,V>*	node<K,V>::next(node* current)
 	{
-		if (!slot)
+		if (!current)
 			return (NULL);
-		if (!*slot)
-			return (slot);
-		if ((*slot)->right)
-			return (minimum(&(*slot)->right));
-		node** parent = &(*slot)->parent;
-		while (*parent && *slot == (*parent)->right)
+		if (current->right)
+			return (minimum2(current->right));
+		node* parent = current->parent;
+		while (parent && current == parent->right)
 		{
-			slot = parent;
-			parent = &(*slot)->parent;
+			current = parent;
+			parent = current->parent;
 		}
 		return (parent);
 	}
-
+	
 	template <class K, class V>
-	node<K,V>**	node<K,V>::previous(node** slot)
+	node<K,V>*	node<K,V>::previous(node* current)
 	{
-		if (!slot)
+		if (!current)
 			return (NULL);
-		if (!*slot)
-			return (slot);
-		if ((*slot)->left)
-			return (maximum(&(*slot)->left));
-		node** parent = &(*slot)->parent;
-		while (*parent && *slot == (*parent)->left)
+		if (current->left)
+			return (maximum2(current->left));
+		node* parent = current->parent;
+		while (parent && current == parent->left)
 		{
-			slot = parent;
-			parent = &(*slot)->parent;
+			current = parent;
+			parent = current->parent;
 		}
 		return (parent);
 	}

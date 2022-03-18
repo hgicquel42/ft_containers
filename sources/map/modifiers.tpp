@@ -17,9 +17,11 @@ namespace ft
     {
         pair<node<K,V>**, bool> result =
 			node<K,V>::insert(&this->_root, kv.first, kv.second);
+		if (!result.first || !*result.first)
+			return (ft::make_pair<iterator, bool>(iterator(NULL), false));
 		if (result.second)
 			_size++;
-        return (ft::make_pair<iterator, bool>(iterator(result.first), result.second));
+        return (ft::make_pair<iterator, bool>(iterator(*result.first), result.second));
     }
 
 	template <class K, class V, class C, class A>
@@ -27,7 +29,7 @@ namespace ft
 	void map<K,V,C,A>::insert(I first, I last)
 	{
 		for (I it = first; it != last; it++)
-			node<K,V>::insert(it->first);
+			this->insert(*it);
 	}
 
 	template <class K, class V, class C, class A>
