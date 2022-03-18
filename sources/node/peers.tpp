@@ -7,19 +7,19 @@
 namespace ft
 {
 	template <class K, class V>
-	node<K,V>**	node<K,V>::sibling(node* current)
+	node<K,V>*	node<K,V>::sibling(node* current)
 	{
 		if (!current->parent)
 			return (NULL);
 		if (current == current->parent->left)
-			return (&(current->parent->right));
+			return (current->parent->right);
 		if (current == current->parent->right)
-			return (&(current->parent->left));
+			return (current->parent->left);
 		return (NULL);
 	}
 
 	template <class K, class V>
-	node<K,V>**	node<K,V>::uncle(node* current)
+	node<K,V>*	node<K,V>::uncle(node* current)
 	{
 		if (!current->parent)
 			return (NULL);
@@ -92,7 +92,7 @@ namespace ft
 		if (!current)
 			return (NULL);
 		if (key == current->key)
-			return (root);
+			return (current);
 		if (key > current->key)
 			return (search(current->right, key));
 		if (key < current->key)

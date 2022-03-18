@@ -92,7 +92,7 @@ namespace ft
 			return ;
 		}
 
-		node* sibling = *node::sibling(current);
+		node* sibling = node::sibling(current);
 		if (!sibling) return ;
 
 		if (sibling->color == NRED) {
@@ -103,7 +103,7 @@ namespace ft
 				lrotate(root, parent);
 			else if (current == parent->right)
 				rrotate(root, parent);
-			sibling = *node::sibling(current);
+			sibling = node::sibling(current);
 			if (!sibling) return ;
 		}
 

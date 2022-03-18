@@ -18,7 +18,7 @@ void	print(ft::vector<T>& vector)
 	cout << "-----------" << "\n";
 }
 
-typedef ft::node<int,int>	node;
+typedef ft::node<int,string>	node;
 
 int	random(int min, int max)
 {
@@ -27,9 +27,20 @@ int	random(int min, int max)
 
 int	main(void)
 {
-	ft::pair<int, string> p = ft::make_pair<int,string>(42, "lol");
+	ft::map<int,string>	map;
+	ft::map<int,string>	map2;
 
-	ft::map<int,int>	map;
+	map.insert(ft::make_pair<int, string>(42, "hello"));
+	map.insert(ft::make_pair<int, string>(32, "lol"));
+
+	// map2 = map;
+
+	map2.insert(ft::make_pair<int, string>(42, "hello"));
+	map2.insert(ft::make_pair<int, string>(46, "lol"));
+
+	cout << "map == map2 " << (map == map2) << "\n";
+	cout << "map != map2 " << (map != map2) << "\n";
+	cout << "map < map2 " << (map < map2) << "\n";
 
 	// node*	root = NULL;
 

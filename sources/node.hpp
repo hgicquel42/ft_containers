@@ -33,9 +33,9 @@ namespace ft
 
 			void	recolor(void);
 
-			static node**	sibling(node* current);
+			static node*	sibling(node* current);
 
-			static node**	uncle(node* current);
+			static node*	uncle(node* current);
 
 			static node**	slot(node** root, node* current);
 
