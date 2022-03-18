@@ -91,6 +91,7 @@ int main(int argc, char** argv) {
 	
 	for (int i = 0; i < 100; ++i)
 	{
+		cout << i << "\n";
 		map_int.insert(ft::make_pair(i, rand()));
 	}
 
@@ -105,10 +106,10 @@ int main(int argc, char** argv) {
 	// std::cout << "should be constant with the same seed: " << sum << std::endl;
 
 	{
-		ft::map<int,int>::reverse_iterator it = map_int.rend();
-		it++;
-		for (; it.current() != NULL; it++)
-			cout << "kv = " << (*it).first << " " << (*it).second << "\n";
+		// ft::map<int,int>::reverse_iterator it = map_int.rend();
+		// it++;
+		// for (; it.current() != NULL; it++)
+		// 	cout << "kv = " << (*it).first << " " << (*it).second << "\n";
 		// ft::map<int, int> copy = map_int;
 
 		// copy.print();
@@ -120,6 +121,6 @@ int main(int argc, char** argv) {
 	// {
 	// 	std::cout << *it;
 	// }
-	std::cout << std::endl;
+	// std::cout << std::endl;
 	return (0);
 }

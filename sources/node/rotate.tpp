@@ -5,9 +5,10 @@
 namespace ft
 {
 	template <class K, class V>
-	void	node<K,V>::lrotate(node** slot)
+	void	node<K,V>::lrotate(node** root, node* current)
 	{
-		node* current = *slot;
+		
+		node** slot = node::slot(root, current);
 		node* parent = current->parent;
 		node* right = current->right;
 
@@ -24,9 +25,9 @@ namespace ft
 	}
 
 	template <class K, class V>
-	void	node<K,V>::rrotate(node** slot)
+	void	node<K,V>::rrotate(node** root, node* current)
 	{
-		node* current = *slot;
+		node** slot = node::slot(root, current);
 		node* parent = current->parent;
 		node* left = current->left;
 

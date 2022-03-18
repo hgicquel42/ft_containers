@@ -17,8 +17,8 @@ namespace ft
 	{
 		node* parent = NULL;
 
-		node** slot = spot(&parent, root, key);
-		if (!slot || !*slot) return (false);
+		node* current = search(*root, key);
+		if (!current) return (false);
 		
 		erase(slot);
 		return (true);
@@ -32,16 +32,14 @@ namespace ft
 	 * @param slot 
 	 */
 	template <class K, class V>
-	bool	node<K,V>::erase(node** root, node** slot)
+	bool	node<K,V>::erase(node** root, node* current)
 	{
-		if (!slot || !*slot) return (false);
-
-		node* current = *slot;
+		if (!current) return (false);
 
 		if (current->left && current->right) {
-			node** min = minimum(&current->right);
-			current->key = (*min)->key;
-			current->value = (*min)->value;
+			node* min = minimum2(current->right);
+			current->key = min->key;
+			current->value = min->value;
 			return (erase(root, min));
 		}
 
@@ -50,23 +48,26 @@ namespace ft
 		if (current->right) {
 			node* next = current->right;
 			next->parent = current->parent;
+			*slot(root, current) = next;
 			delete current;
-			*slot = next;
+			current = next;
 		} else if (current->left) {
 			node* next = current->left;
 			next->parent = current->parent;
+			*slot(root, current) = next;
 			delete current;
-			*slot = next;
+			current = next;
 		} else {
+			*slot(root, current) = NULL;
 			delete current;
-			*slot = NULL;
+			current = NULL;
 		}
 
-		if (!*slot)
+		if (!current)
 			return (true);
 		if (color == NRED)
 			return (true);
-		erasef(root, *slot);
+		erasef(root, current);
 		return (true);
 	}
 
@@ -99,9 +100,9 @@ namespace ft
 			parent->color = NRED;
 			
 			if (current == parent->left)
-				lrotate(node::slot(root, parent));
+				lrotate(root, parent);
 			else if (current == parent->right)
-				rrotate(node::slot(root, parent));
+				rrotate(root, parent);
 			sibling = *node::sibling(current);
 			if (!sibling) return ;
 		}
@@ -121,7 +122,7 @@ namespace ft
 			if (!sibling->left) return ;
 			sibling->left->color = NBLACK;
 			sibling->color = NRED;
-			rrotate(node::slot(root, sibling));
+			rrotate(root, sibling);
 			sibling = parent->right;
 			if (!sibling) return ;
 		}
@@ -130,7 +131,7 @@ namespace ft
 			if (!sibling->right) return ;
 			sibling->right->color = NBLACK;
 			sibling->color = NRED;
-			lrotate(node::slot(root, sibling));
+			lrotate(root, sibling);
 			sibling = parent->left;
 			if (!sibling) return ;
 		}
@@ -140,11 +141,11 @@ namespace ft
 		if (current == parent->left) {
 			if (sibling->right)
 				sibling->right->color = NBLACK;
-			lrotate(node::slot(root, parent));
+			lrotate(root, parent);
 		} else {
 			if (sibling->left)
 				sibling->left->color = NBLACK;
-			rrotate(node::slot(root, parent));
+			rrotate(root, parent);
 		}
 	}
 }

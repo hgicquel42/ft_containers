@@ -71,11 +71,11 @@ namespace ft
 
 		else if (parent == gparent->left) {
 			if (current == parent->right) {
-				lrotate(node::slot(root, parent));
+				lrotate(root, parent);
 				parent = current;
 			}
 			
-			rrotate(node::slot(root, gparent));
+			rrotate(root, gparent);
 			parent->color = NBLACK;
 			gparent->color = NRED;
 			return ;
@@ -83,11 +83,11 @@ namespace ft
 
 		else {
 			if (current == parent->left) {
-				rrotate(node::slot(root, parent));
+				rrotate(root, parent);
 				parent = current;
 			}
 
-			lrotate(node::slot(root, gparent));
+			lrotate(root, gparent);
 			parent->color = NBLACK;
 			gparent->color = NRED;
 			return ;

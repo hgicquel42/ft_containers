@@ -43,10 +43,6 @@ namespace ft
 
 			static bool		isred(node* slot);
 
-			static node**	minimum(node** slot);
-
-			static node**	maximum(node** slot);
-
 			static node*	minimum2(node* current);
 
 			static node*	maximum2(node* current);
@@ -59,9 +55,9 @@ namespace ft
 
 			static void		print(const node* root, const string& prefix = "", int position = 0);
 
-			static void		lrotate(node** slot);
+			static void		lrotate(node** root, node* current);
 
-			static void		rrotate(node** slot);
+			static void		rrotate(node** root, node* current);
 
 			static node**	spot(node** parent, node** root, const K& key);
 
@@ -69,7 +65,7 @@ namespace ft
 
 			static bool		erase(node** root, const K& key);
 
-			static bool		erase(node** root, node** slot);
+			static bool		erase(node** root, node* current);
 
 			static node**	random(node** root);
 
