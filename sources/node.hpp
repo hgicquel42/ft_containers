@@ -43,15 +43,15 @@ namespace ft
 
 			static bool		isred(node* slot);
 
-			static node*	minimum2(node* current);
+			static node*	minimum(node* current);
 
-			static node*	maximum2(node* current);
+			static node*	maximum(node* current);
 
 			static node*	next(node* current);
 
 			static node*	previous(node*const* root, node* current);
 
-			static node*	search(node* root, const K& key);
+			static node*	search(node* current, const K& key);
 
 			static void		print(const node* root, const string& prefix = "", int position = 0);
 
@@ -67,7 +67,7 @@ namespace ft
 
 			static bool		erase(node** root, node* current);
 
-			static node**	random(node** root);
+			static node*	random(node* current);
 
 		private:
 		

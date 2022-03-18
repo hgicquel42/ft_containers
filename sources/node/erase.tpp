@@ -37,7 +37,7 @@ namespace ft
 		if (!current) return (false);
 
 		if (current->left && current->right) {
-			node* min = minimum2(current->right);
+			node* min = minimum(current->right);
 			current->key = min->key;
 			current->value = min->value;
 			return (erase(root, min));
