@@ -87,16 +87,16 @@ namespace ft
 	}
 
 	template <class K, class V>
-	node<K,V>*	node<K,V>::search(node* root, const K& key)
+	node<K,V>*	node<K,V>::search(node* current, const K& key)
 	{
-		if (!root)
+		if (!current)
 			return (NULL);
-		if (key == root->key)
+		if (key == current->key)
 			return (root);
-		if (key > root->key)
-			return (search(root->right, key));
-		if (key < root->key)
-			return (search(root->left, key));
+		if (key > current->key)
+			return (search(current->right, key));
+		if (key < current->key)
+			return (search(current->left, key));
 		return (NULL);
 	}
 
@@ -118,17 +118,15 @@ namespace ft
 	}
 
 	template <class K, class V>
-	node<K,V>**	node<K,V>::random(node** root)
+	node<K,V>*	node<K,V>::random(node* current)
 	{
-		if (!root)
+		if (!current)
 			return (NULL);
-		if (!*root)
-			return (root);
 		int r = (rand() % 3) - 1;
 		if (r == -1)
-			return (random(&(*root)->left));
-		if (r == 1)
-			return (random(&(*root)->right));
-		return (root);
+			return (random(current->left));
+		if (r == 1)  
+			return (random(current->right));
+		return (current);
 	}
 }
