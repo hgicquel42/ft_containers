@@ -115,16 +115,46 @@ int	main(void)
 
     // std::cout << map.max_size() << "\n";
 
+    // std::cout << "Modifier\n";
+
+    //  map<int,int>    map;
+
+    // for(int i = 5; i < 85; i++)
+    //     map.insert(ft::make_pair(i,i));
+
+    // map.clear();
+
+    // if (map.empty())
+    //     std::cout << "OK\n";
+    
+    // for(int i = 5; i < 85; i++)
+    //     map.insert(ft::make_pair(i,i));
+
+    // ft::map<int,int>    map2;
+
+    // map2.insert(map.begin(), map.end());
+
+    // ft::map<int,int>::iterator  it;
+
+    // for(it = map2.begin(); it != map2.end(); it++)
+    //     std::cout << (*it).first << " " << (*it).second << "\n";
+
+    // map.erase(map.begin(), map.end());
+
+    // if(map.empty())
+    //     std::cout << "OK\n";
+    std::cout << "LookUp ::\n";
+
      map<int,int>    map;
 
     for(int i = 5; i < 85; i++)
         map.insert(ft::make_pair(i,i));
 
-    map.clear();
+    std::cout << map.count(12) << "\n";
+    std::cout << map.count(120) << "\n";
 
-    if (map.empty())
-        
-    
+    std::cout << map.fin
+
 
 
 
