@@ -1,16 +1,29 @@
 #include "vector.hpp"
 #include "stack.hpp"
 #include "node.hpp"
+#include "map.hpp"
 #include "pair.hpp"
+
 #include <iostream>
 
+using namespace std;
+
+template <class T>
+void	print(ft::vector<T>& vector)
+{
+	cout << "-----------" << "\n";
+	cout << vector.size() << "\n";
+	cout << vector.capacity() << "\n";
+	cout << vector.max_size() << "\n";
+	cout << "-----------" << "\n";
+}
 
 typedef ft::node<int,string>	node;
 
-// #include <map>
-// using namespace std;
-#include "map.hpp"
-using namespace ft;
+int	random(int min, int max)
+{
+	return (rand() % (max - min + 1) + min);
+}
 
 int	main(void)
 {
