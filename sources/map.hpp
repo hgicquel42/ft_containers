@@ -101,6 +101,10 @@ namespace ft
 
 			size_type count(const K& key) const;
 
+			iterator find(const K& key);
+
+			const_iterator find(const K& key) const;
+
 			iterator		begin(void);
 			const_iterator	begin(void) const;
 
@@ -127,10 +131,16 @@ namespace ft
 			void erase(iterator first, iterator last);
 
 			iterator	lower_bound(const K& key);
+			
 			iterator	upper_bound(const K& key);
 
 			const_iterator	lower_bound(const K& key) const;
+			
 			const_iterator	upper_bound(const K& key) const;
+
+			pair<iterator,iterator> equal_range(const K& key);
+
+			pair<const_iterator,const_iterator> equal_range(const K& key) const;
 
 			// TODO remove
 			void	print(void) const;

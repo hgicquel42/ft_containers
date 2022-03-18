@@ -91,7 +91,7 @@ namespace ft
 	template<class K, class V, class C>
 	pair<K,V>	map_bidirectional_iterator<K,V,C>::operator->(void) const
 	{
-		return (ft::make_pair<K,V>(this->_node->key, this->_slot->value));
+		return (ft::make_pair<K,V>(this->_node->key, this->_node->value));
 	}
 
 	template<class K, class V, class C>

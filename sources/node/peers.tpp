@@ -92,7 +92,7 @@ namespace ft
 		if (!current)
 			return (NULL);
 		if (key == current->key)
-			return (root);
+			return (current);
 		if (key > current->key)
 			return (search(current->right, key));
 		if (key < current->key)
