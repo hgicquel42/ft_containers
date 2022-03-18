@@ -143,25 +143,26 @@ int	main(void)
 
     // if(map.empty())
     //     std::cout << "OK\n";
-    std::cout << "LookUp ::\n";
+    // std::cout << "LookUp ::\n";
 
-     ft::map<int,int>    map;
+    //  ft::map<int,int>    map;
 
-    for(int i = 5; i < 85; i += 5)
-        map.insert(ft::make_pair(i,i));
+    // for(int i = 5; i < 85; i += 5)
+    //     map.insert(ft::make_pair(i,i));
 
-    std::cout << map.count(12) << "\n";
-    std::cout << map.count(120) << "\n";
+    // std::cout << map.count(12) << "\n";
+    // std::cout << map.count(120) << "\n";
 
-    std::cout << (*(map.find(20))).first << " " << (*(map.find(20))).second << "\n";
+    // std::cout << (*(map.find(20))).first << " " << (*(map.find(20))).second << "\n";
 
     // std::cout << (*(map.find(200))).first << " " << (*(map.find(200))).second << "\n"; // SEGFAULT NORMAL
 
-    std::cout << (*(map.lower_bound(18))).first << " " << (*(map.lower_bound(18))).second << "\n";
+    // std::cout << (*(map.lower_bound(18))).first << " " << (*(map.lower_bound(18))).second << "\n";
 
-    std::cout << (*(map.upper_bound(18))).first << " " << (*(map.upper_bound(18))).second << "\n";
+    // std::cout << (*(map.upper_bound(18))).first << " " << (*(map.upper_bound(18))).second << "\n";
 
-    map.equal_range(62);
+    // map.equal_range(62);
+
 
 
     return (0);
