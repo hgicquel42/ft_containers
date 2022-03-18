@@ -27,19 +27,19 @@ namespace ft
 	}
 
 	template <class K, class V>
-	node<K,V>*	node<K,V>::minimum2(node* current)
+	node<K,V>*	node<K,V>::minimum(node* current)
 	{
 		if (!current->left)
 			return (current);
-		return (minimum2(current->left));
+		return (minimum(current->left));
 	}
 
 	template <class K, class V>
-	node<K,V>*	node<K,V>::maximum2(node* current)
+	node<K,V>*	node<K,V>::maximum(node* current)
 	{
 		if (!current->right)
 			return (current);
-		return (maximum2(current->right));
+		return (maximum(current->right));
 	}
 
 	template <class K, class V>
@@ -48,7 +48,7 @@ namespace ft
 		if (!current)
 			return (NULL);
 		if (current->right)
-			return (minimum2(current->right));
+			return (minimum(current->right));
 		node* parent = current->parent;
 		while (parent && current == parent->right)
 		{
@@ -62,9 +62,9 @@ namespace ft
 	node<K,V>*	node<K,V>::previous(node*const* root, node* current)
 	{
 		if (!current)
-			return (maximum2(*root));
+			return (maximum(*root));
 		if (current->left)
-			return (maximum2(current->left));
+			return (maximum(current->left));
 		node* parent = current->parent;
 		while (parent && current == parent->left)
 		{

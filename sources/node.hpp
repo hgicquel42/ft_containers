@@ -43,9 +43,9 @@ namespace ft
 
 			static bool		isred(node* slot);
 
-			static node*	minimum2(node* current);
+			static node*	minimum(node* current);
 
-			static node*	maximum2(node* current);
+			static node*	maximum(node* current);
 
 			static node*	next(node* current);
 
