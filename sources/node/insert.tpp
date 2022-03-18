@@ -20,13 +20,13 @@ namespace ft
 		node* parent = NULL;
 
 		node** slot = spot(&parent, root, key);
-		if (!slot) return (make_pair<node*, bool>(NULL, false));
-		if (*slot) return (make_pair<node*, bool>(*slot, false));
+		if (!slot) return (ft::make_pair<node*, bool>(NULL, false));
+		if (*slot) return (ft::make_pair<node*, bool>(*slot, false));
 
 		node* current = new node<K,V>(parent, key, value, NRED);
 		*slot = current;
 		insertf(root, current);
-		return (make_pair<node*, bool>(current, true));
+		return (ft::make_pair<node*, bool>(current, true));
 	}
 
 	/**
@@ -59,7 +59,7 @@ namespace ft
 			return ;
 		}
 
-		node* uncle = *node::uncle(current);
+		node* uncle = node::uncle(current);
 
 		if (uncle && uncle->color == NRED) {
 			parent->color = NBLACK;

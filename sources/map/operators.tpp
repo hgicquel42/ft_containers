@@ -5,38 +5,38 @@
 namespace ft
 {
 	template <class K, class V, class C, class A>
-	bool operator==(const map<K,V,C,A>& lhs, const map<K,V,C,A>& rhs)
+	bool operator==(const map<K,V,C,A>& left, const map<K,V,C,A>& right)
 	{
-		return (ft::equal(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+		return (ft::equal(left.begin(), left.end(), right.begin()));
 	}
 
 	template <class K, class V, class C, class A>
-	bool operator<(const map<K,V,C,A>& lhs, const map<K,V,C,A>& rhs)
+	bool operator<(const map<K,V,C,A>& left, const map<K,V,C,A>& right)
 	{
-		return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+		return (ft::compare(left.begin(), left.end(), right.begin(), left.value_comp()));
 	}
 
 	template <class K, class V, class C, class A>
-	bool operator!=(const map<K,V,C,A>& lhs, const map<K,V,C,A>& rhs)
+	bool operator!=(const map<K,V,C,A>& left, const map<K,V,C,A>& right)
 	{
-		return (!(lhs == rhs));
+		return (!(left == right));
 	}
 
 	template <class K, class V, class C, class A>
-	bool operator<=(const map<K,V,C,A>& lhs, const map<K,V,C,A>& rhs)
+	bool operator<=(const map<K,V,C,A>& left, const map<K,V,C,A>& right)
 	{
-		return (!(rhs < lhs));
+		return (!(left > right));
 	}
 
 	template <class K, class V, class C, class A>
-	bool operator>(const map<K,V,C,A>& lhs, const map<K,V,C,A>& rhs)
+	bool operator>(const map<K,V,C,A>& left, const map<K,V,C,A>& right)
 	{
-		return (rhs < lhs);
+		return (right < left);
 	}
 
 	template <class K, class V, class C, class A>
-	bool operator>=(const map<K,V,C,A>& lhs, const map<K,V,C,A>& rhs)
+	bool operator>=(const map<K,V,C,A>& left, const map<K,V,C,A>& right)
 	{
-		return (!(lhs < rhs));
+		return (!(left < right));
 	}
 }

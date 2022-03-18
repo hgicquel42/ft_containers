@@ -54,7 +54,7 @@ namespace ft
 				public:
                     bool operator() (const value_type& x, const value_type& y) const
                     {
-                        return (comp(x.first, y.first));
+                        return (this->comp(x.first, y.first));
                     }
             };
 
@@ -83,7 +83,8 @@ namespace ft
 
 			A	get_allocator(void) const;
 
-			C	key_comp(void) const;
+			C				key_comp(void) const;
+			value_compare	value_comp(void) const;	
 
 			V&	at(const K& key);
 
@@ -145,6 +146,24 @@ namespace ft
 			// TODO remove
 			void	print(void) const;
 	};
+
+	template <class K, class V, class C, class A>
+	bool	operator==(const map<K,V,C,A>& left, const map<K,V,C,A>& right);
+
+	template <class K, class V, class C, class A>
+	bool	operator!=(const map<K,V,C,A>& left, const map<K,V,C,A>& right);
+
+	template <class K, class V, class C, class A>
+	bool	operator<=(const map<K,V,C,A>& left, const map<K,V,C,A>& right);
+
+	template <class K, class V, class C, class A>
+	bool	operator>=(const map<K,V,C,A>& left, const map<K,V,C,A>& right);
+
+	template <class K, class V, class C, class A>
+	bool	operator<(const map<K,V,C,A>& left, const map<K,V,C,A>& right);
+
+	template <class K, class V, class C, class A>
+	bool	operator>(const map<K,V,C,A>& left, const map<K,V,C,A>& right);
 }
 
 #include "map/map.tpp"
@@ -152,3 +171,4 @@ namespace ft
 #include "map/modifiers.tpp"
 #include "map/lookup.tpp"
 #include "map/iterators.tpp"
+#include "map/operators.tpp"

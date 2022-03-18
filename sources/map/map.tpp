@@ -55,7 +55,7 @@ namespace ft
 		this->insert(from.begin(), from.end());
 		this->_comp = from._comp;
 		this->_alloc = from._alloc;
-		this-_size = from._size;
+		this->_size = from._size;
 		return (*this);
 	}
 
@@ -69,6 +69,12 @@ namespace ft
 	C	map<K,V,C,A>::key_comp(void) const
 	{
 		return (this->_comp);
+	}
+
+	template <class K, class V, class C, class A>
+	typename map<K,V,C,A>::value_compare	map<K,V,C,A>::value_comp(void) const
+	{
+		return (value_compare(this->_comp));
 	}
 
 	template <class K, class V, class C, class A>
