@@ -15,13 +15,15 @@ namespace ft
 	{}
 
 	template<class K, class V, class C>
-	map_reverse_iterator<K,V,C>::map_reverse_iterator(node<K,V>* current, const C& comp):
+	map_reverse_iterator<K,V,C>::map_reverse_iterator(node<K,V>*const* root, node<K,V>* current, const C& comp):
+		_root(root),
 		_node(current),
         _comp(comp)
 	{}
 
 	template<class K, class V, class C>
 	map_reverse_iterator<K,V,C>::map_reverse_iterator(const map_reverse_iterator& from):
+		_root(from._root),
 		_node(from._node),
         _comp(from._comp)
 	{}
@@ -31,6 +33,7 @@ namespace ft
 	{
 		if (this == &from)
 			return (*this);
+		this->_root = from._root;
 		this->_node = from._node;
 		this->_comp = from._comp;
 		return (*this);
@@ -39,7 +42,7 @@ namespace ft
 	template<class K, class V, class C>
 	map_reverse_iterator<K,V,C>&	map_reverse_iterator<K,V,C>::operator++(void)
 	{
-		this->_node = node<K,V>::previous(this->_node);
+		this->_node = node<K,V>::previous(this->_root, this->_node);
 		return (*this);
 	}
 
