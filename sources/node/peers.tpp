@@ -27,22 +27,6 @@ namespace ft
 	}
 
 	template <class K, class V>
-	node<K,V>**	node<K,V>::minimum(node** slot)
-	{
-		if (!(*slot)->left)
-			return (slot);
-		return (minimum(&(*slot)->left));
-	}
-
-	template <class K, class V>
-	node<K,V>**	node<K,V>::maximum(node** slot)
-	{
-		if (!(*slot)->right)
-			return (slot);
-		return (maximum(&(*slot)->right));
-	}
-
-	template <class K, class V>
 	node<K,V>*	node<K,V>::minimum2(node* current)
 	{
 		if (!current->left)
