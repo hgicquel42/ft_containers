@@ -122,7 +122,8 @@ int	main(void)
 
     map.clear();
 
-    if (map.empty)
+    if (map.empty())
+        
     
 
 
