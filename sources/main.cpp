@@ -1,195 +1,131 @@
 #include "vector.hpp"
 #include "stack.hpp"
 #include "node.hpp"
-#include "map.hpp"
 #include "pair.hpp"
-
 #include <iostream>
 
-using namespace std;
 
-template <class T>
-void	print(ft::vector<T>& vector)
-{
-	cout << "-----------" << "\n";
-	cout << vector.size() << "\n";
-	cout << vector.capacity() << "\n";
-	cout << vector.max_size() << "\n";
-	cout << "-----------" << "\n";
-}
 
-typedef ft::node<int,int>	node;
-
-int	random(int min, int max)
-{
-	return (rand() % (max - min + 1) + min);
-}
+// #include <map>
+// using namespace std;
+#include "map.hpp"
+using namespace ft;
 
 int	main(void)
 {
-	ft::pair<int, string> p = ft::make_pair<int,string>(42, "lol");
 
-	ft::map<int,int>	map;
+    // std::cout << "Constructor Accessor :: \n";
 
-	// node*	root = NULL;
+    // map<int,int>    map;
 
-	srand(time(NULL));
-	
-	// root = new node(NULL, 0, "root");
-	// node::print(root);
-	// node::insert(&root, 10, "10");
-	// node::print(root);
-	// node::insert(&root, -10, "-10");
-	// node::print(root);
-	// node::insert(&root, 20, "20");
-	// node::print(root);
-	// node::insert(&root, 5, "5");
-	// node::print(root);
-	// node::insert(&root, 15, "15");
-	// node::print(root);
-	// node::insert(&root, -5, "-5");
-	// node::print(root);
-	// node::insert(&root, -10, "still -10");
+    // for(int i = 5; i < 85; i++)
+    //     map.insert(ft::make_pair(i,i));
 
-	// node::print(root);
+    // std::cout << map.at(5) << "\n";
+    // std::cout << map.at(55) << "\n";
+    // std::cout << map.at(84) << "\n";
 
-	// cout << "--- erasing ---\n";
+    // std::cout << map[5] << "\n";
+    // std::cout << map[55] << "\n";
+    // std::cout << map[84] << "\n";
+    // std::cout << map[85] << "\n";
 
-	// node::print(root);
-	// node::erase(&root, 10);
-	// node::print(root);
-	// node::erase(&root, 5);
-	// node::print(root);
+    // map[85] = 85;
 
-	// node::erase(&root, -10);
-	// node::print(root);
-	// node::erase(&root, 20);
-	// node::print(root);
-	// node::erase(&root, 15);
-	// node::print(root);
-	// node::erase(&root, -5);
-	// node::print(root);
+    // std::cout << map[85] << "\n";
 
-	// node::erase(&root);
-	// node::print(root);
+    // std::cout << "-------------------\n";
 
-	// node::insert(&root, 12, "lol");
-	// node::print(root);
+    // ft::map<int,int>    map2(map.begin(), map.end());
 
-	// for (int i = 0; i < 100 * 1000 * 1000; i++) {
-	// 	node::insert(&root, random(-200, 200), i);
-	// 	// node::print(root);
-	// }
+    // std::cout << map2.at(5) << "\n";
+    // std::cout << map2.at(55) << "\n";
+    // std::cout << map2.at(84) << "\n";
 
-	// // node::print(root);
+    // std::cout << map2[5] << "\n";
+    // std::cout << map2[55] << "\n";
+    // std::cout << map2[84] << "\n";
+    // std::cout << map2[85] << "\n";
 
-	// for (int i = 0; i < 50 * 1000 * 1000; i++) {
-	// 	node::erase(&root, node::random(&root));
-	// 	// node::print(root);
-	// }
+    // std::cout << "-------------------\n";
 
-	// // node::print(root);
+    // ft::map<int,int>    map3(map);
 
-	// for (int i = 0; i < 50 * 1000 * 1000; i++) {
-	// 	node::insert(&root, random(-200, 200), i);
-	// 	// node::print(root);
-	// }
+    // std::cout << map3.at(5) << "\n";
+    // std::cout << map3.at(55) << "\n";
+    // std::cout << map3.at(84) << "\n";
 
-	// node::lrotate(&root);
-	// node::print(root);
-	// node::rrotate(&root);
-	// node::print(root);
+    // std::cout << map3[5] << "\n";
+    // std::cout << map3[55] << "\n";
+    // std::cout << map3[84] << "\n";
+    // std::cout << map3[85] << "\n";
 
-	// while (root) {
-	// 	node::erase(&root, node::random(&root));
-	// 	// node::print(root);
-	// }
-		
-	// node::print(root);
+    // std::cout << "Iterator ::\n";
 
-	// root->left = new node(root, 0, "aa");
-	// root->left->left = new node(root->left, 0, "aaa");
-	// root->left->left->left = new node(root->left->left, 0, "aaaa");
-	// root->left->left->right = new node(root->left->left, 0, "aaab");
-	// root->left->right = new node(root->left, 0, "aab");
-	// root->left->right->left = new node(root->left->right, 0, "aaba");
-	// root->left->right->right = new node(root->left->right, 0, "aabb");
+    // map<int,int>    map;
 
-	// root->right = new node(root, 0, "ab", NRED);
-	// root->right->left = new node(root->right, 0, "aba");
-	// root->right->left->left = new node(root->right->left, 0, "abaa");
-	// root->right->left->right = new node(root->right->left, 0, "abab");
-	// root->right->right = new node(root->right, 0, "abb");
-	// root->right->right->left = new node(root->right->right, 0, "abba");
-	// root->right->right->right = new node(root->right->right, 0, "abbb");
+    // for(int i = 5; i < 15; i++)
+    //     map.insert(ft::make_pair(i,i));
 
-	// node::rrotate(root);
-	// node::print(root);
-	// node::lrotate(root);
-	// node::print(root);
+    // ft::map<int,int>::iterator  it;
+    // ft::map<int,int>::const_iterator  cit;
+    // ft::map<int,int>::reverse_iterator  rit;
+    // ft::map<int,int>::const_reverse_iterator  crit;
+
+    // for(it = map.begin(); it != map.end(); it++)
+    //     std::cout << (*it).first << " " << (*it).second << "\n";
+
+    // std::cout << "-------------------\n";
+
+    // it = map.end();
+    // it--;
+    // for(; it != map.begin(); it--)
+    //     std::cout << (*it).first << " " << (*it).second << "\n";
+
+    // std::cout << "-------------------\n";
+
+    // for(cit = map.begin(); cit != map.end(); cit++)
+    //     std::cout << (*cit).first << " " << (*cit).second << "\n";
+
+    // std::cout << "-------------------\n";
+
+    // cit = map.end();
+    // cit--;
+    // for(; cit != map.begin(); cit--)
+    //     std::cout << (*cit).first << " " << (*cit).second << "\n";
 
 
-	// ft::vector<int>				vec;
-	// ft::vector<int>				vec2;
-	// ft::vector<int>::iterator	it;
-	// ft::vector<int>::reverse_iterator	it;
+    // std::cout << "Capacity ::\n";
 
-	// print(vec);
-	// vec.reserve(200);
-	// print(vec);
-	// vec.reserve(10);
+    // map<int,int>    map;
 
-	// for (int i = 0; i < 10; i++)
-	// 	vec.push_back(i);
-	// vec.push_back(43);
-	// vec.push_back(50);
+    // if (map.empty())
+    //     std::cout << "OKK\n";
+    // std::cout << map.size() << "\n";
+    // for(int i = 5; i < 15; i++)
+    //     map.insert(ft::make_pair(i,i));
+    // if (map.empty())
+    //     std::cout << "KKO\n";
 
-	// vec.push_back(42);
-	// vec.erase(vec.begin());
+    // std::cout << map.size() << "\n";
 
-	// for (int i = 0; i < 10; i++)
-	// 	vec2.push_back(i);
-	// vec2.push_back(43);
-	// vec2.push_back(50);
+    // map.erase(7);
 
-	// print(vec);
-	// vec.insert(vec.begin() + 5, 42);
-	// print(vec);
+    // std::cout << map.size() << "\n";
 
-	// vec.swap(vec2);
+    // std::cout << map.max_size() << "\n";
 
-	// vec.pop_back();
+     map<int,int>    map;
 
-	// for (it = vec.erase(vec.begin() + 5, vec.begin() + 10); it != vec.end(); it++)
-	// 	std::cout << *it << "\n";
+    for(int i = 5; i < 85; i++)
+        map.insert(ft::make_pair(i,i));
 
-	// vec.erase(vec.begin() + 9)
+    map.clear();
 
-	// for (it = vec.begin(); it != vec.end(); it++)
-	// 	std::cout << *it << "\n";
+    if (map.empty)
+    
 
-	// for (it = vec.rbegin(); it != vec.rend(); it--)
-	// 	std::cout << *it << "\n";
 
-	// for (it = vec2.begin(); it != vec2.end(); it++)
-	// 	std::cout << *it << "\n";
 
-	// std::cout << "== " << (vec == vec2) << "\n";
-	// std::cout << "!= " << (vec != vec2) << "\n";
-	// std::cout << "<= " << (vec <= vec2) << "\n";
-	// std::cout << ">= " << (vec >= vec2) << "\n";
-	// std::cout << "< " << (vec < vec2) << "\n";
-	// std::cout << "> " << (vec > vec2) << "\n";
-
-	// ft::stack<int>	stack(vec);
-	// ft::stack<int>	stack2(vec2);
-
-	// std::cout << "== " << (stack == stack2) << "\n";
-	// std::cout << "!= " << (stack != stack2) << "\n";
-	// std::cout << "<= " << (stack <= stack2) << "\n";
-	// std::cout << ">= " << (stack >= stack2) << "\n";
-	// std::cout << "< " << (stack < stack2) << "\n";
-	// std::cout << "> " << (stack > stack2) << "\n";
-
-	return (0);
+    return (0);
 }
