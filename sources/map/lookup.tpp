@@ -3,6 +3,7 @@
 #include "map.hpp"
 
 #include <stdexcept>
+#include <iostream>
 
 namespace ft
 {

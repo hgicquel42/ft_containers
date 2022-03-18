@@ -15,17 +15,18 @@ namespace ft
 	 * @param value 
 	 */
 	template <class K, class V>
-	pair<node<K,V>**, bool>	node<K,V>::insert(node** root, const K& key, const V& value)
+	pair<node<K,V>*, bool>	node<K,V>::insert(node** root, const K& key, const V& value)
 	{
 		node* parent = NULL;
 
 		node** slot = spot(&parent, root, key);
-		if (!slot) return (make_pair<node**, bool>(NULL, false));
-		if (*slot) return (make_pair<node**, bool>(slot, false));
+		if (!slot) return (make_pair<node*, bool>(NULL, false));
+		if (*slot) return (make_pair<node*, bool>(*slot, false));
 
-		*slot = new node<K,V>(parent, key, value, NRED);
-		insertf(root, slot);
-		return (make_pair<node**, bool>(slot, true));
+		node* current = new node<K,V>(parent, key, value, NRED);
+		*slot = current;
+		insertf(root, current);
+		return (make_pair<node*, bool>(current, true));
 	}
 
 	/**
@@ -36,11 +37,10 @@ namespace ft
 	 * @param slot 
 	 */
 	template <class K, class V>
-	void	node<K,V>::insertf(node** root, node** slot)
+	void	node<K,V>::insertf(node** root, node* current)
 	{
-		if (!slot || !*slot) return ;
+		if (!current) return ;
 
-		node* current = *slot;
 		node* parent = current->parent;
 
 		if (!parent) {
@@ -65,7 +65,7 @@ namespace ft
 			parent->color = NBLACK;
 			gparent->color = NRED;
 			uncle->color = NBLACK;
-			insertf(root, node::slot(root, gparent));
+			insertf(root, gparent);
 			return ;
 		}
 

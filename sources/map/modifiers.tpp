@@ -15,13 +15,13 @@ namespace ft
 	template < class K, class V, class C, class A >
     pair<typename map<K,V,C,A>::iterator, bool>	map<K,V,C,A>::insert(const pair<K,V>& kv)
     {
-        pair<node<K,V>**, bool> result =
+        pair<node<K,V>*, bool> result =
 			node<K,V>::insert(&this->_root, kv.first, kv.second);
-		if (!result.first || !*result.first)
+		if (!result.first)
 			return (ft::make_pair<iterator, bool>(iterator(NULL), false));
 		if (result.second)
 			_size++;
-        return (ft::make_pair<iterator, bool>(iterator(*result.first), result.second));
+        return (ft::make_pair<iterator, bool>(iterator(result.first), result.second));
     }
 
 	template <class K, class V, class C, class A>

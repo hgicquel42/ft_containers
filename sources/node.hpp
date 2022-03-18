@@ -65,7 +65,7 @@ namespace ft
 
 			static node**	spot(node** parent, node** root, const K& key);
 
-			static pair<node**, bool>	insert(node** root, const K& key, const V& value);
+			static pair<node*, bool>	insert(node** root, const K& key, const V& value);
 
 			static bool		erase(node** root, const K& key);
 
@@ -75,9 +75,9 @@ namespace ft
 
 		private:
 		
-			static void		insertf(node** root, node** slot);
+			static void		insertf(node** root, node* slot);
 
-			static void		erasef(node** root, node** slot);
+			static void		erasef(node** root, node* slot);
 	};
 }
 

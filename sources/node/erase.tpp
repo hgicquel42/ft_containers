@@ -66,7 +66,7 @@ namespace ft
 			return (true);
 		if (color == NRED)
 			return (true);
-		erasef(root, slot);
+		erasef(root, *slot);
 		return (true);
 	}
 
@@ -80,11 +80,10 @@ namespace ft
 	 * @param color 
 	 */
 	template <class K, class V>
-	void	node<K,V>::erasef(node** root, node** slot)
+	void	node<K,V>::erasef(node** root, node* current)
 	{
-		if (!slot || !*slot) return ;
+		if (!current) return ;
 
-		node* current = *slot;
 		node* parent = current->parent;
 
 		if (!parent) {
@@ -114,7 +113,7 @@ namespace ft
 			if (parent->color == NRED)
 				parent->color = NBLACK;
 			else
-				erasef(root, node::slot(root, parent));
+				erasef(root, parent);
 			return ;
 		}
 
