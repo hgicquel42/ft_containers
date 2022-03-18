@@ -37,6 +37,16 @@ namespace ft
 	}
 
 	template <class K, class V, class C, class A>
+	template<class I>
+	map<K,V,C,A>::map(I first, I last, const C& comp, const A& alloc):
+		_comp(comp),
+		_alloc(alloc),
+		_size(0)
+	{
+		this->insert(first, last);
+	}
+
+	template <class K, class V, class C, class A>
 	map<K,V,C,A>&	map<K,V,C,A>::operator=(const map& from)
 	{
 		if (this == &from)

@@ -15,12 +15,10 @@ namespace ft
 	template <class K, class V>
 	bool	node<K,V>::erase(node** root, const K& key)
 	{
-		node* parent = NULL;
-
 		node* current = search(*root, key);
 		if (!current) return (false);
 		
-		erase(slot);
+		erase(root, current);
 		return (true);
 	}
 

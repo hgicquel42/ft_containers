@@ -49,16 +49,17 @@ namespace ft
 	template < class K, class V, class C, class A >
 	typename map<K,V,C,A>::size_type	map<K,V,C,A>::erase(const K& key)
 	{
-		if (node<K,V>::erase(&this->_root, key))
-			return (1);
-		return (0);
+		if (!node<K,V>::erase(&this->_root, key))
+			return (0);
+		this->_size--;
+		return (1);
 	}
 
 	template <class K, class V, class C, class A>
 	void map<K,V,C,A>::erase(iterator first, iterator last)
 	{
 		for (iterator it = first; it != last; it++)
-			if (node<K,V>::erase(&_root, it->first))
+			if (node<K,V>::erase(&_root, (*it).first))
 				this->_size--;
 	}
 
