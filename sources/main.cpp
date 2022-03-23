@@ -40,10 +40,28 @@ int	main(void)
 
 	const map map2 = map1;
 
-	map::const_reverse_iterator it = map2.rbegin();
-	it--;
-	for (; it != map2.rend(); it--)
-		cout << "kv = " << (*it).first << " " << it.current()->value << "\n";
+	// map::const_reverse_iterator it = map2.rbegin();
+	// it--;
+	// for (; it != map2.rend(); it--)
+	// 	cout << "kv = " << (*it).first << " " << it.current()->value << "\n";
+
+	// for (int i = 0; i < 200; i++)
+	// {
+	// 	map::const_iterator lower = map2.lower_bound(i);
+	// 	map::const_iterator upper = map2.upper_bound(i);
+	// 	cout << i << " <= ";
+	// 	if (lower != map2.end())
+	// 		cout << lower.current()->key;
+	// 	else
+	// 		cout << "end";
+	// 	cout << " && ";
+	// 	cout << i << " < ";
+	// 	if (upper != map2.end())
+	// 		cout << upper.current()->key;
+	// 	else
+	// 		cout << "end";
+	// 	cout << "\n";
+	// }
 
 	// map.insert(ft::make_pair<int, string>(42, "hello"));
 	// map.insert(ft::make_pair<int, string>(32, "lol"));

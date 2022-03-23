@@ -56,55 +56,51 @@ namespace ft
 		return (end());
 	}
 
-		template < class K, class V, class C, class A >
-	typename map<K,V,C,A>::iterator map<K,V,C,A>::lower_bound( const K& key )
+	template <class K, class V, class C, class A>
+	typename map<K,V,C,A>::iterator map<K,V,C,A>::lower_bound(const K& key)
 	{
-		iterator	ite	= end();
-		ite--;
-		for (iterator	it	= begin(); it != ite; ite--)
-		{
-			node<K,V> *tmp = ite.current();
-			if (tmp->key <= key)
-				return (ite);
-		}
-		return (ite);
-	}
-
-	template < class K, class V, class C, class A >
-	typename map<K,V,C,A>::const_iterator map<K,V,C,A>::lower_bound( const K& key ) const
-	{
-		return (const_iterator(this->lower_bound(key)));
-	}
-
-	template < class K, class V, class C, class A >
-	typename map<K,V,C,A>::iterator map<K,V,C,A>::upper_bound( const K& key )
-	{
-		iterator	it	= begin();
-		for (iterator	ite	= end(); it != ite; it++)
-		{
-			node<K,V> *tmp = it.current();
-			if (tmp->key >= key)
-				return (it);
-		}
+		iterator it;
+		for (it = this->begin(); it != this->end(); it++)
+			if (it.current()->key >= key) break ;
 		return (it);
 	}
 
-	template < class K, class V, class C, class A >
-	typename map<K,V,C,A>::const_iterator map<K,V,C,A>::upper_bound( const K& key ) const
+	template <class K, class V, class C, class A>
+	typename map<K,V,C,A>::const_iterator map<K,V,C,A>::lower_bound(const K& key) const
 	{
-		return (const_iterator(this->upper_bound(key)));
+		const_iterator it;
+		for (it = this->begin(); it != this->end(); it++)
+			if (it.current()->key >= key) break ;
+		return (it);
 	}
 
-	template < class K, class V, class C, class A >
-	pair	<typename map<K,V,C,A>::iterator ,typename map<K,V,C,A>::iterator> map<K,V,C,A>::equal_range(const K& key)
+	template <class K, class V, class C, class A>
+	typename map<K,V,C,A>::iterator map<K,V,C,A>::upper_bound(const K& key)
 	{
-		return (ft::make_pair(lower_bound(key), upper_bound(key)));
+		iterator it;
+		for (it = this->begin(); it != this->end(); it++)
+			if (it.current()->key > key) break ;
+		return (it);
 	}
 
-	template < class K, class V, class C, class A >
-	pair	<typename map<K,V,C,A>::const_iterator ,typename map<K,V,C,A>::const_iterator> map<K,V,C,A>::equal_range(const K& key) const
+	template <class K, class V, class C, class A>
+	typename map<K,V,C,A>::const_iterator map<K,V,C,A>::upper_bound(const K& key) const
 	{
-		return (ft::make_pair(lower_bound(key), upper_bound(key)));
+		const_iterator it;
+		for (it = this->begin(); it != this->end(); it++)
+			if (it.current()->key > key) break ;
+		return (it);
 	}
 
+	template <class K, class V, class C, class A>
+	pair<typename map<K,V,C,A>::iterator, typename map<K,V,C,A>::iterator> map<K,V,C,A>::equal_range(const K& key)
+	{
+		return (ft::make_pair<iterator,iterator>(lower_bound(key), upper_bound(key)));
+	}
+
+	template <class K, class V, class C, class A>
+	pair<typename map<K,V,C,A>::const_iterator, typename map<K,V,C,A>::const_iterator> map<K,V,C,A>::equal_range(const K& key) const
+	{
+		return (ft::make_pair<const_iterator,const_iterator>(lower_bound(key), upper_bound(key)));
+	}
 }
