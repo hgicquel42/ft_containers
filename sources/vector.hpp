@@ -5,6 +5,7 @@
 #include <cstddef>
 
 #include "utils/types.hpp"
+#include "utils/compare.hpp"
 
 #include "vector/iterators/random_access_iterator.hpp"
 #include "vector/iterators/reverse_iterator.hpp"

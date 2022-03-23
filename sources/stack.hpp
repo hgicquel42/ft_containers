@@ -2,6 +2,8 @@
 
 #include "vector.hpp"
 
+#include "utils/compare.hpp"
+
 namespace ft
 {
 	template <class T, class C = vector<T> >

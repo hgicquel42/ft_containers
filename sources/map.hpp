@@ -3,6 +3,8 @@
 #include "pair.hpp"
 #include "node.hpp"
 
+#include "utils/compare.hpp"
+
 #include "map/iterators/bidirectional_iterator.hpp"
 #include "map/iterators/const_bidirectional_iterator.hpp"
 
