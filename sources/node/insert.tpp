@@ -15,11 +15,12 @@ namespace ft
 	 * @param value 
 	 */
 	template <class K, class V>
+	template <class C>
 	pair<node<K,V>*, bool>	node<K,V>::insert(node** root, const K& key, const V& value)
 	{
 		node* parent = NULL;
 
-		node** slot = spot(&parent, root, key);
+		node** slot = node::template spot<C>(&parent, root, key);
 		if (!slot) return (ft::make_pair<node*, bool>(NULL, false));
 		if (*slot) return (ft::make_pair<node*, bool>(*slot, false));
 

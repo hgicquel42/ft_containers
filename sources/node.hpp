@@ -57,6 +57,7 @@ namespace ft
 
 			static const node*	previous(const node*const* root, const node* current);
 
+			template <class C>
 			static node*	search(node* current, const K& key);
 
 			static void		print(const node* root, const string& prefix = "", int position = 0);
@@ -65,10 +66,13 @@ namespace ft
 
 			static void		rrotate(node** root, node* current);
 
+			template <class C>
 			static node**	spot(node** parent, node** root, const K& key);
 
+			template <class C>
 			static pair<node*, bool>	insert(node** root, const K& key, const V& value);
 
+			template <class C>
 			static bool		erase(node** root, const K& key);
 
 			static bool		erase(node** root, node* current);

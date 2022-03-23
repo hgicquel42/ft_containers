@@ -7,7 +7,6 @@ namespace ft
 	template <class K, class V>
 	void	node<K,V>::lrotate(node** root, node* current)
 	{
-		
 		node** slot = node::slot(root, current);
 		node* parent = current->parent;
 		node* right = current->right;

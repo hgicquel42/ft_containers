@@ -13,9 +13,10 @@ namespace ft
 	 * @param key 
 	 */
 	template <class K, class V>
+	template <class C>
 	bool	node<K,V>::erase(node** root, const K& key)
 	{
-		node* current = search(*root, key);
+		node* current = search<C>(*root, key);
 		if (!current) return (false);
 		
 		erase(root, current);

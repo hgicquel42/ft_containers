@@ -16,7 +16,7 @@ namespace ft
     pair<typename map<K,V,C,A>::iterator, bool>	map<K,V,C,A>::insert(const pair<K,V>& kv)
     {
         pair<node<K,V>*, bool> result =
-			node<K,V>::insert(&this->_root, kv.first, kv.second);
+			node<K,V>::template insert<C>(&this->_root, kv.first, kv.second);
 		iterator it = iterator(&this->_root, result.first);
 		if (result.second)
 			_size++;

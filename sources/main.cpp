@@ -33,13 +33,15 @@ int	main(void)
 	map	map1;
 	// ft::map<int,string>	map2;
 
-	// for (int i = 0; i < 100; i++) 
-	// 	map1.insert(ft::make_pair<int, int>(random(-200, 200), i));
+	for (int i = 0; i < 100; i++) 
+		map1.insert(ft::make_pair<int, int>(random(-200, 200), i));
 
 	// for (int i = 0; i < 10; i++) 
 	// 	map1.insert(ft::make_pair<int, int>(i, i));
 
-	// map	map2;
+	// map	map2 = map1;
+
+	// map1.print();
 
 	// for (int i = -10; i < 0; i++) 
 	// 	map2.insert(ft::make_pair<int, int>(i, i));

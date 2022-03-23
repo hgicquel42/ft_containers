@@ -127,20 +127,21 @@ namespace ft
 	}
 
 	template <class K, class V>
+	template <class C>
 	node<K,V>*	node<K,V>::search(node* current, const K& key)
 	{
 		if (!current)
 			return (NULL);
 		if (key == current->key)
 			return (current);
-		if (key > current->key)
-			return (search(current->right, key));
-		if (key < current->key)
-			return (search(current->left, key));
-		return (NULL);
+		if (C()(key, current->key))
+			return (node::template search<C>(current->left, key));
+		else
+			return (node::template search<C>(current->right, key));	
 	}
 
 	template <class K, class V>
+	template <class C>
 	node<K,V>**	node<K,V>::spot(node** parent, node** root, const K& key)
 	{
 		if (!root)
@@ -150,11 +151,10 @@ namespace ft
 		*parent = *root;
 		if (key == (*root)->key)
 			return (root);
-		if (key < (*root)->key)
-			return (spot(parent, &(*root)->left, key));
-		if (key > (*root)->key)
-			return (spot(parent, &(*root)->right, key));
-		return (NULL);
+		if (C()(key, (*root)->key))
+			return (node::template spot<C>(parent, &(*root)->left, key));
+		else
+			return (node::template spot<C>(parent, &(*root)->right, key));
 	}
 
 	template <class K, class V>
