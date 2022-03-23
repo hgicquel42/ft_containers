@@ -33,12 +33,23 @@ int	main(void)
 	map	map1;
 	// ft::map<int,string>	map2;
 
-	for (int i = 0; i < 100; i++) {
-		map1.insert(ft::make_pair<int, int>(random(-200, 200), i));
-		// node::print(root);
-	}
+	// for (int i = 0; i < 100; i++) 
+	// 	map1.insert(ft::make_pair<int, int>(random(-200, 200), i));
 
-	const map map2 = map1;
+	// for (int i = 0; i < 10; i++) 
+	// 	map1.insert(ft::make_pair<int, int>(i, i));
+
+	// map	map2;
+
+	// for (int i = -10; i < 0; i++) 
+	// 	map2.insert(ft::make_pair<int, int>(i, i));
+
+	// ft::swap(map1, map2);
+
+	// map1.print();
+	// map2.print();
+
+	// const map map2 = map1;
 
 	// map::const_reverse_iterator it = map2.rbegin();
 	// it--;

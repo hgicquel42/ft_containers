@@ -66,13 +66,24 @@ namespace ft
 	template <class K, class V, class C, class A>
 	void map<K,V,C,A>::swap(map& other)
 	{
-		map<K,V,C,A> tmp = *this;
-		*this = other;
-		other = tmp;
+		node<K,V>*	temp_root = this->_root;
+		C			temp_comp = this->_comp;
+		A			temp_alloc = this->_alloc;
+		size_type	temp_size = this->_size;
+
+		this->_root = other._root;
+		this->_comp = other._comp;
+		this->_alloc = other._alloc;
+		this->_size = other._size;
+
+		other._root = temp_root;
+		other._comp = temp_comp;
+		other._alloc = temp_alloc;
+		other._size = temp_size;
 	}
 
 	template <class K, class V, class C, class A>
-	void	map<K,V,C,A>::swap(map& x, map& y)
+	void	swap(map<K,V,C,A>& x, map<K,V,C,A>& y)
 	{
 		x.swap(y);
 	}

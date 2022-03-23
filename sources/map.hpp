@@ -80,8 +80,6 @@ namespace ft
 			map&	operator=(const map& from);
 
 			void	swap(map& other);
-			
-			static void	swap(map& x, map& y);
 
 			template <class I>
 			map(I first, I last, const C& comp = C(), const A& alloc = A());
@@ -150,6 +148,9 @@ namespace ft
 
 			// void	print(void) const;
 	};
+
+	template <class K, class V, class C, class A>
+	void	swap(map<K,V,C,A>& x, map<K,V,C,A>& y);
 
 	template <class K, class V, class C, class A>
 	bool	operator==(const map<K,V,C,A>& left, const map<K,V,C,A>& right);

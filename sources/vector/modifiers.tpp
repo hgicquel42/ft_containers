@@ -5,7 +5,7 @@
 namespace ft
 {
 	template <class T, class A>
-	void	vector<T,A>::swap(vector& x, vector& y)
+	void	swap(vector<T,A>& x, vector<T,A>& y)
 	{
 		x.swap(y);
 	}
@@ -13,10 +13,10 @@ namespace ft
 	template <class T, class A>
 	void	vector<T,A>::swap(vector& other)
 	{
-		A	tmp_alloc = other._alloc;
-		T*	tmp_start = other._start;
-		size_type tmp_capacity = other._capacity;
-		size_type tmp_size = other._size;
+		A			tmp_alloc = other._alloc;
+		T*			tmp_start = other._start;
+		size_type	tmp_capacity = other._capacity;
+		size_type	tmp_size = other._size;
 
 		other._alloc = this->_alloc;
 		other._start = this->_start;

@@ -93,8 +93,6 @@ namespace ft
 
 			void	swap(vector& other);
 
-			static void	swap(vector& x, vector& y);
-
 			void	push_back(const T& val);
 			void	pop_back(void);
 
@@ -114,6 +112,9 @@ namespace ft
 			template <class I>
     		void insert (iterator position, I first, I last, typename ft::enable_if<!ft::is_integral<I>::value>::type* = NULL);
 	};
+
+	template<class T, class A>
+	void	swap(vector<T,A>& x, vector<T,A>& y);
 
 	template<class T, class A>
 	bool	operator==(const vector<T,A>& left, const vector<T,A>& right);
