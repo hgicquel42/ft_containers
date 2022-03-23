@@ -51,6 +51,12 @@ namespace ft
 
 			static node*	previous(node*const* root, node* current);
 
+			static const node*	maximum(const node* current);
+
+			static const node*	next(const node* current);
+
+			static const node*	previous(const node*const* root, const node* current);
+
 			static node*	search(node* current, const K& key);
 
 			static void		print(const node* root, const string& prefix = "", int position = 0);

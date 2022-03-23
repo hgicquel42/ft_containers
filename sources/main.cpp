@@ -18,7 +18,8 @@ void	print(ft::vector<T>& vector)
 	cout << "-----------" << "\n";
 }
 
-typedef ft::node<int,string>	node;
+// typedef ft::node<int,string>	node;
+typedef ft::map<int,int>	map;
 
 int	random(int min, int max)
 {
@@ -27,24 +28,36 @@ int	random(int min, int max)
 
 int	main(void)
 {
-	ft::map<int,string>	map;
-	ft::map<int,string>	map2;
+	srand(time(NULL));
 
-	map.insert(ft::make_pair<int, string>(42, "hello"));
-	map.insert(ft::make_pair<int, string>(32, "lol"));
+	map	map1;
+	// ft::map<int,string>	map2;
+
+	for (int i = 0; i < 100; i++) {
+		map1.insert(ft::make_pair<int, int>(random(-200, 200), i));
+		// node::print(root);
+	}
+
+	const map map2 = map1;
+
+	map::const_reverse_iterator it = map2.rbegin();
+	it--;
+	for (; it != map2.rend(); it--)
+		cout << "kv = " << (*it).first << " " << it.current()->value << "\n";
+
+	// map.insert(ft::make_pair<int, string>(42, "hello"));
+	// map.insert(ft::make_pair<int, string>(32, "lol"));
 
 	// map2 = map;
 
-	map2.insert(ft::make_pair<int, string>(42, "hello"));
-	map2.insert(ft::make_pair<int, string>(46, "lol"));
+	// map2.insert(ft::make_pair<int, string>(42, "hello"));
+	// map2.insert(ft::make_pair<int, string>(46, "lol"));
 
-	cout << "map == map2 " << (map == map2) << "\n";
-	cout << "map != map2 " << (map != map2) << "\n";
-	cout << "map < map2 " << (map < map2) << "\n";
+	// cout << "map == map2 " << (map == map2) << "\n";
+	// cout << "map != map2 " << (map != map2) << "\n";
+	// cout << "map < map2 " << (map < map2) << "\n";
 
 	// node*	root = NULL;
-
-	srand(time(NULL));
 	
 	// root = new node(NULL, 0, "root");
 	// node::print(root);

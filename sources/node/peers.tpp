@@ -43,6 +43,14 @@ namespace ft
 	}
 
 	template <class K, class V>
+	const node<K,V>*	node<K,V>::maximum(const node* current)
+	{
+		if (!current->right)
+			return (current);
+		return (maximum(current->right));
+	}
+
+	template <class K, class V>
 	node<K,V>*	node<K,V>::next(node* current)
 	{
 		if (!current)
@@ -59,7 +67,39 @@ namespace ft
 	}
 	
 	template <class K, class V>
+	const node<K,V>*	node<K,V>::next(const node* current)
+	{
+		if (!current)
+			return (NULL);
+		if (current->right)
+			return (minimum(current->right));
+		node* parent = current->parent;
+		while (parent && current == parent->right)
+		{
+			current = parent;
+			parent = current->parent;
+		}
+		return (parent);
+	}
+
+	template <class K, class V>
 	node<K,V>*	node<K,V>::previous(node*const* root, node* current)
+	{
+		if (!current)
+			return (maximum(*root));
+		if (current->left)
+			return (maximum(current->left));
+		node* parent = current->parent;
+		while (parent && current == parent->left)
+		{
+			current = parent;
+			parent = current->parent;
+		}
+		return (parent);
+	}
+
+	template <class K, class V>
+	const node<K,V>*	node<K,V>::previous(const node*const* root, const node* current)
 	{
 		if (!current)
 			return (maximum(*root));

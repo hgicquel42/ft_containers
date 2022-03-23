@@ -4,7 +4,10 @@
 #include "node.hpp"
 
 #include "map/iterators/bidirectional_iterator.hpp"
+#include "map/iterators/const_bidirectional_iterator.hpp"
+
 #include "map/iterators/reverse_iterator.hpp"
+#include "map/iterators/const_reverse_iterator.hpp"
 
 namespace ft
 {
@@ -27,11 +30,11 @@ namespace ft
             typedef typename A::pointer			pointer;
 			typedef typename A::const_pointer	const_pointer;
 
-			typedef ft::map_bidirectional_iterator<K,V,C>	iterator;
-			typedef ft::map_bidirectional_iterator<K,V,C>	const_iterator;
+			typedef ft::map_bidirectional_iterator<K,V,C>		iterator;
+			typedef ft::const_map_bidirectional_iterator<K,V,C>	const_iterator;
 
-			typedef ft::map_reverse_iterator<K,V,C>	reverse_iterator;
-			typedef ft::map_reverse_iterator<K,V,C>	const_reverse_iterator;
+			typedef ft::map_reverse_iterator<K,V,C>			reverse_iterator;
+			typedef ft::const_map_reverse_iterator<K,V,C>	const_reverse_iterator;
 		
 			class value_compare
             {
