@@ -148,8 +148,7 @@ namespace ft
 
 			pair<const_iterator,const_iterator> equal_range(const K& key) const;
 
-			// TODO remove
-			void	print(void) const;
+			// void	print(void) const;
 	};
 
 	template <class K, class V, class C, class A>

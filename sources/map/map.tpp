@@ -77,9 +77,9 @@ namespace ft
 		return (value_compare(this->_comp));
 	}
 
-	template <class K, class V, class C, class A>
-	void	map<K,V,C,A>::print(void) const
-	{
-		node<K,V>::print(this->_root);
-	}
+	// template <class K, class V, class C, class A>
+	// void	map<K,V,C,A>::print(void) const
+	// {
+	// 	node<K,V>::print(this->_root);
+	// }
 }
