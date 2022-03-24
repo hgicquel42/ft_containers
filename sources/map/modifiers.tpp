@@ -49,7 +49,7 @@ namespace ft
 	template < class K, class V, class C, class A >
 	typename map<K,V,C,A>::size_type	map<K,V,C,A>::erase(const K& key)
 	{
-		if (!node<K,V>::erase(&this->_root, key))
+		if (!node<K,V>::template erase<C>(&this->_root, key))
 			return (0);
 		this->_size--;
 		return (1);

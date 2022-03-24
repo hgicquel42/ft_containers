@@ -36,6 +36,8 @@ int	main(void)
 	for (int i = 0; i < 100; i++) 
 		map1.insert(ft::make_pair<int, int>(random(-200, 200), i));
 
+	map1.erase(12);
+
 	// for (int i = 0; i < 10; i++) 
 	// 	map1.insert(ft::make_pair<int, int>(i, i));
 
