@@ -59,7 +59,7 @@ namespace ft
 	void map<K,V,C,A>::erase(iterator first, iterator last)
 	{
 		for (iterator it = first; it != last; it++)
-			if (node<K,V>::erase(&_root, (*it).first))
+			if (node<K,V>::erase(&this->_root, it.current()))
 				this->_size--;
 	}
 
